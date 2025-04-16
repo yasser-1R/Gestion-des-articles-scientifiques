@@ -1,7 +1,6 @@
 package com.gestion_des_articles;
 
-import com.gestion_des_articles.view.ArticleSearchView;
-import com.gestion_des_articles.controller.ArticleController;
+import com.gestion_des_articles.controller.AuthController;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -11,14 +10,16 @@ public class Main {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             try {
-                Connection conn = DriverManager.getConnection(
+                // Connexion à la base de données (modifie le mot de passe si besoin)
+                Connection connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/GESTION_DES_ARTICLES",
                     "root",
                     ""
                 );
-                ArticleSearchView view = new ArticleSearchView();
-                new ArticleController(view, conn);
-                view.setVisible(true);
+
+                // Lancer le contrôleur d’authentification
+                new AuthController(connection);
+
             } catch (Exception e) {
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Erreur de connexion à la base de données !");
