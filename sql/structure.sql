@@ -60,5 +60,8 @@ CREATE TABLE publication (
     filiere_etudiant VARCHAR(100),
     date_publication VARCHAR(12),
 
-    FOREIGN KEY (id_article) REFERENCES article(id)
+    FOREIGN KEY (id_article) REFERENCES article(id),
+    FOREIGN KEY (cin_etudiant) REFERENCES etudiant(cin),
+    FOREIGN KEY (cin_professeur) REFERENCES professeur(cin)
+
 );

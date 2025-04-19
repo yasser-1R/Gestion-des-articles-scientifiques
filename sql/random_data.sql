@@ -32,3 +32,16 @@ INSERT INTO publication (id_article, cin_etudiant, cin_professeur, filiere_etudi
 (1, 'EE123456', 'P12345', 'Génie Logiciel', '2025-04-01'),
 (2, 'MM987654', 'P67890', 'Analyse Mathématique', '2025-04-02'),
 (3, 'EE654321', 'P12345', 'Systèmes Embarqués', '2025-04-03');
+
+
+
+
+--test
+INSERT INTO etudiant (cin, cne, nom, prenom, email, mot_de_passe, filiere, id_departement) VALUES
+('eeeee', 'eeeee', 'eeeee', 'eeeee', 'e', 'e', 'Génie Logiciel', 1);
+
+INSERT INTO professeur (cin, nom, prenom, email, mot_de_passe, id_departement) VALUES
+('ppppp', 'ppppp', 'ppppp', 'p', 'p', 1);
+
+INSERT INTO admin (cin, nom, prenom, email, mot_de_passe) VALUES
+('aaaaa', 'aaaaa', 'aaaaa', 'a', 'a');

@@ -1,4 +1,3 @@
-
 package com.gestion_des_articles.view;
 
 import javax.swing.*;
@@ -8,14 +7,16 @@ public class LoginView extends JFrame {
     private JTextField emailField;
     private JPasswordField passwordField;
     private JButton loginButton;
+    private JButton backButton;
 
     public LoginView(String role) {
         setTitle("Connexion " + role);
-        setSize(300, 180);
+        setSize(300, 200);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        JPanel panel = new JPanel(new GridLayout(3, 2, 10, 10));
+        JPanel panel = new JPanel(new GridLayout(4, 2, 10, 10));
+
         panel.add(new JLabel("Email:"));
         emailField = new JTextField();
         panel.add(emailField);
@@ -25,8 +26,10 @@ public class LoginView extends JFrame {
         panel.add(passwordField);
 
         loginButton = new JButton("Se connecter");
+        backButton = new JButton("Retour");
+
         panel.add(loginButton);
-        panel.add(new JLabel()); // spacer
+        panel.add(backButton);
 
         add(panel);
     }
@@ -41,6 +44,10 @@ public class LoginView extends JFrame {
 
     public JButton getLoginButton() {
         return loginButton;
+    }
+
+    public JButton getBackButton() {
+        return backButton;
     }
 
     public String getEmail() {

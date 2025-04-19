@@ -1,4 +1,3 @@
-
 package com.gestion_des_articles.view;
 
 import javax.swing.*;
@@ -9,14 +8,15 @@ public class ArticleSearchView extends JFrame {
     private JButton searchButton;
     private JLabel titreLabel;
     private JLabel motsClesLabel;
+    private JButton backButton;
 
     public ArticleSearchView() {
         setTitle("Recherche d'Article");
-        setSize(400, 200);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(400, 250);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        JPanel panel = new JPanel(new GridLayout(4, 2, 10, 10));
+        JPanel panel = new JPanel(new GridLayout(5, 2, 10, 10));
 
         panel.add(new JLabel("ID de l'article :"));
         idField = new JTextField();
@@ -24,7 +24,7 @@ public class ArticleSearchView extends JFrame {
 
         searchButton = new JButton("Rechercher");
         panel.add(searchButton);
-        panel.add(new JLabel());  // placeholder
+        panel.add(new JLabel());  // espacement
 
         panel.add(new JLabel("Titre :"));
         titreLabel = new JLabel("...");
@@ -33,6 +33,10 @@ public class ArticleSearchView extends JFrame {
         panel.add(new JLabel("Mots clés :"));
         motsClesLabel = new JLabel("...");
         panel.add(motsClesLabel);
+
+        backButton = new JButton("Retour");
+        panel.add(backButton);
+        panel.add(new JLabel()); // espacement
 
         add(panel);
     }
@@ -43,6 +47,10 @@ public class ArticleSearchView extends JFrame {
 
     public JButton getSearchButton() {
         return searchButton;
+    }
+
+    public JButton getBackButton() {
+        return backButton;
     }
 
     public void setTitre(String titre) {

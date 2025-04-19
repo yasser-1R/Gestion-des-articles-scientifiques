@@ -1,4 +1,3 @@
-
 package com.gestion_des_articles.controller;
 
 import com.gestion_des_articles.dao.AdminDAO;
@@ -8,8 +7,6 @@ import com.gestion_des_articles.model.Etudiant;
 import com.gestion_des_articles.view.*;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.Connection;
 
 public class AuthController {
@@ -28,37 +25,52 @@ public class AuthController {
     private void showLogin(String role) {
         LoginView loginView = new LoginView(role);
         loginView.setVisible(true);
+        loginView.getBackButton().addActionListener(ae -> loginView.dispose());
+        loginView.getLoginButton().addActionListener(e -> {
+            String email = loginView.getEmail();
+            String password = loginView.getPassword();
 
-        loginView.getLoginButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String email = loginView.getEmail();
-                String password = loginView.getPassword();
+            if (role.equals("utilisateur")) {
+                EtudiantDAO etudiantDAO = new EtudiantDAO(connection);
+                Etudiant etu = etudiantDAO.login(email, password);
+                if (etu != null) {
+                    loginView.dispose();
+                    choiceView.dispose();
+                    AccueilUserView accueil = new AccueilUserView(etu.getPrenom());
+                    accueil.setVisible(true);
 
-                if (role.equals("utilisateur")) {
-                    EtudiantDAO etudiantDAO = new EtudiantDAO(connection);
-                    Etudiant etu = etudiantDAO.login(email, password);
-                    if (etu != null) {
-                        loginView.dispose();
-                        choiceView.dispose();
-                        AccueilUserView accueil = new AccueilUserView(etu.getPrenom());
-                        accueil.setVisible(true);
-                        accueil.getLogoutButton().addActionListener(ae -> accueil.dispose());
-                    } else {
-                        JOptionPane.showMessageDialog(loginView, "Email ou mot de passe invalide !");
-                    }
+                    accueil.getLogoutButton().addActionListener(ae -> accueil.dispose());
+
+                    // 👇 Ajouter l'ouverture de la recherche d'article
+                    accueil.getSearchButton().addActionListener(ae -> {
+                        ArticleSearchView searchView = new ArticleSearchView();
+                        new ArticleController(searchView, connection); // 👈 on relie la vue et la logique
+                        searchView.setVisible(true);
+                    });
+                    
+
                 } else {
-                    AdminDAO adminDAO = new AdminDAO(connection);
-                    Admin admin = adminDAO.login(email, password);
-                    if (admin != null) {
-                        loginView.dispose();
-                        choiceView.dispose();
-                        AccueilAdminView accueil = new AccueilAdminView(admin.getPrenom());
-                        accueil.setVisible(true);
-                        accueil.getLogoutButton().addActionListener(ae -> accueil.dispose());
-                    } else {
-                        JOptionPane.showMessageDialog(loginView, "Email ou mot de passe invalide !");
-                    }
+                    JOptionPane.showMessageDialog(loginView, "Email ou mot de passe invalide !");
+                }
+
+            } else {
+                AdminDAO adminDAO = new AdminDAO(connection);
+                Admin admin = adminDAO.login(email, password);
+                if (admin != null) {
+                    loginView.dispose();
+                    choiceView.dispose();
+                    AccueilAdminView accueil = new AccueilAdminView(admin.getPrenom());
+                    accueil.setVisible(true);
+
+                    accueil.getLogoutButton().addActionListener(ae -> accueil.dispose());
+                    accueil.getSearchButton().addActionListener(ae -> {
+                        ArticleSearchView searchView = new ArticleSearchView();
+                        new ArticleController(searchView, connection); // 👈 on relie la vue et la logique
+                        searchView.setVisible(true);
+                    });
+
+                } else {
+                    JOptionPane.showMessageDialog(loginView, "Email ou mot de passe invalide !");
                 }
             }
         });
