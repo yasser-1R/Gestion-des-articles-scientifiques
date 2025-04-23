@@ -3,6 +3,7 @@
  */
 
 package com.smi6.gestion_des_articles_informatique;
+import com.smi6.gestion_des_articles_informatique.view.*;
 
 /**
  *
@@ -11,6 +12,7 @@ package com.smi6.gestion_des_articles_informatique;
 public class Gestion_des_articles_informatique {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Upload T = new Upload();
+        T.setVisible(true);
     }
 }
