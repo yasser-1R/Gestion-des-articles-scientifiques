@@ -3,13 +3,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.smi6.gestion_des_articles_informatique.view;
+import com.smi6.gestion_des_articles_informatique.controller.*;
+import java.io.File;
+import java.util.List;
 
 /**
  *
  * @author YN
  */
 public class Upload3 extends javax.swing.JFrame {
+    private UploadController controller;
 
+    private File selectedPdfFile;
+    
     
     private int visibleAuthors = 1;  // A1 already visible by default
     private int visibleJournals = 1; // J1 already visible by default
@@ -17,8 +23,13 @@ public class Upload3 extends javax.swing.JFrame {
     /**
      * Creates new form Upload3
      */
+    
+    
     public Upload3() {
+        
         initComponents();
+        controller = new UploadController(this); // <<<< VERY IMPORTANT
+
         A2.setVisible(false);
 A3.setVisible(false);
 A4.setVisible(false);
@@ -110,6 +121,8 @@ J16.setVisible(false);
         TF_date = new javax.swing.JTextField();
         L_guidedate = new javax.swing.JLabel();
         B_publier = new javax.swing.JButton();
+        TF_date1 = new javax.swing.JTextField();
+        L_date1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1050, 600));
@@ -524,38 +537,41 @@ J16.setVisible(false);
             }
         });
 
+        TF_date1.setBackground(new java.awt.Color(239, 227, 194));
+        TF_date1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        TF_date1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TF_date1ActionPerformed(evt);
+            }
+        });
+
+        L_date1.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        L_date1.setForeground(new java.awt.Color(18, 53, 36));
+        L_date1.setText("Titre");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(L_journaux, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(5, 5, 5)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(B_supJournal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(B_addJournal, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(L_auteurs)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(B_supAuteur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(B_addAuteur, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(P_auteurs, javax.swing.GroupLayout.PREFERRED_SIZE, 839, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(P_journaux, javax.swing.GroupLayout.PREFERRED_SIZE, 839, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(L_file, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(B_publier, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(B_publier, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(L_upload, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23)
+                        .addComponent(B_pdf, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(L_date1)
+                                .addGap(49, 49, 49)
+                                .addComponent(TF_date1, javax.swing.GroupLayout.PREFERRED_SIZE, 736, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(L_quartile, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(L_date))
@@ -566,22 +582,43 @@ J16.setVisible(false);
                                         .addComponent(TF_date, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(L_guidedate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(L_upload, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(L_journaux, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(5, 5, 5)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(B_supJournal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(B_addJournal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(L_auteurs)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(B_supAuteur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(B_addAuteur, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(23, 23, 23)
-                                .addComponent(B_pdf, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(22, 22, 22))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(P_auteurs, javax.swing.GroupLayout.PREFERRED_SIZE, 839, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(P_journaux, javax.swing.GroupLayout.PREFERRED_SIZE, 839, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(189, 189, 189)
+                .addComponent(L_file, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(B_pdf)
                     .addComponent(L_file)
                     .addComponent(L_upload))
-                .addGap(19, 19, 19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(L_date1)
+                    .addComponent(TF_date1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(2, 2, 2)
@@ -610,9 +647,9 @@ J16.setVisible(false);
                     .addComponent(L_date)
                     .addComponent(TF_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(L_guidedate))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(B_publier, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39))
+                .addContainerGap())
         );
 
         pack();
@@ -671,19 +708,22 @@ J16.setVisible(false);
 
     private void B_pdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_pdfActionPerformed
     javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
-    
-    // Optional: Set filter to allow only PDF files
     javax.swing.filechooser.FileNameExtensionFilter filter = new javax.swing.filechooser.FileNameExtensionFilter("PDF Files", "pdf");
     fileChooser.setFileFilter(filter);
-    
+
     int result = fileChooser.showOpenDialog(this);
-    
+
     if (result == javax.swing.JFileChooser.APPROVE_OPTION) {
-        java.io.File selectedFile = fileChooser.getSelectedFile();
-        String filePath = selectedFile.getAbsolutePath();
-        
-        // Set the selected file path to the label
-        L_file.setText(filePath);
+        File selectedFile = fileChooser.getSelectedFile();
+        if (selectedFile.exists() && selectedFile.getName().toLowerCase().endsWith(".pdf")) {
+            selectedPdfFile = selectedFile;
+            controller.setSelectedPdfFile(selectedFile); // >>> Controller knows the file
+            L_file.setText(selectedFile.getAbsolutePath());
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Veuillez sélectionner un fichier PDF valide.", "Fichier invalide", javax.swing.JOptionPane.ERROR_MESSAGE);
+            selectedPdfFile = null;
+            L_file.setText("Sélectionner un fichier");
+        }
     }
     }//GEN-LAST:event_B_pdfActionPerformed
 
@@ -871,8 +911,65 @@ J16.setVisible(false);
     }//GEN-LAST:event_TF_dateActionPerformed
 
     private void B_publierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_publierActionPerformed
-        // TODO add your handling code here:
+    controller.publierArticle();
     }//GEN-LAST:event_B_publierActionPerformed
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    private void clearFields() {
+    // Clear title
+    TF_date1.setText("");
+
+    // Clear all authors
+    A1.setText(""); A2.setText(""); A3.setText(""); A4.setText("");
+    A5.setText(""); A6.setText(""); A7.setText(""); A8.setText("");
+    A9.setText(""); A10.setText(""); A11.setText(""); A12.setText("");
+    A13.setText(""); A14.setText(""); A15.setText(""); A16.setText("");
+
+    // Hide extra authors (keep only A1 visible)
+    visibleAuthors = 1;
+    A2.setVisible(false); A3.setVisible(false); A4.setVisible(false);
+    A5.setVisible(false); A6.setVisible(false); A7.setVisible(false); A8.setVisible(false);
+    A9.setVisible(false); A10.setVisible(false); A11.setVisible(false); A12.setVisible(false);
+    A13.setVisible(false); A14.setVisible(false); A15.setVisible(false); A16.setVisible(false);
+
+    // Clear all journals
+    J1.setText(""); J2.setText(""); J3.setText(""); J4.setText("");
+    J5.setText(""); J6.setText(""); J7.setText(""); J8.setText("");
+    J9.setText(""); J10.setText(""); J11.setText(""); J12.setText("");
+    J13.setText(""); J14.setText(""); J15.setText(""); J16.setText("");
+
+    // Hide extra journals (keep only J1 visible)
+    visibleJournals = 1;
+    J2.setVisible(false); J3.setVisible(false); J4.setVisible(false);
+    J5.setVisible(false); J6.setVisible(false); J7.setVisible(false); J8.setVisible(false);
+    J9.setVisible(false); J10.setVisible(false); J11.setVisible(false); J12.setVisible(false);
+    J13.setVisible(false); J14.setVisible(false); J15.setVisible(false); J16.setVisible(false);
+
+    // Reset date
+    TF_date.setText("");
+
+    // Reset quartile
+    CB_quartile.setSelectedIndex(0); // "Aucun"
+
+    // Reset PDF label
+    L_file.setText("sélectionner un fichier");
+
+    // Reset selected file variable
+    selectedPdfFile = null;
+}
+
+    private void TF_date1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TF_date1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TF_date1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -908,6 +1005,41 @@ J16.setVisible(false);
             }
         });
     }
+    
+    
+    
+    public javax.swing.JTextField getTitleField() {
+    return TF_date1;
+}
+
+public javax.swing.JComboBox<String> getQuartileComboBox() {
+    return CB_quartile;
+}
+
+public javax.swing.JTextField getPublicationDateField() {
+    return TF_date;
+}
+
+public List<javax.swing.JTextField> getAuthorFields() {
+    return List.of(A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12, A13, A14, A15, A16);
+}
+
+public List<javax.swing.JTextField> getJournalFields() {
+    return List.of(J1, J2, J3, J4, J5, J6, J7, J8, J9, J10, J11, J12, J13, J14, J15, J16);
+}
+
+public void showError(String message) {
+    javax.swing.JOptionPane.showMessageDialog(this, message, "Erreur", javax.swing.JOptionPane.ERROR_MESSAGE);
+}
+
+public void showMessage(String message) {
+    javax.swing.JOptionPane.showMessageDialog(this, message, "Succès", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+}
+
+public void setPdfFileLabel(String text) {
+    L_file.setText(text);
+}
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField A1;
@@ -951,6 +1083,7 @@ J16.setVisible(false);
     private javax.swing.JTextField J9;
     private javax.swing.JLabel L_auteurs;
     private javax.swing.JLabel L_date;
+    private javax.swing.JLabel L_date1;
     private javax.swing.JLabel L_file;
     private javax.swing.JLabel L_guidedate;
     private javax.swing.JLabel L_journaux;
@@ -959,5 +1092,6 @@ J16.setVisible(false);
     private javax.swing.JPanel P_auteurs;
     private javax.swing.JPanel P_journaux;
     private javax.swing.JTextField TF_date;
+    private javax.swing.JTextField TF_date1;
     // End of variables declaration//GEN-END:variables
 }
