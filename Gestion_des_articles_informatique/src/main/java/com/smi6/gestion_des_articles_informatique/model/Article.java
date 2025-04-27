@@ -1,63 +1,103 @@
 package com.smi6.gestion_des_articles_informatique.model;
 
-import java.sql.Date;
+import jakarta.persistence.*;
+import java.util.Date;
+import java.util.List;
 
+@Entity
+@Table(name = "articles")
 public class Article {
-    private int id;
-    private String title;
-    private String authors;
-    private String journals;
-    private String quartile;
-    private Date publicationDate;   // ✅ correct type
-    private String pdfPath;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String titre;
+
+    private String resume;
+
+    @ManyToOne
+    @JoinColumn(name = "upload_par")
+    private Utilisateur uploadPar;
+
+    @Column(name = "date_publication")
+    @Temporal(TemporalType.DATE)
+    private Date datePublication;
+
+    @Column(name = "chemin_pdf")
+    private String cheminPdf;
+
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
+    private List<ArticleProfesseur> auteurs;
+
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
+    private List<ArticleJournal> journaux;
+
+    public Article() {}
 
     // Getters and Setters
-    public int getId() {
+
+    public Long getId() {
         return id;
     }
-    public void setId(int id) {
+
+    public void setId(Long id) {
         this.id = id;
     }
-    
-    public String getTitle() {
-        return title;
-    }
-    public void setTitle(String title) {
-        this.title = title;
+
+    public String getTitre() {
+        return titre;
     }
 
-    public String getAuthors() {
-        return authors;
-    }
-    public void setAuthors(String authors) {
-        this.authors = authors;
+    public void setTitre(String titre) {
+        this.titre = titre;
     }
 
-    public String getJournals() {
-        return journals;
-    }
-    public void setJournals(String journals) {
-        this.journals = journals;
+    public String getResume() {
+        return resume;
     }
 
-    public String getQuartile() {
-        return quartile;
-    }
-    public void setQuartile(String quartile) {
-        this.quartile = quartile;
+    public void setResume(String resume) {
+        this.resume = resume;
     }
 
-    public Date getPublicationDate() {  // ✅ returns java.sql.Date
-        return publicationDate;
-    }
-    public void setPublicationDate(Date publicationDate) {  // ✅ setter accepts java.sql.Date
-        this.publicationDate = publicationDate;
+    public Utilisateur getUploadPar() {
+        return uploadPar;
     }
 
-    public String getPdfPath() {
-        return pdfPath;
+    public void setUploadPar(Utilisateur uploadPar) {
+        this.uploadPar = uploadPar;
     }
-    public void setPdfPath(String pdfPath) {
-        this.pdfPath = pdfPath;
+
+    public Date getDatePublication() {
+        return datePublication;
+    }
+
+    public void setDatePublication(Date datePublication) {
+        this.datePublication = datePublication;
+    }
+
+    public String getCheminPdf() {
+        return cheminPdf;
+    }
+
+    public void setCheminPdf(String cheminPdf) {
+        this.cheminPdf = cheminPdf;
+    }
+
+    public List<ArticleProfesseur> getAuteurs() {
+        return auteurs;
+    }
+
+    public void setAuteurs(List<ArticleProfesseur> auteurs) {
+        this.auteurs = auteurs;
+    }
+
+    public List<ArticleJournal> getJournaux() {
+        return journaux;
+    }
+
+    public void setJournaux(List<ArticleJournal> journaux) {
+        this.journaux = journaux;
     }
 }

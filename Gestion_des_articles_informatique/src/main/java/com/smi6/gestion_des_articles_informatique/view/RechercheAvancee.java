@@ -60,12 +60,12 @@ public class RechercheAvancee extends javax.swing.JFrame {
         jTextField2.setPreferredSize(new java.awt.Dimension(600, 45));
         jPanel2.add(jTextField2);
 
-        jButton2.setBackground(new java.awt.Color(62, 123, 39));
+        jButton2.setBackground(new java.awt.Color(18, 53, 36));
         jButton2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(239, 227, 194));
         jButton2.setText("Rechercher");
         jButton2.setToolTipText("");
-        jButton2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(18, 53, 36), 1, true));
+        jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton2.setPreferredSize(new java.awt.Dimension(150, 45));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,11 +74,11 @@ public class RechercheAvancee extends javax.swing.JFrame {
         });
         jPanel2.add(jButton2);
 
-        jButton1.setBackground(new java.awt.Color(62, 123, 39));
+        jButton1.setBackground(new java.awt.Color(18, 53, 36));
         jButton1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(239, 227, 194));
         jButton1.setText("Retourner");
-        jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(18, 53, 36), 1, true));
+        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton1.setPreferredSize(new java.awt.Dimension(150, 45));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
