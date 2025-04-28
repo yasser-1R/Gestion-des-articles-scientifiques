@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.smi6.gestion_des_articles_informatique.view;
+package com.smi6.gestion_des_articles_informatique.VVVold;
 
 /**
  *
@@ -65,7 +65,7 @@ public class Connexion extends javax.swing.JFrame {
         );
 
         jPanel3.add(jPanel1);
-        jPanel1.setBounds(0, 0, 420, 600);
+        jPanel1.setBounds(0, 0, 0, 600);
 
         B_Con_Sans_Compte.setBackground(new java.awt.Color(62, 123, 39));
         B_Con_Sans_Compte.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N

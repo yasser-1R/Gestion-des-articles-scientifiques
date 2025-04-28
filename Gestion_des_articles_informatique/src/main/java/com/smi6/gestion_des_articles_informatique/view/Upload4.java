@@ -4,8 +4,14 @@
  */
 package com.smi6.gestion_des_articles_informatique.view;
 import com.smi6.gestion_des_articles_informatique.controller.*;
+import com.smi6.gestion_des_articles_informatique.model.Journal;
+import com.smi6.gestion_des_articles_informatique.model.Professeur;
 import com.smi6.gestion_des_articles_informatique.model.Utilisateur;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import java.io.File;
+import java.util.List;
 import javax.swing.JFileChooser; 
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -53,6 +59,9 @@ private Utilisateur U;
         TF_date = new javax.swing.JTextField();
         B_retourner = new javax.swing.JButton();
         B_enregistrer = new javax.swing.JButton();
+        CB_professeurs = new javax.swing.JComboBox<>();
+        CB_journaux = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1050, 600));
@@ -142,6 +151,29 @@ private Utilisateur U;
             }
         });
 
+        CB_professeurs.setBackground(new java.awt.Color(239, 227, 194));
+        CB_professeurs.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        CB_professeurs.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CB_professeurs.setFocusable(false);
+        CB_professeurs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CB_professeursActionPerformed(evt);
+            }
+        });
+
+        CB_journaux.setBackground(new java.awt.Color(239, 227, 194));
+        CB_journaux.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        CB_journaux.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CB_journaux.setFocusable(false);
+        CB_journaux.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CB_journauxActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel1.setText("yyyy-mm-dd");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -159,14 +191,23 @@ private Utilisateur U;
                             .addComponent(L_upload, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TF_date, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(TF_date, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(B_enregistrer)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(B_pdf)
-                                    .addComponent(TF_auteurs, javax.swing.GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE)
-                                    .addComponent(TF_journaux)
-                                    .addComponent(jScrollPane1)))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(TF_journaux, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(TF_auteurs))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(CB_professeurs, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(CB_journaux, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addComponent(TF_titre, javax.swing.GroupLayout.PREFERRED_SIZE, 889, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(B_retourner))
                 .addContainerGap(62, Short.MAX_VALUE))
@@ -189,21 +230,27 @@ private Utilisateur U;
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(L_auteurs)
-                    .addComponent(TF_auteurs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TF_auteurs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CB_professeurs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(L_journaux)
-                    .addComponent(TF_journaux, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TF_journaux, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CB_journaux, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(L_publierle)
-                    .addComponent(TF_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TF_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addGap(121, 121, 121)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(B_retourner, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(B_enregistrer, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(56, 56, 56))
         );
+
+        loadProfesseurs();
+        loadJournaux();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -242,33 +289,37 @@ private Utilisateur U;
     }//GEN-LAST:event_B_retournerActionPerformed
 
     private void B_enregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_enregistrerActionPerformed
-    String titre = TF_titre.getText();
-    String resume = TA_resume.getText();
-    String auteurs = TF_auteurs.getText();
-    String journaux = TF_journaux.getText();
-    String datePublication = TF_date.getText();
-    String quartile = "t";
-    
-    UploadController uploadController = new UploadController();
-    
-    Long userId = this.U.getId();
-    
-    try {
-        uploadController.uploadArticle(userId, titre, resume, auteurs, journaux, datePublication, selectedPdfFile, quartile);
-        
-        // ✅ If everything OK, show success popup
-        javax.swing.JOptionPane.showMessageDialog(this,
-                "Article enregistré avec succès!",
-                "Succès",
-                javax.swing.JOptionPane.INFORMATION_MESSAGE);
-        
-    } catch (Exception ex) {
-        // ❌ If an error, show error popup
-        javax.swing.JOptionPane.showMessageDialog(this,
-                "Erreur lors de l'enregistrement:\n" + ex.getMessage(),
-                "Erreur",
-                javax.swing.JOptionPane.ERROR_MESSAGE);
-    }
+                // Get input values from the form
+        String titre = TF_titre.getText();
+        String resume = TA_resume.getText();
+        String auteurs = TF_auteurs.getText();
+        String journaux = TF_journaux.getText();
+        String datePublication = TF_date.getText();
+
+        // Create the controller
+        UploadController uploadController = new UploadController();
+
+        // Get the connected user's ID
+        Integer userId = this.U.getId(); // ⚡ U must be a Utilisateur object
+
+        try {
+            // Call the upload method (⚡ without quartile)
+            uploadController.uploadArticle(userId, titre, resume, auteurs, journaux, datePublication, selectedPdfFile);
+
+            // ✅ Show success popup
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Article enregistré avec succès!",
+                    "Succès",
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (Exception ex) {
+            // ❌ Show error popup if there is a problem
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Erreur lors de l'enregistrement:\n" + ex.getMessage(),
+                    "Erreur",
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_B_enregistrerActionPerformed
 
     private void B_pdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_pdfActionPerformed
@@ -293,6 +344,77 @@ private Utilisateur U;
     }
         
     }//GEN-LAST:event_B_pdfActionPerformed
+
+    private void CB_professeursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_professeursActionPerformed
+        // TODO add your handling code here:
+            String selectedProf = (String) CB_professeurs.getSelectedItem();
+    if (selectedProf != null && !selectedProf.isEmpty()) {
+        String currentText = TF_auteurs.getText().trim();
+        if (currentText.isEmpty()) {
+            TF_auteurs.setText(selectedProf);
+        } else {
+            TF_auteurs.setText(currentText + ", " + selectedProf);
+        }
+    }
+    }//GEN-LAST:event_CB_professeursActionPerformed
+
+    private void CB_journauxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_journauxActionPerformed
+        // TODO add your handling code here:
+        String selectedJournal = (String) CB_journaux.getSelectedItem();
+    if (selectedJournal != null && !selectedJournal.isEmpty()) {
+        String currentText = TF_journaux.getText().trim();
+        if (currentText.isEmpty()) {
+            TF_journaux.setText(selectedJournal);
+        } else {
+            TF_journaux.setText(currentText + ", " + selectedJournal);
+        }
+    }    
+    }//GEN-LAST:event_CB_journauxActionPerformed
+    
+    
+    
+    
+    private void loadJournaux() {
+    try {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
+        EntityManager em = emf.createEntityManager();
+
+        List<Journal> journaux = em.createQuery("FROM Journal", Journal.class).getResultList();
+        CB_journaux.removeAllItems(); // Clean old items
+
+        for (Journal journal : journaux) {
+            CB_journaux.addItem(journal.getNom());
+        }
+
+        em.close();
+        emf.close();
+    } catch (Exception ex) {
+        System.err.println("Erreur lors du chargement des journaux : " + ex.getMessage());
+    }
+}
+    
+    
+    
+    
+    
+    private void loadProfesseurs() {
+    try {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
+        EntityManager em = emf.createEntityManager();
+
+        List<Professeur> professeurs = em.createQuery("FROM Professeur", Professeur.class).getResultList();
+        CB_professeurs.removeAllItems(); // Clean old items if exist
+
+        for (Professeur prof : professeurs) {
+            CB_professeurs.addItem(prof.getNomComplet());
+        }
+
+        em.close();
+        emf.close();
+    } catch (Exception ex) {
+        System.err.println("Erreur lors du chargement des professeurs : " + ex.getMessage());
+    }
+}
 
     /**
      * @param args the command line arguments
@@ -333,6 +455,8 @@ private Utilisateur U;
     private javax.swing.JButton B_enregistrer;
     private javax.swing.JButton B_pdf;
     private javax.swing.JButton B_retourner;
+    private javax.swing.JComboBox<String> CB_journaux;
+    private javax.swing.JComboBox<String> CB_professeurs;
     private javax.swing.JLabel L_auteurs;
     private javax.swing.JLabel L_journaux;
     private javax.swing.JLabel L_publierle;
@@ -344,6 +468,7 @@ private Utilisateur U;
     private javax.swing.JTextField TF_date;
     private javax.swing.JTextField TF_journaux;
     private javax.swing.JTextField TF_titre;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

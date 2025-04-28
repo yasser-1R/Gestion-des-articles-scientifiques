@@ -4,6 +4,7 @@ import com.smi6.gestion_des_articles_informatique.model.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -18,8 +19,15 @@ public class UploadController {
 
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
 
-    public void uploadArticle(Long userId, String titre, String resume, String auteursString, String journauxString, String dateString, File selectedPdfFile, String quartile) throws Exception
- {
+    public void uploadArticle(
+            Integer userId,
+            String titre,
+            String resume,
+            String auteursString,
+            String journauxString,
+            String dateString,
+            File selectedPdfFile
+    ) throws Exception {
         EntityManager em = emf.createEntityManager();
 
         try {
@@ -31,17 +39,44 @@ public class UploadController {
             article.setResume(resume);
 
             Utilisateur user = em.find(Utilisateur.class, userId);
-            article.setUploadPar(user);
+            if (user == null) {
+                throw new Exception("Utilisateur non trouvé avec ID: " + userId);
+            }
+            article.setUploadPar(user.getId()); // because uploadPar is just Integer
 
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date datePublication = formatter.parse(dateString);
             article.setDatePublication(datePublication);
 
-            // Save Article first (without chemin_pdf)
-            em.persist(article);
-            em.flush(); // Force save to get ID
+            // 2. Link Auteurs (Professeurs)
+            List<Professeur> professeurs = new ArrayList<>();
+            String[] auteursArray = auteursString.split(",");
+            for (String auteurNom : auteursArray) {
+                auteurNom = auteurNom.trim();
+                if (!auteurNom.isEmpty()) {
+                    Professeur prof = findOrCreateProfesseur(em, auteurNom);
+                    professeurs.add(prof);
+                }
+            }
+            article.setProfesseurs(professeurs);
 
-            // 2. Copy the PDF file
+            // 3. Link Journaux
+            List<Journal> journaux = new ArrayList<>();
+            String[] journauxArray = journauxString.split(",");
+            for (String journalNom : journauxArray) {
+                journalNom = journalNom.trim();
+                if (!journalNom.isEmpty()) {
+                    Journal journal = findOrCreateJournal(em, journalNom);
+                    journaux.add(journal);
+                }
+            }
+            article.setJournaux(journaux);
+
+            // 4. Save Article (before PDF)
+            em.persist(article);
+            em.flush(); // get article.getId()
+
+            // 5. Copy the PDF file
             if (selectedPdfFile != null) {
                 String folderPath = "pdfs";
                 File folder = new File(folderPath);
@@ -55,47 +90,25 @@ public class UploadController {
                 Files.copy(selectedPdfFile.toPath(), destination, StandardCopyOption.REPLACE_EXISTING);
 
                 article.setCheminPdf(destination.toString());
-                em.merge(article); // Update article with chemin_pdf
-            }
-
-            // 3. Link Auteurs
-            String[] auteursArray = auteursString.split(",");
-            for (String auteurNom : auteursArray) {
-                auteurNom = auteurNom.trim();
-                if (!auteurNom.isEmpty()) {
-                    Professeur prof = findOrCreateProfesseur(em, auteurNom);
-                    ArticleProfesseur link = new ArticleProfesseur(article, prof);
-                    em.persist(link);
-                }
-            }
-
-            // 4. Link Journaux
-            String[] journauxArray = journauxString.split(",");
-            for (String journalNom : journauxArray) {
-                journalNom = journalNom.trim();
-                if (!journalNom.isEmpty()) {
-                    Journal journal = findOrCreateJournal(em, journalNom);
-                    ArticleJournal link = new ArticleJournal(article, journal);
-                    em.persist(link);
-                }
+                em.merge(article); // update chemin_pdf
             }
 
             em.getTransaction().commit();
             System.out.println("✅ Article enregistré avec succès!");
 
         } catch (Exception e) {
-    em.getTransaction().rollback();
-    throw new Exception("Erreur lors de l'enregistrement: " + e.getMessage(), e);
-} finally {
+            em.getTransaction().rollback();
+            throw new Exception("Erreur lors de l'enregistrement: " + e.getMessage(), e);
+        } finally {
             em.close();
         }
     }
 
     private Professeur findOrCreateProfesseur(EntityManager em, String nomComplet) {
-List<Professeur> result = em.createQuery(
-    "FROM Professeur WHERE LOWER(nomComplet) = :name", Professeur.class)
-    .setParameter("name", nomComplet.toLowerCase())
-    .getResultList();
+        List<Professeur> result = em.createQuery(
+                "FROM Professeur WHERE LOWER(nomComplet) = :name", Professeur.class)
+                .setParameter("name", nomComplet.toLowerCase())
+                .getResultList();
 
         if (!result.isEmpty()) {
             return result.get(0);
@@ -109,10 +122,10 @@ List<Professeur> result = em.createQuery(
     }
 
     private Journal findOrCreateJournal(EntityManager em, String nom) {
-List<Journal> result = em.createQuery(
-    "FROM Journal WHERE LOWER(nom) = :name", Journal.class)
-    .setParameter("name", nom.toLowerCase())
-    .getResultList();
+        List<Journal> result = em.createQuery(
+                "FROM Journal WHERE LOWER(nom) = :name", Journal.class)
+                .setParameter("name", nom.toLowerCase())
+                .getResultList();
 
         if (!result.isEmpty()) {
             return result.get(0);

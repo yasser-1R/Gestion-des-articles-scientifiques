@@ -1,6 +1,7 @@
 package com.smi6.gestion_des_articles_informatique.model;
 
 import jakarta.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,38 +11,47 @@ public class Article {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
+    @Column(nullable = false)
     private String titre;
 
+    @Column(columnDefinition = "TEXT")
     private String resume;
 
-    @ManyToOne
-    @JoinColumn(name = "upload_par")
-    private Utilisateur uploadPar;
+    @Column(name = "chemin_pdf", length = 500)
+    private String cheminPdf;
 
     @Column(name = "date_publication")
     @Temporal(TemporalType.DATE)
     private Date datePublication;
 
-    @Column(name = "chemin_pdf")
-    private String cheminPdf;
+    @Column(name = "upload_par")
+    private Integer uploadPar; // You can map it to Utilisateur if you want later
 
-    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
-    private List<ArticleProfesseur> auteurs;
+    @ManyToMany
+    @JoinTable(
+        name = "article_professeur",
+        joinColumns = @JoinColumn(name = "id_article"),
+        inverseJoinColumns = @JoinColumn(name = "id_professeur")
+    )
+    private List<Professeur> professeurs = new ArrayList<>();
 
-    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
-    private List<ArticleJournal> journaux;
-
-    public Article() {}
+    @ManyToMany
+    @JoinTable(
+        name = "article_journal",
+        joinColumns = @JoinColumn(name = "id_article"),
+        inverseJoinColumns = @JoinColumn(name = "id_journal")
+    )
+    private List<Journal> journaux = new ArrayList<>();
 
     // Getters and Setters
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -61,12 +71,12 @@ public class Article {
         this.resume = resume;
     }
 
-    public Utilisateur getUploadPar() {
-        return uploadPar;
+    public String getCheminPdf() {
+        return cheminPdf;
     }
 
-    public void setUploadPar(Utilisateur uploadPar) {
-        this.uploadPar = uploadPar;
+    public void setCheminPdf(String cheminPdf) {
+        this.cheminPdf = cheminPdf;
     }
 
     public Date getDatePublication() {
@@ -77,27 +87,27 @@ public class Article {
         this.datePublication = datePublication;
     }
 
-    public String getCheminPdf() {
-        return cheminPdf;
+    public Integer getUploadPar() {
+        return uploadPar;
     }
 
-    public void setCheminPdf(String cheminPdf) {
-        this.cheminPdf = cheminPdf;
+    public void setUploadPar(Integer uploadPar) {
+        this.uploadPar = uploadPar;
     }
 
-    public List<ArticleProfesseur> getAuteurs() {
-        return auteurs;
+    public List<Professeur> getProfesseurs() {
+        return professeurs;
     }
 
-    public void setAuteurs(List<ArticleProfesseur> auteurs) {
-        this.auteurs = auteurs;
+    public void setProfesseurs(List<Professeur> professeurs) {
+        this.professeurs = professeurs;
     }
 
-    public List<ArticleJournal> getJournaux() {
+    public List<Journal> getJournaux() {
         return journaux;
     }
 
-    public void setJournaux(List<ArticleJournal> journaux) {
+    public void setJournaux(List<Journal> journaux) {
         this.journaux = journaux;
     }
 }

@@ -8,33 +8,34 @@ public class Utilisateur {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
-    @Column(name = "nom_complet")
+    @Column(name = "nom_complet", nullable = false)
     private String nomComplet;
 
+    @Column(nullable = false, unique = true)
     private String login;
 
-    @Column(name = "mot_de_passe")
+    @Column(name = "mot_de_passe", nullable = false)
     private String motDePasse;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Role role;
 
+    // Embedded enum Role
     public enum Role {
         admin,
         utilisateur
     }
 
-    public Utilisateur() {}
-
     // Getters and Setters
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

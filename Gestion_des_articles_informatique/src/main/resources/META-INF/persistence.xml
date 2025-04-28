@@ -4,18 +4,19 @@
         <class>com.smi6.gestion_des_articles_informatique.model.Professeur</class>
         <class>com.smi6.gestion_des_articles_informatique.model.Journal</class>
         <class>com.smi6.gestion_des_articles_informatique.model.Article</class>
-        <class>com.smi6.gestion_des_articles_informatique.model.ArticleProfesseur</class>
-        <class>com.smi6.gestion_des_articles_informatique.model.ArticleJournal</class>
         
         <properties>
+            <!-- Database connection -->
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gestion_articles?useSSL=false&amp;serverTimezone=UTC"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>
             <property name="jakarta.persistence.jdbc.password" value=""/>
 
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
-            <property name="hibernate.show_sql" value="true"/>
+            <!-- Hibernate settings -->
+            <property name="hibernate.hbm2ddl.auto" value="update"/> <!-- update the schema automatically -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/> <!-- updated to MySQL 8 -->
+            <property name="hibernate.show_sql" value="true"/> <!-- show SQL commands -->
+            <property name="hibernate.format_sql" value="true"/> <!-- nicely format SQL -->
         </properties>
     </persistence-unit>
 </persistence>
