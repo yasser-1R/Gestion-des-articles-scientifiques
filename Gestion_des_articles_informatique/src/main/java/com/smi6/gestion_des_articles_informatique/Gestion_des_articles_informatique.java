@@ -13,7 +13,7 @@ import jakarta.persistence.*;
 public class Gestion_des_articles_informatique {
 
     public static void main(String[] args) {
-        Upload4 T = new Upload4(5L);
+        Connexion2 T = new Connexion2();
         T.setVisible(true);
 //
 //         // 1. Create EntityManagerFactory

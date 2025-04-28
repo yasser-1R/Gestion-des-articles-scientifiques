@@ -65,7 +65,7 @@ public class Connexion extends javax.swing.JFrame {
         );
 
         jPanel3.add(jPanel1);
-        jPanel1.setBounds(0, 0, 0, 600);
+        jPanel1.setBounds(0, 0, 420, 600);
 
         B_Con_Sans_Compte.setBackground(new java.awt.Color(62, 123, 39));
         B_Con_Sans_Compte.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -122,6 +122,7 @@ public class Connexion extends javax.swing.JFrame {
     private void B_connexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_connexionActionPerformed
       Authentifiaction A = new Authentifiaction();
       A.setVisible(true);
+      this.setVisible(false);
     }//GEN-LAST:event_B_connexionActionPerformed
 
     /**

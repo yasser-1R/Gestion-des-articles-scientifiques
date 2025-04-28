@@ -4,17 +4,21 @@
  */
 package com.smi6.gestion_des_articles_informatique.view;
 
+import com.smi6.gestion_des_articles_informatique.model.Utilisateur;
+
 /**
  *
  * @author AYA HM1
  */
 public class Rechercher extends javax.swing.JFrame {
-
+private Utilisateur U;
     /**
      * Creates new form Cherche
      */
-    public Rechercher() {
+    public Rechercher(Utilisateur U) {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.U = U;
     }
 
     /**
@@ -68,6 +72,11 @@ public class Rechercher extends javax.swing.JFrame {
         jButton1.setText("Retourner");
         jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton1.setPreferredSize(new java.awt.Dimension(150, 45));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(18, 53, 36));
         jButton3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -124,8 +133,34 @@ public class Rechercher extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        RechercheAvancee rv = new RechercheAvancee(this.U);
+        rv.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Utilisateur user = this.U;
+            if (user != null) {
+        if (user.getRole() == Utilisateur.Role.admin) {
+            Accueille_admin2 adminView = new Accueille_admin2(user); // Pass the user if needed
+            adminView.setVisible(true);
+        } else if (user.getRole() == Utilisateur.Role.utilisateur) {
+            Accueille_avec_compte2 userView = new Accueille_avec_compte2(user);
+            userView.setVisible(true);
+        } else {
+            Accueille_sans_compte2 A = new Accueille_sans_compte2();
+            A.setVisible(true);
+        }
+    } else {
+            Accueille_sans_compte2 A = new Accueille_sans_compte2();
+            A.setVisible(true);
+    }
+
+    // Dispose the current window
+    this.dispose();
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,11 +193,11 @@ public class Rechercher extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Rechercher().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Rechercher().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

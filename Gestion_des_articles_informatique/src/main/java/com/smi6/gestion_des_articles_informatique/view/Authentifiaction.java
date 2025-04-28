@@ -192,6 +192,7 @@ public class Authentifiaction extends javax.swing.JFrame {
     private void B_retourneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_retourneActionPerformed
         Connexion con = new Connexion();
         con.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_B_retourneActionPerformed
 
     private void B_connecteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_connecteActionPerformed

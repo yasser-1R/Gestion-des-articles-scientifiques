@@ -4,6 +4,7 @@
  */
 package com.smi6.gestion_des_articles_informatique.view;
 import com.smi6.gestion_des_articles_informatique.controller.*;
+import com.smi6.gestion_des_articles_informatique.model.Utilisateur;
 import java.io.File;
 import javax.swing.JFileChooser; 
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -17,14 +18,15 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class Upload4 extends javax.swing.JFrame {
 private File selectedPdfFile;
-private Long userId;
+private Utilisateur U;
 
     /**
      * Creates new form Upload4
      */
-    public Upload4(Long userId) {
+    public Upload4(Utilisateur U) {
         initComponents();
-        this.userId = userId;
+        this.U = U;
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -41,7 +43,6 @@ private Long userId;
         L_resume = new javax.swing.JLabel();
         L_auteurs = new javax.swing.JLabel();
         L_journaux = new javax.swing.JLabel();
-        L_quartile = new javax.swing.JLabel();
         L_publierle = new javax.swing.JLabel();
         B_pdf = new javax.swing.JButton();
         TF_titre = new javax.swing.JTextField();
@@ -49,7 +50,6 @@ private Long userId;
         TA_resume = new javax.swing.JTextArea();
         TF_auteurs = new javax.swing.JTextField();
         TF_journaux = new javax.swing.JTextField();
-        CB_quartile = new javax.swing.JComboBox<>();
         TF_date = new javax.swing.JTextField();
         B_retourner = new javax.swing.JButton();
         B_enregistrer = new javax.swing.JButton();
@@ -76,10 +76,6 @@ private Long userId;
         L_journaux.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         L_journaux.setForeground(new java.awt.Color(18, 53, 36));
         L_journaux.setText("Journaux");
-
-        L_quartile.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        L_quartile.setForeground(new java.awt.Color(18, 53, 36));
-        L_quartile.setText("Quartile");
 
         L_publierle.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         L_publierle.setForeground(new java.awt.Color(18, 53, 36));
@@ -116,12 +112,6 @@ private Long userId;
         TF_journaux.setBackground(new java.awt.Color(239, 227, 194));
         TF_journaux.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
 
-        CB_quartile.setBackground(new java.awt.Color(239, 227, 194));
-        CB_quartile.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        CB_quartile.setForeground(new java.awt.Color(18, 53, 36));
-        CB_quartile.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aucun", "Q1", "Q2", "Q3", "Q4" }));
-        CB_quartile.setFocusable(false);
-
         TF_date.setBackground(new java.awt.Color(239, 227, 194));
         TF_date.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         TF_date.addActionListener(new java.awt.event.ActionListener() {
@@ -157,12 +147,11 @@ private Long userId;
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(L_publierle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(L_quartile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(L_journaux, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(L_auteurs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(L_resume, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -170,20 +159,17 @@ private Long userId;
                             .addComponent(L_upload, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TF_titre, javax.swing.GroupLayout.PREFERRED_SIZE, 808, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(B_pdf)
-                                .addComponent(TF_auteurs, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE)
-                                .addComponent(TF_journaux)
-                                .addComponent(jScrollPane1))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(CB_quartile, javax.swing.GroupLayout.Alignment.LEADING, 0, 129, Short.MAX_VALUE)
-                                .addComponent(TF_date, javax.swing.GroupLayout.Alignment.LEADING))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(B_retourner)
-                        .addGap(795, 795, 795)
-                        .addComponent(B_enregistrer)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(TF_date, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(B_enregistrer)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(B_pdf)
+                                    .addComponent(TF_auteurs, javax.swing.GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE)
+                                    .addComponent(TF_journaux)
+                                    .addComponent(jScrollPane1)))
+                            .addComponent(TF_titre, javax.swing.GroupLayout.PREFERRED_SIZE, 889, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(B_retourner))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,19 +194,15 @@ private Long userId;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(L_journaux)
                     .addComponent(TF_journaux, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(L_quartile)
-                    .addComponent(CB_quartile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(L_publierle)
                     .addComponent(TF_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(85, 85, 85)
+                .addGap(121, 121, 121)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(B_retourner, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(B_enregistrer, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(56, 56, 56))
         );
 
         pack();
@@ -235,18 +217,41 @@ private Long userId;
     }//GEN-LAST:event_TF_titreActionPerformed
 
     private void B_retournerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_retournerActionPerformed
-        // TODO add your handling code here:
+            // TODO add your handling code here:
+            // TODO add your handling code here:
+        Utilisateur user = this.U;
+            if (user != null) {
+        if (user.getRole() == Utilisateur.Role.admin) {
+            Accueille_admin2 adminView = new Accueille_admin2(user); // Pass the user if needed
+            adminView.setVisible(true);
+        } else if (user.getRole() == Utilisateur.Role.utilisateur) {
+            Accueille_avec_compte2 userView = new Accueille_avec_compte2(user);
+            userView.setVisible(true);
+        } else {
+            Accueille_sans_compte2 A = new Accueille_sans_compte2();
+            A.setVisible(true);
+        }
+    } else {
+            Accueille_sans_compte2 A = new Accueille_sans_compte2();
+            A.setVisible(true);
+    }
+
+    // Dispose the current window
+    this.dispose();        
+        
     }//GEN-LAST:event_B_retournerActionPerformed
 
     private void B_enregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_enregistrerActionPerformed
-  String titre = TF_titre.getText();
+    String titre = TF_titre.getText();
     String resume = TA_resume.getText();
     String auteurs = TF_auteurs.getText();
     String journaux = TF_journaux.getText();
     String datePublication = TF_date.getText();
-    String quartile = (String) CB_quartile.getSelectedItem();
+    String quartile = "t";
     
     UploadController uploadController = new UploadController();
+    
+    Long userId = this.U.getId();
     
     try {
         uploadController.uploadArticle(userId, titre, resume, auteurs, journaux, datePublication, selectedPdfFile, quartile);
@@ -317,22 +322,20 @@ private Long userId;
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Upload4(5L).setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Upload4(5L).setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton B_enregistrer;
     private javax.swing.JButton B_pdf;
     private javax.swing.JButton B_retourner;
-    private javax.swing.JComboBox<String> CB_quartile;
     private javax.swing.JLabel L_auteurs;
     private javax.swing.JLabel L_journaux;
     private javax.swing.JLabel L_publierle;
-    private javax.swing.JLabel L_quartile;
     private javax.swing.JLabel L_resume;
     private javax.swing.JLabel L_titre;
     private javax.swing.JLabel L_upload;

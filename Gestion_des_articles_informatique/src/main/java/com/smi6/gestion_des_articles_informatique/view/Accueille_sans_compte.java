@@ -56,6 +56,11 @@ public class Accueille_sans_compte extends javax.swing.JFrame {
         B_retourne.setText("retourner");
         B_retourne.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         B_retourne.setFocusable(false);
+        B_retourne.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_retourneActionPerformed(evt);
+            }
+        });
 
         B_chercher.setBackground(new java.awt.Color(239, 227, 194));
         B_chercher.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -116,6 +121,10 @@ public class Accueille_sans_compte extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void B_retourneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_retourneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_B_retourneActionPerformed
 
     /**
      * @param args the command line arguments

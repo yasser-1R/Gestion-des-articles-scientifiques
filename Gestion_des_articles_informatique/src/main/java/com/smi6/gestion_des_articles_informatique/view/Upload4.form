@@ -27,12 +27,11 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="L_publierle" max="32767" attributes="0"/>
-                          <Component id="L_quartile" alignment="0" max="32767" attributes="0"/>
                           <Component id="L_journaux" alignment="0" max="32767" attributes="0"/>
                           <Component id="L_auteurs" alignment="0" max="32767" attributes="0"/>
                           <Component id="L_resume" alignment="0" max="32767" attributes="0"/>
@@ -41,26 +40,22 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="TF_titre" min="-2" pref="808" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="B_pdf" min="-2" max="-2" attributes="0"/>
-                              <Component id="TF_auteurs" alignment="0" pref="808" max="32767" attributes="0"/>
-                              <Component id="TF_journaux" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="TF_date" alignment="0" min="-2" pref="129" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="B_enregistrer" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="B_pdf" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TF_auteurs" alignment="0" pref="889" max="32767" attributes="0"/>
+                                  <Component id="TF_journaux" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="CB_quartile" alignment="0" pref="129" max="32767" attributes="0"/>
-                              <Component id="TF_date" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="TF_titre" alignment="0" min="-2" pref="889" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="B_retourner" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="795" max="-2" attributes="0"/>
-                      <Component id="B_enregistrer" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="B_retourner" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="62" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -92,22 +87,17 @@
                   <Component id="L_journaux" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="TF_journaux" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="L_quartile" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="CB_quartile" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="L_publierle" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="TF_date" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="B_retourner" alignment="3" min="-2" pref="59" max="-2" attributes="0"/>
                   <Component id="B_enregistrer" alignment="3" min="-2" pref="59" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -166,17 +156,6 @@
           <Color blue="24" green="35" red="12" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Journaux"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="L_quartile">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Calibri" size="18" style="0"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="24" green="35" red="12" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Quartile"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="L_publierle">
@@ -261,32 +240,6 @@
           <Font name="Calibri" size="18" style="0"/>
         </Property>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="CB_quartile">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="c2" green="e3" red="ef" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Calibri" size="18" style="0"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="24" green="35" red="12" type="rgb"/>
-        </Property>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
-            <StringItem index="0" value="Aucun"/>
-            <StringItem index="1" value="Q1"/>
-            <StringItem index="2" value="Q2"/>
-            <StringItem index="3" value="Q3"/>
-            <StringItem index="4" value="Q4"/>
-          </StringArray>
-        </Property>
-        <Property name="focusable" type="boolean" value="false"/>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="TF_date">
       <Properties>
