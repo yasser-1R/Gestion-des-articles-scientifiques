@@ -4,17 +4,20 @@
  */
 package com.smi6.gestion_des_articles_informatique.view;
 
+import com.smi6.gestion_des_articles_informatique.model.Article;
+
 /**
  *
  * @author YN
  */
 public class ArticlePanel extends javax.swing.JPanel {
-
+private Article A;
     /**
      * Creates new form Article
      */
-    public ArticlePanel() {
+    public ArticlePanel(Article A) {
         initComponents();
+        this.A = A;
     }
 
     /**

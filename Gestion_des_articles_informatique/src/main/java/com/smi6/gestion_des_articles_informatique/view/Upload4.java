@@ -11,8 +11,15 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser; 
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 
@@ -57,11 +64,11 @@ private Utilisateur U;
         TF_auteurs = new javax.swing.JTextField();
         TF_journaux = new javax.swing.JTextField();
         TF_date = new javax.swing.JTextField();
-        B_retourner = new javax.swing.JButton();
+        B_SelectA = new javax.swing.JButton();
         B_enregistrer = new javax.swing.JButton();
-        CB_professeurs = new javax.swing.JComboBox<>();
-        CB_journaux = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        B_retourner1 = new javax.swing.JButton();
+        B_SelectJ = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1050, 600));
@@ -117,6 +124,11 @@ private Utilisateur U;
 
         TF_auteurs.setBackground(new java.awt.Color(239, 227, 194));
         TF_auteurs.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        TF_auteurs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TF_auteursActionPerformed(evt);
+            }
+        });
 
         TF_journaux.setBackground(new java.awt.Color(239, 227, 194));
         TF_journaux.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -129,14 +141,14 @@ private Utilisateur U;
             }
         });
 
-        B_retourner.setBackground(new java.awt.Color(18, 53, 36));
-        B_retourner.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        B_retourner.setForeground(new java.awt.Color(239, 227, 194));
-        B_retourner.setText("Retourner");
-        B_retourner.setFocusable(false);
-        B_retourner.addActionListener(new java.awt.event.ActionListener() {
+        B_SelectA.setBackground(new java.awt.Color(18, 53, 36));
+        B_SelectA.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        B_SelectA.setForeground(new java.awt.Color(239, 227, 194));
+        B_SelectA.setText("Select Auteurs");
+        B_SelectA.setFocusable(false);
+        B_SelectA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B_retournerActionPerformed(evt);
+                B_SelectAActionPerformed(evt);
             }
         });
 
@@ -151,66 +163,74 @@ private Utilisateur U;
             }
         });
 
-        CB_professeurs.setBackground(new java.awt.Color(239, 227, 194));
-        CB_professeurs.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        CB_professeurs.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        CB_professeurs.setFocusable(false);
-        CB_professeurs.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CB_professeursActionPerformed(evt);
-            }
-        });
-
-        CB_journaux.setBackground(new java.awt.Color(239, 227, 194));
-        CB_journaux.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        CB_journaux.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        CB_journaux.setFocusable(false);
-        CB_journaux.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CB_journauxActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel1.setText("yyyy-mm-dd");
+
+        B_retourner1.setBackground(new java.awt.Color(18, 53, 36));
+        B_retourner1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        B_retourner1.setForeground(new java.awt.Color(239, 227, 194));
+        B_retourner1.setText("Retourner");
+        B_retourner1.setFocusable(false);
+        B_retourner1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_retourner1ActionPerformed(evt);
+            }
+        });
+
+        B_SelectJ.setBackground(new java.awt.Color(18, 53, 36));
+        B_SelectJ.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        B_SelectJ.setForeground(new java.awt.Color(239, 227, 194));
+        B_SelectJ.setText("Select journaux");
+        B_SelectJ.setFocusable(false);
+        B_SelectJ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_SelectJActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(B_retourner1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(B_enregistrer))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(L_publierle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(L_journaux, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(L_auteurs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(L_resume, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(L_titre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(L_upload, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(L_publierle)
+                            .addComponent(L_journaux, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(L_auteurs, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(L_resume, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(L_titre, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(L_upload, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(TF_date, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(B_enregistrer)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(B_pdf)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(TF_journaux, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(TF_auteurs))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(CB_professeurs, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(CB_journaux, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addComponent(TF_titre, javax.swing.GroupLayout.PREFERRED_SIZE, 889, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(B_retourner))
-                .addContainerGap(62, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(TF_date, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(B_pdf))
+                                .addGap(638, 638, 638))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(TF_titre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 922, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(B_SelectJ, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(TF_journaux))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(B_SelectA, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(TF_auteurs))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 922, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(12, 12, 12)))))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,27 +250,24 @@ private Utilisateur U;
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(L_auteurs)
-                    .addComponent(TF_auteurs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CB_professeurs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                    .addComponent(B_SelectA)
+                    .addComponent(TF_auteurs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(L_journaux)
                     .addComponent(TF_journaux, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CB_journaux, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                    .addComponent(B_SelectJ))
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(L_publierle)
                     .addComponent(TF_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(121, 121, 121)
+                .addGap(131, 131, 131)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(B_retourner, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(B_enregistrer, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(56, 56, 56))
+                    .addComponent(B_enregistrer, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(B_retourner1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
-
-        loadProfesseurs();
-        loadJournaux();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -263,30 +280,34 @@ private Utilisateur U;
         // TODO add your handling code here:
     }//GEN-LAST:event_TF_titreActionPerformed
 
-    private void B_retournerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_retournerActionPerformed
-            // TODO add your handling code here:
-            // TODO add your handling code here:
-        Utilisateur user = this.U;
-            if (user != null) {
-        if (user.getRole() == Utilisateur.Role.admin) {
-            Accueille_admin2 adminView = new Accueille_admin2(user); // Pass the user if needed
-            adminView.setVisible(true);
-        } else if (user.getRole() == Utilisateur.Role.utilisateur) {
-            Accueille_avec_compte2 userView = new Accueille_avec_compte2(user);
-            userView.setVisible(true);
-        } else {
-            Accueille_sans_compte2 A = new Accueille_sans_compte2();
-            A.setVisible(true);
+    private void B_SelectAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_SelectAActionPerformed
+            // Prepare list of pre-selected names
+    String currentText = TF_auteurs.getText().trim();
+    List<String> selectedProfesseurs = new ArrayList<>();
+    if (!currentText.isEmpty()) {
+        for (String name : currentText.split(",")) {
+            selectedProfesseurs.add(name.trim());
         }
-    } else {
-            Accueille_sans_compte2 A = new Accueille_sans_compte2();
-            A.setVisible(true);
     }
 
-    // Dispose the current window
-    this.dispose();        
+    // Create panel with pre-selected names
+    SelectProfesseursPanel selectProfPanel = new SelectProfesseursPanel(selectedProfesseurs);
+
+    // Create dialog
+    JDialog dialog = new JDialog(this, "Choisir Professeurs", true);
+    dialog.getContentPane().add(selectProfPanel);
+    dialog.pack();
+    dialog.setLocationRelativeTo(this);
+    dialog.setVisible(true);
+
+    // AFTER dialog is closed:
+    // Get new list of selected professors
+    String selected = selectProfPanel.getSelectedProfesseursText();
+    
+    // OVERWRITE the old text field content
+    TF_auteurs.setText(selected);
         
-    }//GEN-LAST:event_B_retournerActionPerformed
+    }//GEN-LAST:event_B_SelectAActionPerformed
 
     private void B_enregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_enregistrerActionPerformed
                 // Get input values from the form
@@ -345,76 +366,105 @@ private Utilisateur U;
         
     }//GEN-LAST:event_B_pdfActionPerformed
 
-    private void CB_professeursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_professeursActionPerformed
+    private void B_SelectJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_SelectJActionPerformed
+    // Prepare list of pre-selected journals
+    String currentText = TF_journaux.getText().trim();
+    List<String> selectedJournaux = new ArrayList<>();
+    if (!currentText.isEmpty()) {
+        for (String name : currentText.split(",")) {
+            selectedJournaux.add(name.trim());
+        }
+    }
+
+    // Create panel with pre-selected journals
+    SelectJournauxPanel selectJournauxPanel = new SelectJournauxPanel(selectedJournaux);
+
+    // Create dialog
+    JDialog dialog = new JDialog(this, "Choisir Journaux", true);
+    dialog.getContentPane().add(selectJournauxPanel);
+    dialog.pack();
+    dialog.setLocationRelativeTo(this);
+    dialog.setVisible(true);
+
+    // After closing, update TF_journaux
+    String selected = selectJournauxPanel.getSelectedJournauxText();
+    if (!selected.isEmpty()) {
+        TF_journaux.setText(selected);
+    }        // TODO add your handling code here:
+    }//GEN-LAST:event_B_SelectJActionPerformed
+
+    private void B_retourner1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_retourner1ActionPerformed
         // TODO add your handling code here:
-            String selectedProf = (String) CB_professeurs.getSelectedItem();
-    if (selectedProf != null && !selectedProf.isEmpty()) {
-        String currentText = TF_auteurs.getText().trim();
-        if (currentText.isEmpty()) {
-            TF_auteurs.setText(selectedProf);
+               // TODO add your handling code here:
+        Utilisateur user = this.U;
+            if (user != null) {
+        if (user.getRole() == Utilisateur.Role.admin) {
+            Accueille_admin2 adminView = new Accueille_admin2(user); // Pass the user if needed
+            adminView.setVisible(true);
+        } else if (user.getRole() == Utilisateur.Role.utilisateur) {
+            Accueille_avec_compte2 userView = new Accueille_avec_compte2(user);
+            userView.setVisible(true);
         } else {
-            TF_auteurs.setText(currentText + ", " + selectedProf);
+            Accueille_sans_compte2 A = new Accueille_sans_compte2();
+            A.setVisible(true);
         }
+    } else {
+            Accueille_sans_compte2 A = new Accueille_sans_compte2();
+            A.setVisible(true);
     }
-    }//GEN-LAST:event_CB_professeursActionPerformed
 
-    private void CB_journauxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_journauxActionPerformed
+    // Dispose the current window
+    this.dispose();
+    }//GEN-LAST:event_B_retourner1ActionPerformed
+
+    private void TF_auteursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TF_auteursActionPerformed
         // TODO add your handling code here:
-        String selectedJournal = (String) CB_journaux.getSelectedItem();
-    if (selectedJournal != null && !selectedJournal.isEmpty()) {
-        String currentText = TF_journaux.getText().trim();
-        if (currentText.isEmpty()) {
-            TF_journaux.setText(selectedJournal);
-        } else {
-            TF_journaux.setText(currentText + ", " + selectedJournal);
-        }
-    }    
-    }//GEN-LAST:event_CB_journauxActionPerformed
+    }//GEN-LAST:event_TF_auteursActionPerformed
     
     
     
     
-    private void loadJournaux() {
-    try {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
-        EntityManager em = emf.createEntityManager();
-
-        List<Journal> journaux = em.createQuery("FROM Journal", Journal.class).getResultList();
-        CB_journaux.removeAllItems(); // Clean old items
-
-        for (Journal journal : journaux) {
-            CB_journaux.addItem(journal.getNom());
-        }
-
-        em.close();
-        emf.close();
-    } catch (Exception ex) {
-        System.err.println("Erreur lors du chargement des journaux : " + ex.getMessage());
-    }
-}
+//    private void loadJournaux() {
+//    try {
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
+//        EntityManager em = emf.createEntityManager();
+//
+//        List<Journal> journaux = em.createQuery("FROM Journal", Journal.class).getResultList();
+//        CB_journaux.removeAllItems(); // Clean old items
+//
+//        for (Journal journal : journaux) {
+//            CB_journaux.addItem(journal.getNom());
+//        }
+//
+//        em.close();
+//        emf.close();
+//    } catch (Exception ex) {
+//        System.err.println("Erreur lors du chargement des journaux : " + ex.getMessage());
+//    }
+//}
+//    
     
     
-    
-    
-    
-    private void loadProfesseurs() {
-    try {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
-        EntityManager em = emf.createEntityManager();
-
-        List<Professeur> professeurs = em.createQuery("FROM Professeur", Professeur.class).getResultList();
-        CB_professeurs.removeAllItems(); // Clean old items if exist
-
-        for (Professeur prof : professeurs) {
-            CB_professeurs.addItem(prof.getNomComplet());
-        }
-
-        em.close();
-        emf.close();
-    } catch (Exception ex) {
-        System.err.println("Erreur lors du chargement des professeurs : " + ex.getMessage());
-    }
-}
+//    
+//    
+//    private void loadProfesseurs() {
+//    try {
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
+//        EntityManager em = emf.createEntityManager();
+//
+//        List<Professeur> professeurs = em.createQuery("FROM Professeur", Professeur.class).getResultList();
+//        CB_professeurs.removeAllItems(); // Clean old items if exist
+//
+//        for (Professeur prof : professeurs) {
+//            CB_professeurs.addItem(prof.getNomComplet());
+//        }
+//
+//        em.close();
+//        emf.close();
+//    } catch (Exception ex) {
+//        System.err.println("Erreur lors du chargement des professeurs : " + ex.getMessage());
+//    }
+//}
 
     /**
      * @param args the command line arguments
@@ -452,11 +502,11 @@ private Utilisateur U;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton B_SelectA;
+    private javax.swing.JButton B_SelectJ;
     private javax.swing.JButton B_enregistrer;
     private javax.swing.JButton B_pdf;
-    private javax.swing.JButton B_retourner;
-    private javax.swing.JComboBox<String> CB_journaux;
-    private javax.swing.JComboBox<String> CB_professeurs;
+    private javax.swing.JButton B_retourner1;
     private javax.swing.JLabel L_auteurs;
     private javax.swing.JLabel L_journaux;
     private javax.swing.JLabel L_publierle;

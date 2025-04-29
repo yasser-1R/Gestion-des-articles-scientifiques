@@ -37,12 +37,13 @@ public class UploadController {
             Article article = new Article();
             article.setTitre(titre);
             article.setResume(resume);
-
-            Utilisateur user = em.find(Utilisateur.class, userId);
-            if (user == null) {
-                throw new Exception("Utilisateur non trouvé avec ID: " + userId);
-            }
-            article.setUploadPar(user.getId()); // because uploadPar is just Integer
+            article.setUploadPar(userId);
+            
+//            Utilisateur user = em.find(Utilisateur.class, userId);
+//            if (user == null) {
+//                throw new Exception("Utilisateur non trouvé avec ID: " + userId);
+//            }
+//            article.setUploadPar(user.getId()); // because uploadPar is just Integer
 
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date datePublication = formatter.parse(dateString);
