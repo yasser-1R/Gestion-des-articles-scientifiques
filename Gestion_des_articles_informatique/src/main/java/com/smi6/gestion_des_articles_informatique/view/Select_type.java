@@ -19,6 +19,8 @@ private Utilisateur U;
     public Select_type(Utilisateur U) {
         initComponents();
         this.U = U;
+        this.setLocationRelativeTo(null);
+
     }
 
     /**

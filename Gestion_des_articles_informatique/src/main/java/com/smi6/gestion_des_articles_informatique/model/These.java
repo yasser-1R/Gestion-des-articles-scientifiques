@@ -26,7 +26,11 @@ public class These {
 
     private String etudiant;
 
-    private String directeur;
+    @ManyToOne
+    @JoinColumn(name = "id_directeur")
+    private Professeur directeur;
+
+    // Getters and Setters...
 
     public Integer getId() {
         return id;
@@ -76,11 +80,11 @@ public class These {
         this.etudiant = etudiant;
     }
 
-    public String getDirecteur() {
+    public Professeur getDirecteur() {
         return directeur;
     }
 
-    public void setDirecteur(String directeur) {
+    public void setDirecteur(Professeur directeur) {
         this.directeur = directeur;
     }
 }

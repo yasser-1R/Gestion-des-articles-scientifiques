@@ -14,20 +14,20 @@ public class Gestion_des_articles_informatique {
 
     public static void main(String[] args) {
         
-        
-         EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
+   EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();
 
-        // Just instantiate one of each to force Hibernate to create tables
+        // Test persistence to trigger table creation
+
         Article article = new Article();
         article.setTitre("Test Article");
         em.persist(article);
 
-        Conference conf = new Conference();
-        conf.setTitre("Test Conference");
-        em.persist(conf);
+        Conference conference = new Conference();
+        conference.setTitre("Test Conference");
+        em.persist(conference);
 
         These these = new These();
         these.setTitre("Test Thèse");
@@ -39,6 +39,7 @@ public class Gestion_des_articles_informatique {
 
         Brevet brevet = new Brevet();
         brevet.setTitre("Test Brevet");
+        brevet.setDescription("Description de brevet");
         em.persist(brevet);
 
         RapportRecherche rapport = new RapportRecherche();
@@ -51,19 +52,26 @@ public class Gestion_des_articles_informatique {
         em.persist(journal);
 
         Professeur prof = new Professeur();
-        prof.setNomComplet("Prof Test");
+        prof.setNomComplet("Professeur Test");
         em.persist(prof);
+
+        Utilisateur user = new Utilisateur();
+        user.setNomComplet("Admin");
+        user.setLogin("admin");
+        user.setMotDePasse("admin123");
+        user.setRole(Utilisateur.Role.admin);
+        em.persist(user);
 
         em.getTransaction().commit();
         em.close();
         emf.close();
 
-        System.out.println("Tables created and test data persisted successfully.");
-    }}
+        System.out.println("✅ Toutes les entités ont été persistées. Les tables sont créées.");
+
         
-        
-//        Connexion2 T = new Connexion2();
-//        T.setVisible(true);
+//        
+//Connexion2 T = new Connexion2();
+//  T.setVisible(true);
 //
 //         // 1. Create EntityManagerFactory
 //        EntityManagerFactory emf = null;
@@ -106,3 +114,10 @@ public class Gestion_des_articles_informatique {
 //            if (em != null) em.close();
 //            if (emf != null) emf.close();
 //        }
+
+
+
+
+
+
+    }}

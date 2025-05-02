@@ -29,14 +29,14 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author YN
  */
-public class Upload4 extends javax.swing.JFrame {
+public class Upload_Article extends javax.swing.JFrame {
 private File selectedPdfFile;
 private Utilisateur U;
 
     /**
      * Creates new form Upload4
      */
-    public Upload4(Utilisateur U) {
+    public Upload_Article(Utilisateur U) {
         initComponents();
         this.U = U;
         this.setLocationRelativeTo(null);
@@ -71,7 +71,6 @@ private Utilisateur U;
         B_SelectJ = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1050, 600));
 
         L_upload.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         L_upload.setForeground(new java.awt.Color(18, 53, 36));
@@ -394,25 +393,9 @@ private Utilisateur U;
     }//GEN-LAST:event_B_SelectJActionPerformed
 
     private void B_retourner1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_retourner1ActionPerformed
-        Utilisateur user = this.U;
-            if (user != null) {
-        if (user.getRole() == Utilisateur.Role.admin) {
-            Accueille_admin2 adminView = new Accueille_admin2(user); // Pass the user if needed
-            adminView.setVisible(true);
-        } else if (user.getRole() == Utilisateur.Role.utilisateur) {
-            Accueille_avec_compte2 userView = new Accueille_avec_compte2(user);
-            userView.setVisible(true);
-        } else {
-            Accueille_sans_compte2 A = new Accueille_sans_compte2();
-            A.setVisible(true);
-        }
-    } else {
-            Accueille_sans_compte2 A = new Accueille_sans_compte2();
-            A.setVisible(true);
-    }
-
-    // Dispose the current window
-    this.dispose();
+        Select_type  ST = new Select_type(this.U);
+        ST.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_B_retourner1ActionPerformed
 
     private void TF_auteursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TF_auteursActionPerformed
@@ -481,13 +464,13 @@ private Utilisateur U;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Upload4.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Upload_Article.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Upload4.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Upload_Article.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Upload4.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Upload_Article.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Upload4.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Upload_Article.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -495,6 +478,14 @@ private Utilisateur U;
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
 //                new Upload4(5L).setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Upload_Article(5L).setVisible(true);
 //            }
 //        });
     }
