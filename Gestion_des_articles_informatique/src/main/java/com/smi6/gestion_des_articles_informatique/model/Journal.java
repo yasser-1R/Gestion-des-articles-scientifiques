@@ -15,6 +15,9 @@ public class Journal {
     @Column(nullable = false)
     private String nom;
 
+    @Column(name = "quartile")
+    private String quartile; // Q1, Q2, Q3, Q4
+
     @ManyToMany(mappedBy = "journaux")
     private List<Article> articles = new ArrayList<>();
 
@@ -34,6 +37,14 @@ public class Journal {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public String getQuartile() {
+        return quartile;
+    }
+
+    public void setQuartile(String quartile) {
+        this.quartile = quartile;
     }
 
     public List<Article> getArticles() {

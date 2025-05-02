@@ -390,12 +390,10 @@ private Utilisateur U;
     String selected = selectJournauxPanel.getSelectedJournauxText();
     if (!selected.isEmpty()) {
         TF_journaux.setText(selected);
-    }        // TODO add your handling code here:
+    }        
     }//GEN-LAST:event_B_SelectJActionPerformed
 
     private void B_retourner1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_retourner1ActionPerformed
-        // TODO add your handling code here:
-               // TODO add your handling code here:
         Utilisateur user = this.U;
             if (user != null) {
         if (user.getRole() == Utilisateur.Role.admin) {

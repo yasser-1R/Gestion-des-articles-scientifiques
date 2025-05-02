@@ -210,8 +210,8 @@ private Utilisateur U;
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        Upload4 Up = new Upload4(this.U);
-        Up.setVisible(true);
+        Select_type  ST = new Select_type(this.U);
+        ST.setVisible(true);
         this.dispose();
 
     }//GEN-LAST:event_jButton6ActionPerformed
