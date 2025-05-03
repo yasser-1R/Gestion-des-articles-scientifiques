@@ -228,9 +228,9 @@ this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-//Upload_These UT = new Upload_These(U);
-//UT.setVisible(true);
-//this.dispose();
+Upload_These UT = new Upload_These(U);
+UT.setVisible(true);
+this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -269,9 +269,9 @@ this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-//Upload_Memoire UM = new Upload_Memoire(U);
-//UM.setVisible(true);
-//this.dispose();        // TODO add your handling code here:
+Upload_Memoire UM = new Upload_Memoire(U);
+UM.setVisible(true);
+this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

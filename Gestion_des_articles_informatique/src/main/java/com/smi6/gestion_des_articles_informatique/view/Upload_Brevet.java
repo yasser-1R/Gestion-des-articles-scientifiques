@@ -7,6 +7,7 @@ import com.smi6.gestion_des_articles_informatique.controller.*;
 import com.smi6.gestion_des_articles_informatique.model.Journal;
 import com.smi6.gestion_des_articles_informatique.model.Professeur;
 import com.smi6.gestion_des_articles_informatique.model.Utilisateur;
+import com.smi6.gestion_des_articles_informatique.view.Select_type;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;

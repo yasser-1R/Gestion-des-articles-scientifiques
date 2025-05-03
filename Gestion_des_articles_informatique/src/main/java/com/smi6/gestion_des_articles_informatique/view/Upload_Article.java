@@ -7,6 +7,7 @@ import com.smi6.gestion_des_articles_informatique.controller.*;
 import com.smi6.gestion_des_articles_informatique.model.Journal;
 import com.smi6.gestion_des_articles_informatique.model.Professeur;
 import com.smi6.gestion_des_articles_informatique.model.Utilisateur;
+import com.smi6.gestion_des_articles_informatique.view.Select_type;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -366,7 +367,6 @@ private Utilisateur U;
     }//GEN-LAST:event_B_pdfActionPerformed
 
     private void B_SelectJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_SelectJActionPerformed
-    // Prepare list of pre-selected journals
     String currentText = TF_journaux.getText().trim();
     List<String> selectedJournaux = new ArrayList<>();
     if (!currentText.isEmpty()) {
@@ -375,21 +375,16 @@ private Utilisateur U;
         }
     }
 
-    // Create panel with pre-selected journals
     SelectJournauxPanel selectJournauxPanel = new SelectJournauxPanel(selectedJournaux);
-
-    // Create dialog
     JDialog dialog = new JDialog(this, "Choisir Journaux", true);
     dialog.getContentPane().add(selectJournauxPanel);
     dialog.pack();
     dialog.setLocationRelativeTo(this);
     dialog.setVisible(true);
 
-    // After closing, update TF_journaux
+    // ✅ Toujours mettre à jour le champ, même vide
     String selected = selectJournauxPanel.getSelectedJournauxText();
-    if (!selected.isEmpty()) {
-        TF_journaux.setText(selected);
-    }        
+    TF_journaux.setText(selected); // <- mettra "" si aucun n'est sélectionné
     }//GEN-LAST:event_B_SelectJActionPerformed
 
     private void B_retourner1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_retourner1ActionPerformed

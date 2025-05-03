@@ -1,79 +1,77 @@
 package com.smi6.gestion_des_articles_informatique.view;
 
-import com.smi6.gestion_des_articles_informatique.model.Journal;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
+import com.smi6.gestion_des_articles_informatique.model.Professeur;
+import jakarta.persistence.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class SelectJournauxPanel extends javax.swing.JPanel {
+public class SelectEncadrantPanel extends javax.swing.JPanel {
 
-    private List<JCheckBox> checkBoxes = new ArrayList<>();
-    private List<String> preSelectedJournaux;
-    private JPanel panelJournaux;
+    private ButtonGroup buttonGroup = new ButtonGroup();
+    private JRadioButton selectedRadio = null;
+    private JPanel panelProfesseurs;
     private JTextField TF_nouveau;
     private JButton B_ajouter;
 
-    public SelectJournauxPanel(List<String> preSelectedJournaux) {
-        this.preSelectedJournaux = preSelectedJournaux;
+    public SelectEncadrantPanel(String preSelectedName) {
         initComponents();
-        loadJournaux();
+        loadProfesseurs(preSelectedName);
     }
 
-    private void loadJournaux() {
-        panelJournaux = new JPanel();
-        panelJournaux.setLayout(new BoxLayout(panelJournaux, BoxLayout.Y_AXIS));
+    private void loadProfesseurs(String preSelectedName) {
+        panelProfesseurs = new JPanel();
+        panelProfesseurs.setLayout(new BoxLayout(panelProfesseurs, BoxLayout.Y_AXIS));
 
         try {
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
             EntityManager em = emf.createEntityManager();
 
-            List<Journal> journaux = em.createQuery("FROM Journal ORDER BY LOWER(nom)", Journal.class).getResultList();
+List<Professeur> professeurs = em.createQuery("FROM Professeur ORDER BY LOWER(nomComplet)", Professeur.class).getResultList();
             em.close();
             emf.close();
 
-            for (Journal journal : journaux) {
-                JCheckBox checkBox = new JCheckBox(journal.getNom());
-                checkBox.setFont(new Font("Calibri", Font.PLAIN, 16));
-                if (preSelectedJournaux != null && preSelectedJournaux.contains(journal.getNom())) {
-                    checkBox.setSelected(true);
+            for (Professeur prof : professeurs) {
+                JRadioButton radio = new JRadioButton(prof.getNomComplet());
+                radio.setFont(new Font("Calibri", Font.PLAIN, 16));
+                if (preSelectedName != null && prof.getNomComplet().equalsIgnoreCase(preSelectedName)) {
+                    radio.setSelected(true);
+                    selectedRadio = radio;
                 }
-                checkBoxes.add(checkBox);
-                panelJournaux.add(checkBox);
+                buttonGroup.add(radio);
+                panelProfesseurs.add(radio);
             }
 
         } catch (Exception ex) {
-            System.err.println("Erreur chargement journaux: " + ex.getMessage());
+            System.err.println("Erreur lors du chargement des professeurs : " + ex.getMessage());
         }
 
-        ScrollPaneJournaux.setViewportView(panelJournaux);
+        ScrollPaneEncadrant.setViewportView(panelProfesseurs);
     }
 
-    public String getSelectedJournauxText() {
-        StringBuilder sb = new StringBuilder();
-        for (JCheckBox cb : checkBoxes) {
-            if (cb.isSelected()) {
-                if (sb.length() > 0) sb.append(", ");
-                sb.append(cb.getText());
+    public String getSelectedEncadrantText() {
+        for (Component comp : panelProfesseurs.getComponents()) {
+            if (comp instanceof JRadioButton && ((JRadioButton) comp).isSelected()) {
+                return ((JRadioButton) comp).getText();
             }
         }
-        return sb.toString();
+        return "";
     }
 
     @SuppressWarnings("unchecked")
     private void initComponents() {
         L_selectionner = new javax.swing.JLabel();
-        ScrollPaneJournaux = new javax.swing.JScrollPane();
+        ScrollPaneEncadrant = new javax.swing.JScrollPane();
         B_valider = new javax.swing.JButton();
         TF_nouveau = new javax.swing.JTextField();
         B_ajouter = new javax.swing.JButton();
 
         L_selectionner.setFont(new java.awt.Font("Calibri", 0, 24));
-        L_selectionner.setText("Sélectionner les Journaux");
+        L_selectionner.setText("Sélectionner l'encadrant");
 
         B_valider.setBackground(new java.awt.Color(18, 53, 36));
         B_valider.setFont(new java.awt.Font("Calibri", 0, 18));
@@ -83,22 +81,28 @@ public class SelectJournauxPanel extends javax.swing.JPanel {
         B_valider.addActionListener(evt -> javax.swing.SwingUtilities.getWindowAncestor(this).dispose());
 
         TF_nouveau.setFont(new java.awt.Font("Calibri", 0, 16));
-        TF_nouveau.setToolTipText("Ajouter un nouveau journal");
+        TF_nouveau.setToolTipText("Ajouter un nouvel encadrant");
 
         B_ajouter.setBackground(new java.awt.Color(18, 53, 36));
         B_ajouter.setFont(new java.awt.Font("Calibri", 0, 16));
         B_ajouter.setForeground(new java.awt.Color(239, 227, 194));
         B_ajouter.setText("Ajouter");
         B_ajouter.setFocusable(false);
-        B_ajouter.addActionListener(e -> {
+        B_ajouter.addActionListener(evt -> {
             String nom = TF_nouveau.getText().trim();
             if (nom.isEmpty()) return;
 
-            for (JCheckBox cb : checkBoxes) {
-                if (cb.getText().equalsIgnoreCase(nom)) {
-                    JOptionPane.showMessageDialog(this, "Ce journal existe déjà.");
-                    return;
-                }
+            // Vérifier que le nom n'existe pas déjà
+List<String> nomsExistants = new ArrayList<>();
+Enumeration<AbstractButton> buttons = buttonGroup.getElements();
+while (buttons.hasMoreElements()) {
+    nomsExistants.add(buttons.nextElement().getText().toLowerCase());
+}
+
+
+            if (nomsExistants.contains(nom.toLowerCase())) {
+                JOptionPane.showMessageDialog(this, "Ce professeur existe déjà.");
+                return;
             }
 
             try {
@@ -106,23 +110,24 @@ public class SelectJournauxPanel extends javax.swing.JPanel {
                 EntityManager em = emf.createEntityManager();
                 em.getTransaction().begin();
 
-                Journal newJournal = new Journal();
-                newJournal.setNom(nom);
-                em.persist(newJournal);
+                Professeur newProf = new Professeur();
+                newProf.setNomComplet(nom);
+                em.persist(newProf);
 
                 em.getTransaction().commit();
                 em.close();
                 emf.close();
 
-                JCheckBox cb = new JCheckBox(nom);
-                cb.setFont(new Font("Calibri", Font.PLAIN, 16));
-                cb.setSelected(true);
-                checkBoxes.add(cb);
-                panelJournaux.add(cb);
-                panelJournaux.revalidate();
-                panelJournaux.repaint();
+                JRadioButton newRadio = new JRadioButton(nom);
+                newRadio.setFont(new Font("Calibri", Font.PLAIN, 16));
+                buttonGroup.add(newRadio);
+                panelProfesseurs.add(newRadio);
+                panelProfesseurs.revalidate();
+                panelProfesseurs.repaint();
 
+                newRadio.setSelected(true);
                 TF_nouveau.setText("");
+
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Erreur lors de l'ajout : " + ex.getMessage());
             }
@@ -137,7 +142,7 @@ public class SelectJournauxPanel extends javax.swing.JPanel {
                 .addGroup(layout.createSequentialGroup().addGap(30, 30, 30)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(L_selectionner)
-                        .addComponent(ScrollPaneJournaux, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ScrollPaneEncadrant, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(B_valider)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(TF_nouveau, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -151,7 +156,7 @@ public class SelectJournauxPanel extends javax.swing.JPanel {
                 .addGroup(layout.createSequentialGroup().addGap(20, 20, 20)
                     .addComponent(L_selectionner)
                     .addGap(18, 18, 18)
-                    .addComponent(ScrollPaneJournaux, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ScrollPaneEncadrant, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(TF_nouveau, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -163,6 +168,6 @@ public class SelectJournauxPanel extends javax.swing.JPanel {
     }
 
     private javax.swing.JLabel L_selectionner;
-    private javax.swing.JScrollPane ScrollPaneJournaux;
+    private javax.swing.JScrollPane ScrollPaneEncadrant;
     private javax.swing.JButton B_valider;
 }

@@ -4,17 +4,17 @@ import com.smi6.gestion_des_articles_informatique.model.Professeur;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import java.util.ArrayList;
-import java.util.List;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SelectProfesseursPanel extends javax.swing.JPanel {
 
     private List<JCheckBox> checkBoxes = new ArrayList<>();
     private List<String> preSelectedProfesseurs;
     private JPanel panelProfesseurs;
-    private JScrollPane scrollPane;
     private JTextField TF_newProf;
 
     public SelectProfesseursPanel(List<String> preSelectedProfesseurs) {
@@ -28,7 +28,7 @@ public class SelectProfesseursPanel extends javax.swing.JPanel {
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
             EntityManager em = emf.createEntityManager();
 
-            List<Professeur> professeurs = em.createQuery("FROM Professeur", Professeur.class).getResultList();
+            List<Professeur> professeurs = em.createQuery("FROM Professeur ORDER BY LOWER(nomComplet)", Professeur.class).getResultList();
             em.close();
             emf.close();
 
@@ -36,6 +36,7 @@ public class SelectProfesseursPanel extends javax.swing.JPanel {
 
             for (Professeur prof : professeurs) {
                 JCheckBox checkBox = new JCheckBox(prof.getNomComplet());
+                checkBox.setFont(new Font("Calibri", Font.PLAIN, 16));
                 if (preSelectedProfesseurs != null && preSelectedProfesseurs.contains(prof.getNomComplet())) {
                     checkBox.setSelected(true);
                 }
@@ -63,42 +64,47 @@ public class SelectProfesseursPanel extends javax.swing.JPanel {
     }
 
     private void initComponents() {
-        setLayout(new BorderLayout());
-
         JLabel L_selectionner = new JLabel("Sélectionner les Professeurs");
         L_selectionner.setFont(new Font("Calibri", Font.PLAIN, 24));
 
         panelProfesseurs = new JPanel();
         panelProfesseurs.setLayout(new BoxLayout(panelProfesseurs, BoxLayout.Y_AXIS));
 
-        scrollPane = new JScrollPane(panelProfesseurs);
+        JScrollPane scrollPane = new JScrollPane(panelProfesseurs);
 
-        // Ajout manuel
-        JPanel addPanel = new JPanel();
-        addPanel.setLayout(new FlowLayout());
-        TF_newProf = new JTextField(15);
+        TF_newProf = new JTextField(20);
+        TF_newProf.setFont(new Font("Calibri", Font.PLAIN, 16));
+
         JButton B_add = new JButton("Ajouter");
+        B_add.setFont(new Font("Calibri", Font.PLAIN, 16));
+        B_add.setBackground(new Color(18, 53, 36));
+        B_add.setForeground(new Color(239, 227, 194));
+        B_add.setFocusable(false);
         B_add.addActionListener(e -> addProfesseur());
 
-        addPanel.add(new JLabel("Nouveau Professeur :"));
+        JPanel addPanel = new JPanel(new FlowLayout());
         addPanel.add(TF_newProf);
         addPanel.add(B_add);
 
         JButton B_valider = new JButton("Valider");
+        B_valider.setFont(new Font("Calibri", Font.PLAIN, 18));
         B_valider.setBackground(new Color(18, 53, 36));
         B_valider.setForeground(new Color(239, 227, 194));
-        B_valider.addActionListener(e -> {
-            SwingUtilities.getWindowAncestor(this).dispose();
-        });
+        B_valider.setFocusable(false);
+        B_valider.addActionListener(e -> SwingUtilities.getWindowAncestor(this).dispose());
 
-        JPanel bottom = new JPanel();
-        bottom.setLayout(new BorderLayout());
-        bottom.add(addPanel, BorderLayout.CENTER);
-        bottom.add(B_valider, BorderLayout.SOUTH);
+        setPreferredSize(new Dimension(420, 450));
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        add(L_selectionner, BorderLayout.NORTH);
-        add(scrollPane, BorderLayout.CENTER);
-        add(bottom, BorderLayout.SOUTH);
+        add(Box.createVerticalStrut(20));
+        add(L_selectionner);
+        add(Box.createVerticalStrut(18));
+        add(scrollPane);
+        add(Box.createVerticalStrut(18));
+        add(addPanel);
+        add(Box.createVerticalStrut(18));
+        add(B_valider);
+        add(Box.createVerticalStrut(20));
     }
 
     private void addProfesseur() {
@@ -111,13 +117,14 @@ public class SelectProfesseursPanel extends javax.swing.JPanel {
 
             em.getTransaction().begin();
             Professeur newProf = new Professeur();
-            newProf.setNomComplet(nom.toLowerCase());
+            newProf.setNomComplet(nom);
             em.persist(newProf);
             em.getTransaction().commit();
             em.close();
             emf.close();
 
             JCheckBox cb = new JCheckBox(nom);
+            cb.setFont(new Font("Calibri", Font.PLAIN, 16));
             cb.setSelected(true);
             checkBoxes.add(cb);
             panelProfesseurs.add(cb);
@@ -126,7 +133,7 @@ public class SelectProfesseursPanel extends javax.swing.JPanel {
 
             TF_newProf.setText("");
         } catch (Exception ex) {
-            System.err.println("Erreur ajout professeur : " + ex.getMessage());
+            JOptionPane.showMessageDialog(this, "Erreur ajout professeur : " + ex.getMessage());
         }
     }
 }
