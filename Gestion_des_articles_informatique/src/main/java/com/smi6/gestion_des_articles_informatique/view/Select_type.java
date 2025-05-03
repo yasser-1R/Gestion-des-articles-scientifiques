@@ -263,9 +263,9 @@ this.dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-//Upload_Brevet UB = new Upload_Brevet(U);
-//UB.setVisible(true);
-//this.dispose();        // TODO add your handling code here:
+Upload_Brevet UB = new Upload_Brevet(U);
+UB.setVisible(true);
+this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
