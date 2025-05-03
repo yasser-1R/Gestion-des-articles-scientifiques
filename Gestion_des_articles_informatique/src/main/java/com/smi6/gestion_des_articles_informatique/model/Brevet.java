@@ -28,6 +28,14 @@ public class Brevet {
 
     @Column(name = "statut")
     private String statut;
+    
+    
+    
+    @ManyToOne
+@JoinColumn(name = "upload_par")
+private Utilisateur uploadPar;
+
+    
 
     @ManyToMany
     @JoinTable(
@@ -92,4 +100,15 @@ public class Brevet {
     public void setInventeurs(List<Professeur> inventeurs) {
         this.inventeurs = inventeurs;
     }
+
+    public Utilisateur getUploadPar() {
+        return uploadPar;
+    }
+
+    public void setUploadPar(Utilisateur uploadPar) {
+        this.uploadPar = uploadPar;
+    }
+    
+    
+    
 }

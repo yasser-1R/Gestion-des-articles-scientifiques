@@ -29,14 +29,14 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author YN
  */
-public class Upload_Article extends javax.swing.JFrame {
+public class Upload_Conference extends javax.swing.JFrame {
 private File selectedPdfFile;
 private Utilisateur U;
 
     /**
      * Creates new form Upload4
      */
-    public Upload_Article(Utilisateur U) {
+    public Upload_Conference(Utilisateur U) {
         initComponents();
         this.U = U;
         this.setLocationRelativeTo(null);
@@ -464,14 +464,30 @@ private Utilisateur U;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Upload_Article.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Upload_Conference.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Upload_Article.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Upload_Conference.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Upload_Article.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Upload_Conference.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Upload_Article.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Upload_Conference.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Upload4(5L).setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Upload_Article(5L).setVisible(true);
+//            }
+//        });
         //</editor-fold>
 
         /* Create and display the form */

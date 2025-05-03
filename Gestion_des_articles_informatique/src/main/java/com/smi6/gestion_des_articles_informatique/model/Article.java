@@ -26,8 +26,10 @@ public class Article {
     @Temporal(TemporalType.DATE)
     private Date datePublication;
 
-    @Column(name = "upload_par")
-    private Integer uploadPar; // You can map it to Utilisateur if you want later
+    @ManyToOne
+@JoinColumn(name = "upload_par")
+private Utilisateur uploadPar;
+
 
     @ManyToMany
     @JoinTable(
@@ -87,13 +89,14 @@ public class Article {
         this.datePublication = datePublication;
     }
 
-    public Integer getUploadPar() {
+    public Utilisateur getUploadPar() {
         return uploadPar;
     }
 
-    public void setUploadPar(Integer uploadPar) {
+    public void setUploadPar(Utilisateur uploadPar) {
         this.uploadPar = uploadPar;
     }
+
 
     public List<Professeur> getProfesseurs() {
         return professeurs;

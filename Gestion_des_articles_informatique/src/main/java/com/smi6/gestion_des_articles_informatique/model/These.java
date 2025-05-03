@@ -30,7 +30,9 @@ public class These {
     @JoinColumn(name = "id_directeur")
     private Professeur directeur;
 
-    // Getters and Setters...
+@ManyToOne
+@JoinColumn(name = "upload_par")
+private Utilisateur uploadPar;
 
     public Integer getId() {
         return id;
@@ -87,4 +89,15 @@ public class These {
     public void setDirecteur(Professeur directeur) {
         this.directeur = directeur;
     }
+
+    public Utilisateur getUploadPar() {
+        return uploadPar;
+    }
+
+    public void setUploadPar(Utilisateur uploadPar) {
+        this.uploadPar = uploadPar;
+    }
+    
+    
+    
 }

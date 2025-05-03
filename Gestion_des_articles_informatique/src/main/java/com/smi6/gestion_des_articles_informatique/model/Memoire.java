@@ -30,6 +30,14 @@ public class Memoire {
     @JoinColumn(name = "id_directeur") // FK vers professeur.id
     private Professeur directeur;
 
+    
+    
+    @ManyToOne
+@JoinColumn(name = "upload_par")
+private Utilisateur uploadPar;
+
+    
+    
     // Getters and Setters
 
     public Integer getId() {
@@ -87,4 +95,16 @@ public class Memoire {
     public void setDirecteur(Professeur directeur) {
         this.directeur = directeur;
     }
+
+    public Utilisateur getUploadPar() {
+        return uploadPar;
+    }
+
+    public void setUploadPar(Utilisateur uploadPar) {
+        this.uploadPar = uploadPar;
+    }
+    
+    
+    
+    
 }

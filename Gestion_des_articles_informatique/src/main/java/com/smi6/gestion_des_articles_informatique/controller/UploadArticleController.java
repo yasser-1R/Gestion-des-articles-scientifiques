@@ -15,12 +15,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class UploadController {
+public class UploadArticleController {
 
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
 
     public void uploadArticle(
-            Integer userId,
+            Utilisateur user,
             String titre,
             String resume,
             String auteursString,
@@ -37,13 +37,13 @@ public class UploadController {
             Article article = new Article();
             article.setTitre(titre);
             article.setResume(resume);
-            article.setUploadPar(userId);
+//            article.setUploadPar(userId);
             
 //            Utilisateur user = em.find(Utilisateur.class, userId);
 //            if (user == null) {
 //                throw new Exception("Utilisateur non trouvé avec ID: " + userId);
 //            }
-//            article.setUploadPar(user.getId()); // because uploadPar is just Integer
+              article.setUploadPar(user); // because uploadPar is just Integer
 
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date datePublication = formatter.parse(dateString);
@@ -105,37 +105,31 @@ public class UploadController {
         }
     }
 
-    private Professeur findOrCreateProfesseur(EntityManager em, String nomComplet) {
-        List<Professeur> result = em.createQuery(
-                "FROM Professeur WHERE LOWER(nomComplet) = :name", Professeur.class)
-                .setParameter("name", nomComplet.toLowerCase())
-                .getResultList();
+private Professeur findOrCreateProfesseur(EntityManager em, String nomComplet) throws Exception {
+    List<Professeur> result = em.createQuery(
+            "FROM Professeur WHERE LOWER(nomComplet) = :name", Professeur.class)
+            .setParameter("name", nomComplet.toLowerCase())
+            .getResultList();
 
-        if (!result.isEmpty()) {
-            return result.get(0);
-        } else {
-            Professeur prof = new Professeur();
-            prof.setNomComplet(nomComplet);
-            em.persist(prof);
-            em.flush();
-            return prof;
-        }
+    if (!result.isEmpty()) {
+        return result.get(0);
+    } else {
+        throw new Exception("❌ Professeur introuvable : " + nomComplet);
     }
+}
 
-    private Journal findOrCreateJournal(EntityManager em, String nom) {
-        List<Journal> result = em.createQuery(
-                "FROM Journal WHERE LOWER(nom) = :name", Journal.class)
-                .setParameter("name", nom.toLowerCase())
-                .getResultList();
 
-        if (!result.isEmpty()) {
-            return result.get(0);
-        } else {
-            Journal journal = new Journal();
-            journal.setNom(nom);
-            em.persist(journal);
-            em.flush();
-            return journal;
-        }
+private Journal findOrCreateJournal(EntityManager em, String nom) throws Exception {
+    List<Journal> result = em.createQuery(
+            "FROM Journal WHERE LOWER(nom) = :name", Journal.class)
+            .setParameter("name", nom.toLowerCase())
+            .getResultList();
+
+    if (!result.isEmpty()) {
+        return result.get(0);
+    } else {
+        throw new Exception("❌ Journal introuvable : " + nom);
     }
+}
+
 }

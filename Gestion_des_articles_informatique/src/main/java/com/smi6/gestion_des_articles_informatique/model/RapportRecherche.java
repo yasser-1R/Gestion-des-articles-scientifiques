@@ -34,6 +34,13 @@ public class RapportRecherche {
     )
     private List<Professeur> auteurs = new ArrayList<>();
 
+    
+    @ManyToOne
+@JoinColumn(name = "upload_par")
+private Utilisateur uploadPar;
+
+    
+    
     public Integer getId() {
         return id;
     }
@@ -81,4 +88,16 @@ public class RapportRecherche {
     public void setAuteurs(List<Professeur> auteurs) {
         this.auteurs = auteurs;
     }
+
+    public Utilisateur getUploadPar() {
+        return uploadPar;
+    }
+
+    public void setUploadPar(Utilisateur uploadPar) {
+        this.uploadPar = uploadPar;
+    }
+    
+    
+    
+    
 }

@@ -29,6 +29,14 @@ public class Conference {
     @Column(name = "lieu")
     private String lieu;
 
+    
+    @ManyToOne
+@JoinColumn(name = "upload_par")
+private Utilisateur uploadPar;
+
+    
+    
+    
     @ManyToMany
     @JoinTable(
         name = "conference_professeur",
@@ -92,4 +100,15 @@ public class Conference {
     public void setProfesseurs(List<Professeur> professeurs) {
         this.professeurs = professeurs;
     }
+
+    public Utilisateur getUploadPar() {
+        return uploadPar;
+    }
+
+    public void setUploadPar(Utilisateur uploadPar) {
+        this.uploadPar = uploadPar;
+    }
+    
+    
+    
 }

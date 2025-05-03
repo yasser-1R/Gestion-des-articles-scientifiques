@@ -215,15 +215,22 @@ private Utilisateur U;
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-
+        Upload_Article UA = new Upload_Article(U);
+        UA.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-
+Upload_Conference UC = new Upload_Conference(U);
+UC.setVisible(true);
+this.dispose();
 
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+Upload_These UT = new Upload_These(U);
+UT.setVisible(true);
+this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -250,15 +257,21 @@ private Utilisateur U;
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
+Upload_Rapport UR = new Upload_Rapport(U);
+UR.setVisible(true);
+this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
+Upload_Brevet UB = new Upload_Brevet(U);
+UB.setVisible(true);
+this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+Upload_Memoire UM = new Upload_Memoire(U);
+UM.setVisible(true);
+this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
