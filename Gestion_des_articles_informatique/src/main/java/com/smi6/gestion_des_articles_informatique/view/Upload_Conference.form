@@ -34,7 +34,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="L_publierle" min="-2" max="-2" attributes="0"/>
-                          <Component id="L_journaux" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
+                          <Component id="L_Lieu" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
                           <Component id="L_auteurs" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
                           <Component id="L_resume" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
                           <Component id="L_titre" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
@@ -56,17 +56,13 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="TF_titre" alignment="0" min="-2" pref="922" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="B_SelectJ" min="-2" pref="204" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="TF_journaux" max="32767" attributes="0"/>
-                                  </Group>
                                   <Group type="102" attributes="0">
                                       <Component id="B_SelectA" min="-2" pref="204" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="TF_auteurs" max="32767" attributes="0"/>
                                   </Group>
                                   <Component id="jScrollPane1" alignment="0" min="-2" pref="922" max="-2" attributes="0"/>
+                                  <Component id="TF_Lieu" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                           </Group>
@@ -103,11 +99,10 @@
               </Group>
               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="L_journaux" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="TF_journaux" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="B_SelectJ" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="L_Lieu" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="TF_Lieu" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="L_publierle" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="TF_date" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -168,7 +163,7 @@
         <Property name="text" type="java.lang.String" value="Auteurs"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="L_journaux">
+    <Component class="javax.swing.JLabel" name="L_Lieu">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Calibri" size="18" style="0"/>
@@ -176,7 +171,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="24" green="35" red="12" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Journaux"/>
+        <Property name="text" type="java.lang.String" value="Lieu"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="L_publierle">
@@ -187,7 +182,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="24" green="35" red="12" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Publier le"/>
+        <Property name="text" type="java.lang.String" value="Date"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="B_pdf">
@@ -255,7 +250,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TF_auteursActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="TF_journaux">
+    <Component class="javax.swing.JTextField" name="TF_Lieu">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="c2" green="e3" red="ef" type="rgb"/>
@@ -338,24 +333,6 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="B_retourner1ActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="B_SelectJ">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="24" green="35" red="12" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Calibri" size="18" style="0"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="c2" green="e3" red="ef" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Select journaux"/>
-        <Property name="focusable" type="boolean" value="false"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="B_SelectJActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

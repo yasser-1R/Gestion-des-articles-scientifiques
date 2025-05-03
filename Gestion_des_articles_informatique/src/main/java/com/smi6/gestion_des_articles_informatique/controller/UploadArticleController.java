@@ -1,23 +1,17 @@
 package com.smi6.gestion_des_articles_informatique.controller;
 
 import com.smi6.gestion_des_articles_informatique.model.*;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
+import jakarta.persistence.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
+import java.nio.file.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class UploadArticleController {
 
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
+    private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
 
     public void uploadArticle(
             Utilisateur user,
@@ -28,108 +22,103 @@ public class UploadArticleController {
             String dateString,
             File selectedPdfFile
     ) throws Exception {
+
         EntityManager em = emf.createEntityManager();
 
         try {
             em.getTransaction().begin();
 
-            // 1. Create new Article
+            // 1. Créer l'article
             Article article = new Article();
             article.setTitre(titre);
             article.setResume(resume);
-//            article.setUploadPar(userId);
-            
-//            Utilisateur user = em.find(Utilisateur.class, userId);
-//            if (user == null) {
-//                throw new Exception("Utilisateur non trouvé avec ID: " + userId);
-//            }
-              article.setUploadPar(user); // because uploadPar is just Integer
+            article.setUploadPar(user);
+            article.setDatePublication(parseDate(dateString));
 
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            Date datePublication = formatter.parse(dateString);
-            article.setDatePublication(datePublication);
-
-            // 2. Link Auteurs (Professeurs)
-            List<Professeur> professeurs = new ArrayList<>();
-            String[] auteursArray = auteursString.split(",");
-            for (String auteurNom : auteursArray) {
-                auteurNom = auteurNom.trim();
-                if (!auteurNom.isEmpty()) {
-                    Professeur prof = findOrCreateProfesseur(em, auteurNom);
-                    professeurs.add(prof);
-                }
-            }
+            // 2. Lier les auteurs existants
+            List<Professeur> professeurs = getExistingProfesseurs(em, auteursString);
             article.setProfesseurs(professeurs);
 
-            // 3. Link Journaux
-            List<Journal> journaux = new ArrayList<>();
-            String[] journauxArray = journauxString.split(",");
-            for (String journalNom : journauxArray) {
-                journalNom = journalNom.trim();
-                if (!journalNom.isEmpty()) {
-                    Journal journal = findOrCreateJournal(em, journalNom);
-                    journaux.add(journal);
-                }
-            }
+            // 3. Lier les journaux existants
+            List<Journal> journaux = getExistingJournaux(em, journauxString);
             article.setJournaux(journaux);
 
-            // 4. Save Article (before PDF)
+            // 4. Enregistrer l'article
             em.persist(article);
-            em.flush(); // get article.getId()
+            em.flush(); // obtenir l'ID
 
-            // 5. Copy the PDF file
+            // 5. Gérer le fichier PDF
             if (selectedPdfFile != null) {
-                String folderPath = "pdfs";
-                File folder = new File(folderPath);
-                if (!folder.exists()) {
-                    folder.mkdirs();
-                }
-
-                String newPdfName = "article" + article.getId() + ".pdf";
-                Path destination = new File(folder, newPdfName).toPath();
-
-                Files.copy(selectedPdfFile.toPath(), destination, StandardCopyOption.REPLACE_EXISTING);
-
-                article.setCheminPdf(destination.toString());
-                em.merge(article); // update chemin_pdf
+                Path cheminPdf = savePdfFile(article.getId(), selectedPdfFile);
+                article.setCheminPdf(cheminPdf.toString());
+                em.merge(article);
             }
 
             em.getTransaction().commit();
-            System.out.println("✅ Article enregistré avec succès!");
+            System.out.println("✅ Article enregistré avec succès.");
 
         } catch (Exception e) {
             em.getTransaction().rollback();
-            throw new Exception("Erreur lors de l'enregistrement: " + e.getMessage(), e);
+            throw new Exception("Erreur lors de l'enregistrement de l'article : " + e.getMessage(), e);
         } finally {
             em.close();
         }
     }
 
-private Professeur findOrCreateProfesseur(EntityManager em, String nomComplet) throws Exception {
-    List<Professeur> result = em.createQuery(
-            "FROM Professeur WHERE LOWER(nomComplet) = :name", Professeur.class)
-            .setParameter("name", nomComplet.toLowerCase())
-            .getResultList();
-
-    if (!result.isEmpty()) {
-        return result.get(0);
-    } else {
-        throw new Exception("❌ Professeur introuvable : " + nomComplet);
+    // 🔍 Recherche de professeurs existants uniquement
+    private List<Professeur> getExistingProfesseurs(EntityManager em, String noms) throws Exception {
+        List<Professeur> professeurs = new ArrayList<>();
+        for (String nom : noms.split(",")) {
+            String nomTrim = nom.trim().toLowerCase();
+            if (!nomTrim.isEmpty()) {
+                Professeur prof = em.createQuery(
+                        "FROM Professeur WHERE LOWER(nomComplet) = :name", Professeur.class)
+                        .setParameter("name", nomTrim)
+                        .getResultStream()
+                        .findFirst()
+                        .orElseThrow(() -> new Exception("❌ Professeur introuvable : " + nomTrim));
+                professeurs.add(prof);
+            }
+        }
+        return professeurs;
     }
-}
 
-
-private Journal findOrCreateJournal(EntityManager em, String nom) throws Exception {
-    List<Journal> result = em.createQuery(
-            "FROM Journal WHERE LOWER(nom) = :name", Journal.class)
-            .setParameter("name", nom.toLowerCase())
-            .getResultList();
-
-    if (!result.isEmpty()) {
-        return result.get(0);
-    } else {
-        throw new Exception("❌ Journal introuvable : " + nom);
+    // 🔍 Recherche de journaux existants uniquement
+    private List<Journal> getExistingJournaux(EntityManager em, String noms) throws Exception {
+        List<Journal> journaux = new ArrayList<>();
+        for (String nom : noms.split(",")) {
+            String nomTrim = nom.trim().toLowerCase();
+            if (!nomTrim.isEmpty()) {
+                Journal journal = em.createQuery(
+                        "FROM Journal WHERE LOWER(nom) = :name", Journal.class)
+                        .setParameter("name", nomTrim)
+                        .getResultStream()
+                        .findFirst()
+                        .orElseThrow(() -> new Exception("❌ Journal introuvable : " + nomTrim));
+                journaux.add(journal);
+            }
+        }
+        return journaux;
     }
-}
 
+    // 📅 Conversion de chaîne "dd/MM/yyyy" en Date
+    private Date parseDate(String dateString) throws Exception {
+        try {
+            return new SimpleDateFormat("dd/MM/yyyy").parse(dateString);
+        } catch (Exception e) {
+            throw new Exception("Format de date invalide. Utilisez : jj/MM/aaaa (ex. : 02/05/2025).");
+        }
+    }
+
+    // 💾 Sauvegarde du fichier PDF dans un dossier local
+    private Path savePdfFile(int articleId, File originalFile) throws IOException {
+        String folderPath = "pdfs";
+        Files.createDirectories(Paths.get(folderPath));
+
+        String fileName = "article" + articleId + ".pdf";
+        Path destination = Paths.get(folderPath, fileName);
+
+        Files.copy(originalFile.toPath(), destination, StandardCopyOption.REPLACE_EXISTING);
+        return destination;
+    }
 }
