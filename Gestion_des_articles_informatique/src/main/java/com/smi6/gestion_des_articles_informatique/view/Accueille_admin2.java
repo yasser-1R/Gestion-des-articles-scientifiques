@@ -42,7 +42,6 @@ private Utilisateur U;
         jButton8 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1050, 600));
 
         jPanel2.setBackground(new java.awt.Color(239, 227, 194));
 
@@ -61,7 +60,7 @@ private Utilisateur U;
         jButton6.setBackground(new java.awt.Color(18, 53, 36));
         jButton6.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jButton6.setForeground(new java.awt.Color(239, 227, 194));
-        jButton6.setText("Uploder un article");
+        jButton6.setText("Uploder");
         jButton6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton6.setFocusable(false);
         jButton6.addActionListener(new java.awt.event.ActionListener() {

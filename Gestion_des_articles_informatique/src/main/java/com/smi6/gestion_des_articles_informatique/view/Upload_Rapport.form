@@ -24,64 +24,49 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace pref="29" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="L_Statut" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace pref="23" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="L_publierle" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="B_retourner1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="B_enregistrer" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="L_auteurs" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
+                              <Component id="L_resume" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
                               <Component id="L_titre" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
                               <Component id="L_upload" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
-                              <Component id="L_Discription" min="-2" max="-2" attributes="0"/>
                           </Group>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="B_pdf" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="TF_titre" alignment="0" min="-2" pref="922" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane1" alignment="0" min="-2" pref="922" max="-2" attributes="0"/>
-                                  <Component id="TF_Statut" alignment="0" min="-2" pref="922" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="TF_titre" alignment="0" min="-2" pref="922" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="B_SelectA" min="-2" pref="204" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="TF_auteurs" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Component id="jScrollPane1" alignment="0" min="-2" pref="922" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="B_retourner1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="B_enregistrer" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="L_Inventeurs" max="32767" attributes="0"/>
-                                  <Component id="L_publierle" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
+                                  <Component id="B_pdf" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
                                       <Component id="TF_date" min="-2" pref="129" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jLabel1" min="-2" pref="137" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="B_SelectA" min="-2" pref="204" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="TF_auteurs" min="-2" pref="700" max="-2" attributes="0"/>
-                                  </Group>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -100,32 +85,27 @@
               </Group>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="L_Discription" min="-2" max="-2" attributes="0"/>
+                  <Component id="L_resume" min="-2" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="TF_Statut" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="L_Statut" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="L_Inventeurs" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="L_auteurs" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="B_SelectA" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="TF_auteurs" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="L_publierle" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="TF_date" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="185" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="B_enregistrer" alignment="3" min="-2" pref="59" max="-2" attributes="0"/>
                   <Component id="B_retourner1" alignment="3" min="-2" pref="59" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="45" max="32767" attributes="0"/>
+              <EmptySpace pref="46" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -153,7 +133,7 @@
         <Property name="text" type="java.lang.String" value="Titre"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="L_Discription">
+    <Component class="javax.swing.JLabel" name="L_resume">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Calibri" size="18" style="0"/>
@@ -161,10 +141,10 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="24" green="35" red="12" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Discription"/>
+        <Property name="text" type="java.lang.String" value="Resume"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="L_Inventeurs">
+    <Component class="javax.swing.JLabel" name="L_auteurs">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Calibri" size="18" style="0"/>
@@ -172,18 +152,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="24" green="35" red="12" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Inventeurs"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="L_Statut">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Calibri" size="18" style="0"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="24" green="35" red="12" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Statut"/>
+        <Property name="text" type="java.lang.String" value="Auteurs"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="L_publierle">
@@ -194,7 +163,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="24" green="35" red="12" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="D&#xe9;pos&#xe9; le"/>
+        <Property name="text" type="java.lang.String" value="Date"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="B_pdf">
@@ -235,7 +204,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="TA_discrition">
+        <Component class="javax.swing.JTextArea" name="TA_resume">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="c2" green="e3" red="ef" type="rgb"/>
@@ -262,16 +231,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TF_auteursActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="TF_Statut">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="c2" green="e3" red="ef" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Calibri" size="18" style="0"/>
-        </Property>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JTextField" name="TF_date">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -296,7 +255,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="c2" green="e3" red="ef" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Select Inventeurs"/>
+        <Property name="text" type="java.lang.String" value="Select Auteurs"/>
         <Property name="focusable" type="boolean" value="false"/>
       </Properties>
       <Events>
