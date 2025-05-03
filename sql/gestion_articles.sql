@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2025 at 08:53 PM
+-- Generation Time: May 03, 2025 at 09:45 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -70,7 +70,8 @@ CREATE TABLE `brevets` (
   `date_depot` date DEFAULT NULL,
   `description` text DEFAULT NULL,
   `statut` varchar(255) DEFAULT NULL,
-  `titre` varchar(255) NOT NULL
+  `titre` varchar(255) NOT NULL,
+  `upload_par` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -96,7 +97,8 @@ CREATE TABLE `conferences` (
   `date_conference` date DEFAULT NULL,
   `lieu` varchar(255) DEFAULT NULL,
   `resume` text DEFAULT NULL,
-  `titre` varchar(255) NOT NULL
+  `titre` varchar(255) NOT NULL,
+  `upload_par` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -122,6 +124,20 @@ CREATE TABLE `journaux` (
   `quartile` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `journaux`
+--
+
+INSERT INTO `journaux` (`id`, `nom`, `quartile`) VALUES
+(16, 'Nature', 'Q1'),
+(17, 'Science', 'Q1'),
+(18, 'IEEE Transactions on Neural Networks', 'Q1'),
+(19, 'Journal of Machine Learning Research', 'Q1'),
+(20, 'IEEE Access', 'Q2'),
+(21, 'Applied Soft Computing', 'Q2'),
+(22, 'Journal of Intelligent & Fuzzy Systems', 'Q3'),
+(23, 'International Journal of Computer Applications', 'Q4');
+
 -- --------------------------------------------------------
 
 --
@@ -135,7 +151,8 @@ CREATE TABLE `memoires` (
   `etudiant` varchar(255) DEFAULT NULL,
   `resume` text DEFAULT NULL,
   `titre` varchar(255) NOT NULL,
-  `id_directeur` int(11) DEFAULT NULL
+  `id_directeur` int(11) DEFAULT NULL,
+  `upload_par` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -149,6 +166,19 @@ CREATE TABLE `professeurs` (
   `nom_complet` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `professeurs`
+--
+
+INSERT INTO `professeurs` (`id`, `nom_complet`) VALUES
+(21, 'Yasser Rochdi'),
+(22, 'Aya Elhamraoui'),
+(23, 'Mohamed Daif'),
+(24, 'Omar Boutkhoum'),
+(25, 'Driss Abada'),
+(26, 'Abdessadek Aaroud'),
+(27, 'Hanan Elfaik');
+
 -- --------------------------------------------------------
 
 --
@@ -160,7 +190,8 @@ CREATE TABLE `rapports_recherche` (
   `chemin_pdf` varchar(500) DEFAULT NULL,
   `date_publication` date DEFAULT NULL,
   `resume` text DEFAULT NULL,
-  `titre` varchar(255) NOT NULL
+  `titre` varchar(255) NOT NULL,
+  `upload_par` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -187,7 +218,8 @@ CREATE TABLE `theses` (
   `etudiant` varchar(255) DEFAULT NULL,
   `resume` text DEFAULT NULL,
   `titre` varchar(255) NOT NULL,
-  `id_directeur` int(11) DEFAULT NULL
+  `id_directeur` int(11) DEFAULT NULL,
+  `upload_par` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -205,6 +237,46 @@ CREATE TABLE `utilisateurs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `utilisateurs`
+--
+
+INSERT INTO `utilisateurs` (`id`, `nom_complet`, `login`, `mot_de_passe`, `role`) VALUES
+(8, 'Yasser Rochdi', 'yasserU', '1234', 'utilisateur'),
+(9, 'Yasser Admin', 'yasserA', '1234', 'admin'),
+(10, 'Aya Elhamraoui', 'ayaU', '1234', 'utilisateur'),
+(11, 'Aya Admin', 'ayaA', '1234', 'admin'),
+(12, 'Mohamed Daif', 'mohamedU', '1234', 'utilisateur'),
+(13, 'Mohamed Admin', 'mohamedA', '1234', 'admin'),
+(14, 'U', 'U', '1', 'utilisateur'),
+(15, 'A', 'A', '1', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `vue_professeur_resume`
+-- (See below for the actual view)
+--
+CREATE TABLE `vue_professeur_resume` (
+`id_professeur` int(11)
+,`professeur` varchar(255)
+,`nb_articles` bigint(21)
+,`nb_brevets` bigint(21)
+,`nb_theses` bigint(21)
+,`nb_memoires` bigint(21)
+,`nb_rapports` bigint(21)
+,`nb_conferences` bigint(21)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `vue_professeur_resume`
+--
+DROP TABLE IF EXISTS `vue_professeur_resume`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vue_professeur_resume`  AS SELECT `p`.`id` AS `id_professeur`, `p`.`nom_complet` AS `professeur`, (select count(0) from `article_professeur` `ap` where `ap`.`id_professeur` = `p`.`id`) AS `nb_articles`, (select count(0) from `brevet_professeur` `bp` where `bp`.`id_professeur` = `p`.`id`) AS `nb_brevets`, (select count(0) from `theses` `t` where `t`.`id_directeur` = `p`.`id`) AS `nb_theses`, (select count(0) from `memoires` `m` where `m`.`id_directeur` = `p`.`id`) AS `nb_memoires`, (select count(0) from `rapport_professeur` `rp` where `rp`.`id_professeur` = `p`.`id`) AS `nb_rapports`, (select count(0) from `conference_professeur` `cp` where `cp`.`id_professeur` = `p`.`id`) AS `nb_conferences` FROM `professeurs` AS `p` ;
+
+--
 -- Indexes for dumped tables
 --
 
@@ -212,7 +284,8 @@ CREATE TABLE `utilisateurs` (
 -- Indexes for table `articles`
 --
 ALTER TABLE `articles`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FKlxymmd46qd2gpx08cb9sw53tk` (`upload_par`);
 
 --
 -- Indexes for table `article_journal`
@@ -232,7 +305,8 @@ ALTER TABLE `article_professeur`
 -- Indexes for table `brevets`
 --
 ALTER TABLE `brevets`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FKqy4cwsfievffwpxyvjitbxcy3` (`upload_par`);
 
 --
 -- Indexes for table `brevet_professeur`
@@ -245,7 +319,8 @@ ALTER TABLE `brevet_professeur`
 -- Indexes for table `conferences`
 --
 ALTER TABLE `conferences`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK4or11ibnbmy17wkigr8ljqh71` (`upload_par`);
 
 --
 -- Indexes for table `conference_professeur`
@@ -265,7 +340,8 @@ ALTER TABLE `journaux`
 --
 ALTER TABLE `memoires`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `FKqjojynqqayq6ouvbsuq9sit09` (`id_directeur`);
+  ADD KEY `FKqjojynqqayq6ouvbsuq9sit09` (`id_directeur`),
+  ADD KEY `FKeew913icsmifgy7v3hn82sp8l` (`upload_par`);
 
 --
 -- Indexes for table `professeurs`
@@ -277,7 +353,8 @@ ALTER TABLE `professeurs`
 -- Indexes for table `rapports_recherche`
 --
 ALTER TABLE `rapports_recherche`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FKkagqfox29gfyv2ulqyhg2k9uo` (`upload_par`);
 
 --
 -- Indexes for table `rapport_professeur`
@@ -291,7 +368,8 @@ ALTER TABLE `rapport_professeur`
 --
 ALTER TABLE `theses`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `FKry3bb3vjqk12h2cphlvpp2e28` (`id_directeur`);
+  ADD KEY `FKry3bb3vjqk12h2cphlvpp2e28` (`id_directeur`),
+  ADD KEY `FKrhovd6y1tb5kybn1krm4u6jnc` (`upload_par`);
 
 --
 -- Indexes for table `utilisateurs`
@@ -308,59 +386,65 @@ ALTER TABLE `utilisateurs`
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `brevets`
 --
 ALTER TABLE `brevets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `conferences`
 --
 ALTER TABLE `conferences`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `journaux`
 --
 ALTER TABLE `journaux`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `memoires`
 --
 ALTER TABLE `memoires`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `professeurs`
 --
 ALTER TABLE `professeurs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `rapports_recherche`
 --
 ALTER TABLE `rapports_recherche`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `theses`
 --
 ALTER TABLE `theses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `utilisateurs`
 --
 ALTER TABLE `utilisateurs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `articles`
+--
+ALTER TABLE `articles`
+  ADD CONSTRAINT `FKlxymmd46qd2gpx08cb9sw53tk` FOREIGN KEY (`upload_par`) REFERENCES `utilisateurs` (`id`);
 
 --
 -- Constraints for table `article_journal`
@@ -377,11 +461,23 @@ ALTER TABLE `article_professeur`
   ADD CONSTRAINT `FKqjg0iefkv1x13now7kn4836kt` FOREIGN KEY (`id_professeur`) REFERENCES `professeurs` (`id`);
 
 --
+-- Constraints for table `brevets`
+--
+ALTER TABLE `brevets`
+  ADD CONSTRAINT `FKqy4cwsfievffwpxyvjitbxcy3` FOREIGN KEY (`upload_par`) REFERENCES `utilisateurs` (`id`);
+
+--
 -- Constraints for table `brevet_professeur`
 --
 ALTER TABLE `brevet_professeur`
   ADD CONSTRAINT `FKa6kc0alhrdb9vmm4miheudnck` FOREIGN KEY (`id_brevet`) REFERENCES `brevets` (`id`),
   ADD CONSTRAINT `FKfj0xhlo8y7h71p8ynqmi6vl2k` FOREIGN KEY (`id_professeur`) REFERENCES `professeurs` (`id`);
+
+--
+-- Constraints for table `conferences`
+--
+ALTER TABLE `conferences`
+  ADD CONSTRAINT `FK4or11ibnbmy17wkigr8ljqh71` FOREIGN KEY (`upload_par`) REFERENCES `utilisateurs` (`id`);
 
 --
 -- Constraints for table `conference_professeur`
@@ -394,7 +490,14 @@ ALTER TABLE `conference_professeur`
 -- Constraints for table `memoires`
 --
 ALTER TABLE `memoires`
+  ADD CONSTRAINT `FKeew913icsmifgy7v3hn82sp8l` FOREIGN KEY (`upload_par`) REFERENCES `utilisateurs` (`id`),
   ADD CONSTRAINT `FKqjojynqqayq6ouvbsuq9sit09` FOREIGN KEY (`id_directeur`) REFERENCES `professeurs` (`id`);
+
+--
+-- Constraints for table `rapports_recherche`
+--
+ALTER TABLE `rapports_recherche`
+  ADD CONSTRAINT `FKkagqfox29gfyv2ulqyhg2k9uo` FOREIGN KEY (`upload_par`) REFERENCES `utilisateurs` (`id`);
 
 --
 -- Constraints for table `rapport_professeur`
@@ -407,6 +510,7 @@ ALTER TABLE `rapport_professeur`
 -- Constraints for table `theses`
 --
 ALTER TABLE `theses`
+  ADD CONSTRAINT `FKrhovd6y1tb5kybn1krm4u6jnc` FOREIGN KEY (`upload_par`) REFERENCES `utilisateurs` (`id`),
   ADD CONSTRAINT `FKry3bb3vjqk12h2cphlvpp2e28` FOREIGN KEY (`id_directeur`) REFERENCES `professeurs` (`id`);
 COMMIT;
 

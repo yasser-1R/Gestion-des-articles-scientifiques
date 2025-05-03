@@ -4,8 +4,7 @@
 
 package com.smi6.gestion_des_articles_informatique;
 import com.smi6.gestion_des_articles_informatique.view.*;
-import com.smi6.gestion_des_articles_informatique.model.*;
-import jakarta.persistence.*;
+
 /**
  *
  * @author YN
@@ -13,7 +12,7 @@ import jakarta.persistence.*;
 public class Gestion_des_articles_informatique {
 
     public static void main(String[] args) {
-        
+
 //   EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
 //        EntityManager em = emf.createEntityManager();
 //
