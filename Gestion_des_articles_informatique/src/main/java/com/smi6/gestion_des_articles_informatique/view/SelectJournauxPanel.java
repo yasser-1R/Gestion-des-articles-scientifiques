@@ -16,6 +16,7 @@ public class SelectJournauxPanel extends javax.swing.JPanel {
     private List<String> preSelectedJournaux;
     private JPanel panelJournaux;
     private JTextField TF_nouveau;
+    private JTextField TF_quartile;
     private JButton B_ajouter;
 
     public SelectJournauxPanel(List<String> preSelectedJournaux) {
@@ -70,6 +71,7 @@ public class SelectJournauxPanel extends javax.swing.JPanel {
         ScrollPaneJournaux = new javax.swing.JScrollPane();
         B_valider = new javax.swing.JButton();
         TF_nouveau = new javax.swing.JTextField();
+        TF_quartile = new javax.swing.JTextField();
         B_ajouter = new javax.swing.JButton();
 
         L_selectionner.setFont(new java.awt.Font("Calibri", 0, 24));
@@ -85,6 +87,11 @@ public class SelectJournauxPanel extends javax.swing.JPanel {
         TF_nouveau.setFont(new java.awt.Font("Calibri", 0, 16));
         TF_nouveau.setToolTipText("Ajouter un nouveau journal");
 
+        TF_quartile = new JTextField();
+        TF_quartile.setFont(new Font("Calibri", Font.PLAIN, 16));
+        TF_quartile.setToolTipText("Quartile (Q1, Q2, etc.)");
+        TF_quartile.setPreferredSize(new Dimension(50, 30));
+
         B_ajouter.setBackground(new java.awt.Color(18, 53, 36));
         B_ajouter.setFont(new java.awt.Font("Calibri", 0, 16));
         B_ajouter.setForeground(new java.awt.Color(239, 227, 194));
@@ -92,6 +99,7 @@ public class SelectJournauxPanel extends javax.swing.JPanel {
         B_ajouter.setFocusable(false);
         B_ajouter.addActionListener(e -> {
             String nom = TF_nouveau.getText().trim();
+            String quartile = TF_quartile.getText().trim();
             if (nom.isEmpty()) return;
 
             for (JCheckBox cb : checkBoxes) {
@@ -108,6 +116,7 @@ public class SelectJournauxPanel extends javax.swing.JPanel {
 
                 Journal newJournal = new Journal();
                 newJournal.setNom(nom);
+                newJournal.setQuartile(quartile);
                 em.persist(newJournal);
 
                 em.getTransaction().commit();
@@ -123,6 +132,7 @@ public class SelectJournauxPanel extends javax.swing.JPanel {
                 panelJournaux.repaint();
 
                 TF_nouveau.setText("");
+                TF_quartile.setText("");
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Erreur lors de l'ajout : " + ex.getMessage());
             }
@@ -140,7 +150,9 @@ public class SelectJournauxPanel extends javax.swing.JPanel {
                         .addComponent(ScrollPaneJournaux, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(B_valider)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(TF_nouveau, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TF_nouveau, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(TF_quartile, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(B_ajouter)))
                     .addContainerGap(30, Short.MAX_VALUE))
@@ -155,6 +167,7 @@ public class SelectJournauxPanel extends javax.swing.JPanel {
                     .addGap(18, 18, 18)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(TF_nouveau, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TF_quartile, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(B_ajouter))
                     .addGap(18, 18, 18)
                     .addComponent(B_valider)
