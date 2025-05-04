@@ -48,7 +48,7 @@ private Utilisateur U;
         jButton2.setBackground(new java.awt.Color(18, 53, 36));
         jButton2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(239, 227, 194));
-        jButton2.setText("Chercher un article");
+        jButton2.setText("Rehercher");
         jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton2.setFocusable(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -72,7 +72,7 @@ private Utilisateur U;
         jButton7.setBackground(new java.awt.Color(18, 53, 36));
         jButton7.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jButton7.setForeground(new java.awt.Color(239, 227, 194));
-        jButton7.setText("Gerer vos articles");
+        jButton7.setText("Statistiques");
         jButton7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton7.setFocusable(false);
         jButton7.addActionListener(new java.awt.event.ActionListener() {

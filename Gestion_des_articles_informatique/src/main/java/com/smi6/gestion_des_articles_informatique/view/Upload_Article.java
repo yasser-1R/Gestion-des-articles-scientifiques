@@ -3,24 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.smi6.gestion_des_articles_informatique.view;
-import com.smi6.gestion_des_articles_informatique.controller.*;
-import com.smi6.gestion_des_articles_informatique.model.Journal;
-import com.smi6.gestion_des_articles_informatique.model.Professeur;
+import com.smi6.gestion_des_articles_informatique.controller.UploadArticleController;
+
 import com.smi6.gestion_des_articles_informatique.model.Utilisateur;
-import com.smi6.gestion_des_articles_informatique.view.Select_type;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
+
 import javax.swing.JDialog;
 import javax.swing.JFileChooser; 
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 

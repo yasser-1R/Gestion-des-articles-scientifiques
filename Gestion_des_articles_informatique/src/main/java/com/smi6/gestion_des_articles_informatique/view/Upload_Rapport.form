@@ -54,13 +54,11 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="B_pdf" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="TF_date" min="-2" pref="129" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jLabel1" min="-2" pref="137" max="-2" attributes="0"/>
-                                  </Group>
+                              <Component id="B_pdf" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="TF_date" min="-2" pref="129" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jLabel1" min="-2" pref="137" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
