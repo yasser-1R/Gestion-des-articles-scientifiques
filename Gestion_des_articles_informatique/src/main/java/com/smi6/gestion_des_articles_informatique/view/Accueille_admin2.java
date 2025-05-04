@@ -247,6 +247,13 @@ private Utilisateur U;
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
+        
+        Professeur_Resume PR = new Professeur_Resume(this.U);
+        PR.setVisible(true);
+        this.dispose();
+        
+        
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
