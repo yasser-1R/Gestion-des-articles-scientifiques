@@ -2,8 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.smi6.gestion_des_articles_informatique.view;
+package com.smi6.gestion_des_articles_informatique.view.statistiques;
 
+import com.smi6.gestion_des_articles_informatique.view.connexion_home.Accueille_avec_compte2;
+import com.smi6.gestion_des_articles_informatique.view.connexion_home.Accueille_admin2;
+import com.smi6.gestion_des_articles_informatique.view.connexion_home.Accueille_sans_compte2;
 import com.smi6.gestion_des_articles_informatique.model.Utilisateur;
 import jakarta.persistence.*;
 import java.awt.*;

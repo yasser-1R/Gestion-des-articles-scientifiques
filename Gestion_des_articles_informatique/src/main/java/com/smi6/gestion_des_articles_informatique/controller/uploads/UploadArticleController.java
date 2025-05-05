@@ -1,4 +1,4 @@
-package com.smi6.gestion_des_articles_informatique.controller;
+package com.smi6.gestion_des_articles_informatique.controller.uploads;
 
 import com.smi6.gestion_des_articles_informatique.model.*;
 import jakarta.persistence.*;
@@ -9,15 +9,16 @@ import java.nio.file.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class UploadRapportController {
+public class UploadArticleController {
 
     private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
 
-    public void uploadRapport(
+    public void uploadArticle(
             Utilisateur user,
             String titre,
             String resume,
             String auteursString,
+            String journauxString,
             String dateString,
             File selectedPdfFile
     ) throws Exception {
@@ -27,34 +28,38 @@ public class UploadRapportController {
         try {
             em.getTransaction().begin();
 
-            // 1. Créer le rapport
-            RapportRecherche rapport = new RapportRecherche();
-            rapport.setTitre(titre);
-            rapport.setResume(resume);
-            rapport.setUploadPar(user);
-            rapport.setDatePublication(parseDate(dateString));
+            // 1. Créer l'article
+            Article article = new Article();
+            article.setTitre(titre);
+            article.setResume(resume);
+            article.setUploadPar(user);
+            article.setDatePublication(parseDate(dateString));
 
             // 2. Lier les auteurs existants
             List<Professeur> professeurs = getExistingProfesseurs(em, auteursString);
-            rapport.setAuteurs(professeurs);
+            article.setProfesseurs(professeurs);
 
-            // 3. Enregistrer le rapport
-            em.persist(rapport);
+            // 3. Lier les journaux existants
+            List<Journal> journaux = getExistingJournaux(em, journauxString);
+            article.setJournaux(journaux);
+
+            // 4. Enregistrer l'article
+            em.persist(article);
             em.flush(); // obtenir l'ID
 
-            // 4. Gérer le fichier PDF
+            // 5. Gérer le fichier PDF
             if (selectedPdfFile != null) {
-                Path cheminPdf = savePdfFile(rapport.getId(), selectedPdfFile);
-                rapport.setCheminPdf(cheminPdf.toString());
-                em.merge(rapport);
+                Path cheminPdf = savePdfFile(article.getId(), selectedPdfFile);
+                article.setCheminPdf(cheminPdf.toString());
+                em.merge(article);
             }
 
             em.getTransaction().commit();
-            System.out.println("✅ Rapport de recherche enregistré avec succès.");
+            System.out.println("✅ Article enregistré avec succès.");
 
         } catch (Exception e) {
             em.getTransaction().rollback();
-            throw new Exception("Erreur lors de l'enregistrement du rapport : " + e.getMessage(), e);
+            throw new Exception("Erreur lors de l'enregistrement de l'article : " + e.getMessage(), e);
         } finally {
             em.close();
         }
@@ -78,6 +83,24 @@ public class UploadRapportController {
         return professeurs;
     }
 
+    // 🔍 Recherche de journaux existants uniquement
+    private List<Journal> getExistingJournaux(EntityManager em, String noms) throws Exception {
+        List<Journal> journaux = new ArrayList<>();
+        for (String nom : noms.split(",")) {
+            String nomTrim = nom.trim().toLowerCase();
+            if (!nomTrim.isEmpty()) {
+                Journal journal = em.createQuery(
+                        "FROM Journal WHERE LOWER(nom) = :name", Journal.class)
+                        .setParameter("name", nomTrim)
+                        .getResultStream()
+                        .findFirst()
+                        .orElseThrow(() -> new Exception("❌ Journal introuvable : " + nomTrim));
+                journaux.add(journal);
+            }
+        }
+        return journaux;
+    }
+
     // 📅 Conversion de chaîne "dd/MM/yyyy" en Date
     private Date parseDate(String dateString) throws Exception {
         try {
@@ -88,11 +111,11 @@ public class UploadRapportController {
     }
 
     // 💾 Sauvegarde du fichier PDF dans un dossier local
-    private Path savePdfFile(int rapportId, File originalFile) throws IOException {
+    private Path savePdfFile(int articleId, File originalFile) throws IOException {
         String folderPath = "pdfs";
         Files.createDirectories(Paths.get(folderPath));
 
-        String fileName = "rapport" + rapportId + ".pdf";
+        String fileName = "article" + articleId + ".pdf";
         Path destination = Paths.get(folderPath, fileName);
 
         Files.copy(originalFile.toPath(), destination, StandardCopyOption.REPLACE_EXISTING);

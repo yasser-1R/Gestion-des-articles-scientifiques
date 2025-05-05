@@ -4,6 +4,9 @@
  */
 package com.smi6.gestion_des_articles_informatique.view;
 
+import com.smi6.gestion_des_articles_informatique.view.connexion_home.Accueille_avec_compte2;
+import com.smi6.gestion_des_articles_informatique.view.connexion_home.Accueille_admin2;
+import com.smi6.gestion_des_articles_informatique.view.connexion_home.Accueille_sans_compte2;
 import com.smi6.gestion_des_articles_informatique.model.Utilisateur;
 
 /**

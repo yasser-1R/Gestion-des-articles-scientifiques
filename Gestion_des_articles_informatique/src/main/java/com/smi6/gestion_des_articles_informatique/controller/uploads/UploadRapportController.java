@@ -1,4 +1,4 @@
-package com.smi6.gestion_des_articles_informatique.controller;
+package com.smi6.gestion_des_articles_informatique.controller.uploads;
 
 import com.smi6.gestion_des_articles_informatique.model.*;
 import jakarta.persistence.*;
@@ -9,17 +9,16 @@ import java.nio.file.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class UploadBrevetController {
+public class UploadRapportController {
 
     private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
 
-    public void uploadBrevet(
+    public void uploadRapport(
             Utilisateur user,
             String titre,
-            String description,
-            String statut,
-            String inventeursString,
-            String dateDepotString,
+            String resume,
+            String auteursString,
+            String dateString,
             File selectedPdfFile
     ) throws Exception {
 
@@ -28,35 +27,34 @@ public class UploadBrevetController {
         try {
             em.getTransaction().begin();
 
-            // 1. Créer le brevet
-            Brevet brevet = new Brevet();
-            brevet.setTitre(titre);
-            brevet.setDescription(description);
-            brevet.setStatut(statut);
-            brevet.setUploadPar(user);
-            brevet.setDateDepot(parseDate(dateDepotString));
+            // 1. Créer le rapport
+            RapportRecherche rapport = new RapportRecherche();
+            rapport.setTitre(titre);
+            rapport.setResume(resume);
+            rapport.setUploadPar(user);
+            rapport.setDatePublication(parseDate(dateString));
 
-            // 2. Lier les inventeurs (professeurs) existants
-            List<Professeur> inventeurs = getExistingProfesseurs(em, inventeursString);
-            brevet.setInventeurs(inventeurs);
+            // 2. Lier les auteurs existants
+            List<Professeur> professeurs = getExistingProfesseurs(em, auteursString);
+            rapport.setAuteurs(professeurs);
 
-            // 3. Enregistrer le brevet
-            em.persist(brevet);
-            em.flush(); // pour obtenir l’ID
+            // 3. Enregistrer le rapport
+            em.persist(rapport);
+            em.flush(); // obtenir l'ID
 
             // 4. Gérer le fichier PDF
             if (selectedPdfFile != null) {
-                Path cheminPdf = savePdfFile(brevet.getId(), selectedPdfFile);
-                brevet.setCheminPdf(cheminPdf.toString());
-                em.merge(brevet);
+                Path cheminPdf = savePdfFile(rapport.getId(), selectedPdfFile);
+                rapport.setCheminPdf(cheminPdf.toString());
+                em.merge(rapport);
             }
 
             em.getTransaction().commit();
-            System.out.println("✅ Brevet enregistré avec succès.");
+            System.out.println("✅ Rapport de recherche enregistré avec succès.");
 
         } catch (Exception e) {
             em.getTransaction().rollback();
-            throw new Exception("Erreur lors de l'enregistrement du brevet : " + e.getMessage(), e);
+            throw new Exception("Erreur lors de l'enregistrement du rapport : " + e.getMessage(), e);
         } finally {
             em.close();
         }
@@ -85,16 +83,16 @@ public class UploadBrevetController {
         try {
             return new SimpleDateFormat("dd/MM/yyyy").parse(dateString);
         } catch (Exception e) {
-            throw new Exception("Format de date invalide. Utilisez : jj/MM/aaaa (ex. : 15/06/2025).");
+            throw new Exception("Format de date invalide. Utilisez : jj/MM/aaaa (ex. : 02/05/2025).");
         }
     }
 
     // 💾 Sauvegarde du fichier PDF dans un dossier local
-    private Path savePdfFile(int brevetId, File originalFile) throws IOException {
+    private Path savePdfFile(int rapportId, File originalFile) throws IOException {
         String folderPath = "pdfs";
         Files.createDirectories(Paths.get(folderPath));
 
-        String fileName = "brevet" + brevetId + ".pdf";
+        String fileName = "rapport" + rapportId + ".pdf";
         Path destination = Paths.get(folderPath, fileName);
 
         Files.copy(originalFile.toPath(), destination, StandardCopyOption.REPLACE_EXISTING);

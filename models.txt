@@ -1,0 +1,397 @@
+package com.smi6.gestion_des_articles_informatique.model;
+
+import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+@Entity
+@Table(name = "articles")
+public class Article {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(nullable = false)
+    private String titre;
+
+    @Column(columnDefinition = "TEXT")
+    private String resume;
+
+    @Column(name = "chemin_pdf", length = 500)
+    private String cheminPdf;
+
+    @Column(name = "date_publication")
+    @Temporal(TemporalType.DATE)
+    private Date datePublication;
+
+    @ManyToOne
+    @JoinColumn(name = "upload_par")
+    private Utilisateur uploadPar;
+
+    @ManyToMany
+    @JoinTable(
+        name = "article_professeur",
+        joinColumns = @JoinColumn(name = "id_article"),
+        inverseJoinColumns = @JoinColumn(name = "id_professeur")
+    )
+    private List<Professeur> professeurs = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(
+        name = "article_journal",
+        joinColumns = @JoinColumn(name = "id_article"),
+        inverseJoinColumns = @JoinColumn(name = "id_journal")
+    )
+    private List<Journal> journaux = new ArrayList<>();
+
+    // Getters and Setters
+}
+
+
+
+
+package com.smi6.gestion_des_articles_informatique.model;
+
+import jakarta.persistence.*;
+import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "brevets")
+public class Brevet {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(nullable = false)
+    private String titre;
+
+    @Column(columnDefinition = "TEXT")
+    private String description;
+
+    @Column(name = "chemin_pdf", length = 500)
+    private String cheminPdf;
+
+    @Column(name = "date_depot")
+    @Temporal(TemporalType.DATE)
+    private Date dateDepot;
+
+    @Column(name = "statut")
+    private String statut;
+
+    @ManyToOne
+    @JoinColumn(name = "upload_par")
+    private Utilisateur uploadPar;
+
+    @ManyToMany
+    @JoinTable(
+        name = "brevet_professeur",
+        joinColumns = @JoinColumn(name = "id_brevet"),
+        inverseJoinColumns = @JoinColumn(name = "id_professeur")
+    )
+    private List<Professeur> inventeurs = new ArrayList<>();
+
+    // Getters and Setters
+}
+
+
+
+
+package com.smi6.gestion_des_articles_informatique.model;
+
+import jakarta.persistence.*;
+import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
+
+@Entity
+@Table(name = "conferences")
+public class Conference {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(nullable = false)
+    private String titre;
+
+    @Column(columnDefinition = "TEXT")
+    private String resume;
+
+    @Column(name = "chemin_pdf", length = 500)
+    private String cheminPdf;
+
+    @Column(name = "date_conference")
+    @Temporal(TemporalType.DATE)
+    private Date dateConference;
+
+    @Column(name = "lieu")
+    private String lieu;
+
+    @ManyToOne
+    @JoinColumn(name = "upload_par")
+    private Utilisateur uploadPar;
+
+    @ManyToMany
+    @JoinTable(
+        name = "conference_professeur",
+        joinColumns = @JoinColumn(name = "id_conference"),
+        inverseJoinColumns = @JoinColumn(name = "id_professeur")
+    )
+    private List<Professeur> professeurs = new ArrayList<>();
+
+    // Getters and Setters
+}
+
+
+
+
+package com.smi6.gestion_des_articles_informatique.model;
+
+import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "journaux")
+public class Journal {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(nullable = false)
+    private String nom;
+
+    @Column(name = "quartile")
+    private String quartile; // Q1, Q2, Q3, Q4
+
+    @ManyToMany(mappedBy = "journaux")
+    private List<Article> articles = new ArrayList<>();
+
+    // Getters and Setters
+}
+
+
+
+
+package com.smi6.gestion_des_articles_informatique.model;
+
+import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "journaux")
+public class Journal {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(nullable = false)
+    private String nom;
+
+    @Column(name = "quartile")
+    private String quartile; // Q1, Q2, Q3, Q4
+
+    @ManyToMany(mappedBy = "journaux")
+    private List<Article> articles = new ArrayList<>();
+
+    // Getters and Setters
+}
+
+
+
+
+package com.smi6.gestion_des_articles_informatique.model;
+
+import jakarta.persistence.*;
+import java.util.Date;
+
+@Entity
+@Table(name = "memoires")
+public class Memoire {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(nullable = false)
+    private String titre;
+
+    @Column(columnDefinition = "TEXT")
+    private String resume;
+
+    @Column(name = "chemin_pdf", length = 500)
+    private String cheminPdf;
+
+    @Column(name = "date_soutenance")
+    @Temporal(TemporalType.DATE)
+    private Date dateSoutenance;
+
+    private String etudiant;
+
+    @ManyToOne
+    @JoinColumn(name = "id_directeur") // FK vers professeur.id
+    private Professeur directeur;
+
+    @ManyToOne
+    @JoinColumn(name = "upload_par")
+    private Utilisateur uploadPar;
+
+    // Getters and Setters
+}
+
+
+
+package com.smi6.gestion_des_articles_informatique.model;
+
+import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "professeurs")
+public class Professeur {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(name = "nom_complet", nullable = false)
+    private String nomComplet;
+
+    @ManyToMany(mappedBy = "professeurs")
+    private List<Article> articles = new ArrayList<>();
+
+    // Getters and Setters
+}
+
+
+package com.smi6.gestion_des_articles_informatique.model;
+
+import jakarta.persistence.*;
+import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "rapports_recherche")
+public class RapportRecherche {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(nullable = false)
+    private String titre;
+
+    @Column(columnDefinition = "TEXT")
+    private String resume;
+
+    @Column(name = "chemin_pdf", length = 500)
+    private String cheminPdf;
+
+    @Column(name = "date_publication")
+    @Temporal(TemporalType.DATE)
+    private Date datePublication;
+
+    @ManyToMany
+    @JoinTable(
+        name = "rapport_professeur",
+        joinColumns = @JoinColumn(name = "id_rapport"),
+        inverseJoinColumns = @JoinColumn(name = "id_professeur")
+    )
+    private List<Professeur> auteurs = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "upload_par")
+    private Utilisateur uploadPar;
+
+    // Getters and Setters
+}
+
+
+
+
+package com.smi6.gestion_des_articles_informatique.model;
+
+import jakarta.persistence.*;
+import java.util.Date;
+
+@Entity
+@Table(name = "theses")
+public class These {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(nullable = false)
+    private String titre;
+
+    @Column(columnDefinition = "TEXT")
+    private String resume;
+
+    @Column(name = "chemin_pdf", length = 500)
+    private String cheminPdf;
+
+    @Column(name = "date_soutenance")
+    @Temporal(TemporalType.DATE)
+    private Date dateSoutenance;
+
+    private String etudiant;
+
+    @ManyToOne
+    @JoinColumn(name = "id_directeur")
+    private Professeur directeur;
+
+    @ManyToOne
+    @JoinColumn(name = "upload_par")
+    private Utilisateur uploadPar;
+
+    // Getters and Setters
+}
+
+
+
+
+package com.smi6.gestion_des_articles_informatique.model;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "utilisateurs")
+public class Utilisateur {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(name = "nom_complet", nullable = false)
+    private String nomComplet;
+
+    @Column(nullable = false, unique = true)
+    private String login;
+
+    @Column(name = "mot_de_passe", nullable = false)
+    private String motDePasse;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
+
+    // Embedded enum Role
+    public enum Role {
+        admin,
+        utilisateur
+    }
+
+    // Getters and Setters
+}
+

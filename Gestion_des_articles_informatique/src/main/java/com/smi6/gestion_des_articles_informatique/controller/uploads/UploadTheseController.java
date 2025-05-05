@@ -1,4 +1,4 @@
-package com.smi6.gestion_des_articles_informatique.controller;
+package com.smi6.gestion_des_articles_informatique.controller.uploads;
 
 import com.smi6.gestion_des_articles_informatique.model.*;
 import jakarta.persistence.*;
@@ -9,11 +9,11 @@ import java.nio.file.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class UploadMemoireController {
+public class UploadTheseController {
 
     private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
 
-    public void uploadMemoire(
+    public void uploadThese(
             Utilisateur user,
             String titre,
             String resume,
@@ -28,35 +28,35 @@ public class UploadMemoireController {
         try {
             em.getTransaction().begin();
 
-            // 1. Créer le mémoire
-            Memoire memoire = new Memoire();
-            memoire.setTitre(titre);
-            memoire.setResume(resume);
-            memoire.setEtudiant(etudiant);
-            memoire.setUploadPar(user);
-            memoire.setDateSoutenance(parseDate(dateSoutenanceString));
+            // 1. Créer la thèse
+            These these = new These();
+            these.setTitre(titre);
+            these.setResume(resume);
+            these.setEtudiant(etudiant);
+            these.setUploadPar(user);
+            these.setDateSoutenance(parseDate(dateSoutenanceString));
 
             // 2. Chercher le directeur existant
             Professeur directeur = getExistingProfesseur(em, directeurNom);
-            memoire.setDirecteur(directeur);
+            these.setDirecteur(directeur);
 
-            // 3. Enregistrer le mémoire
-            em.persist(memoire);
-            em.flush();
+            // 3. Enregistrer la thèse
+            em.persist(these);
+            em.flush(); // pour avoir l'ID
 
             // 4. Gérer le fichier PDF
             if (selectedPdfFile != null) {
-                Path cheminPdf = savePdfFile(memoire.getId(), selectedPdfFile);
-                memoire.setCheminPdf(cheminPdf.toString());
-                em.merge(memoire);
+                Path cheminPdf = savePdfFile(these.getId(), selectedPdfFile);
+                these.setCheminPdf(cheminPdf.toString());
+                em.merge(these);
             }
 
             em.getTransaction().commit();
-            System.out.println("✅ Mémoire enregistré avec succès.");
+            System.out.println("✅ Thèse enregistrée avec succès.");
 
         } catch (Exception e) {
             em.getTransaction().rollback();
-            throw new Exception("Erreur lors de l'enregistrement du mémoire : " + e.getMessage(), e);
+            throw new Exception("Erreur lors de l'enregistrement de la thèse : " + e.getMessage(), e);
         } finally {
             em.close();
         }
@@ -73,21 +73,21 @@ public class UploadMemoireController {
                 .orElseThrow(() -> new Exception("❌ Directeur introuvable : " + nomComplet));
     }
 
-    // 📅 Convertit une date "dd/MM/yyyy" en objet `Date`
+    // 📅 Conversion de "dd/MM/yyyy" en Date
     private Date parseDate(String dateString) throws Exception {
         try {
             return new SimpleDateFormat("dd/MM/yyyy").parse(dateString);
         } catch (Exception e) {
-            throw new Exception("Format de date invalide. Utilisez : jj/MM/aaaa (ex. : 20/07/2025).");
+            throw new Exception("Format de date invalide. Utilisez : jj/MM/aaaa (ex. : 10/06/2025).");
         }
     }
 
-    // 💾 Sauvegarde le fichier PDF du mémoire
-    private Path savePdfFile(int memoireId, File originalFile) throws IOException {
+    // 💾 Sauvegarde du fichier PDF
+    private Path savePdfFile(int theseId, File originalFile) throws IOException {
         String folderPath = "pdfs";
         Files.createDirectories(Paths.get(folderPath));
 
-        String fileName = "memoire" + memoireId + ".pdf";
+        String fileName = "these" + theseId + ".pdf";
         Path destination = Paths.get(folderPath, fileName);
 
         Files.copy(originalFile.toPath(), destination, StandardCopyOption.REPLACE_EXISTING);

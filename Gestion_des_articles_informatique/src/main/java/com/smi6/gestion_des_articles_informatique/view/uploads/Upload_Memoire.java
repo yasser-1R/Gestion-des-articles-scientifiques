@@ -2,17 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.smi6.gestion_des_articles_informatique.view;
-import com.smi6.gestion_des_articles_informatique.controller.UploadRapportController;
+package com.smi6.gestion_des_articles_informatique.view.uploads;
+import com.smi6.gestion_des_articles_informatique.controller.uploads.UploadMemoireController;
 
 import com.smi6.gestion_des_articles_informatique.model.Utilisateur;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JDialog;
 import javax.swing.JFileChooser; 
+import javax.swing.JOptionPane;
 
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -23,14 +22,14 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author YN
  */
-public class Upload_Rapport extends javax.swing.JFrame {
+public class Upload_Memoire extends javax.swing.JFrame {
 private File selectedPdfFile;
 private Utilisateur U;
 
     /**
      * Creates new form Upload4
      */
-    public Upload_Rapport(Utilisateur U) {
+    public Upload_Memoire(Utilisateur U) {
         initComponents();
         this.U = U;
         this.setLocationRelativeTo(null);
@@ -47,16 +46,18 @@ private Utilisateur U;
 
         L_upload = new javax.swing.JLabel();
         L_titre = new javax.swing.JLabel();
-        L_resume = new javax.swing.JLabel();
-        L_auteurs = new javax.swing.JLabel();
+        L_Discription = new javax.swing.JLabel();
+        L_Encadran = new javax.swing.JLabel();
+        L_Statut = new javax.swing.JLabel();
         L_publierle = new javax.swing.JLabel();
         B_pdf = new javax.swing.JButton();
         TF_titre = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         TA_resume = new javax.swing.JTextArea();
-        TF_auteurs = new javax.swing.JTextField();
+        TF_Encadran = new javax.swing.JTextField();
+        TF_etudiant = new javax.swing.JTextField();
         TF_date = new javax.swing.JTextField();
-        B_SelectA = new javax.swing.JButton();
+        B_SelectE = new javax.swing.JButton();
         B_enregistrer = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         B_retourner1 = new javax.swing.JButton();
@@ -71,17 +72,21 @@ private Utilisateur U;
         L_titre.setForeground(new java.awt.Color(18, 53, 36));
         L_titre.setText("Titre");
 
-        L_resume.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        L_resume.setForeground(new java.awt.Color(18, 53, 36));
-        L_resume.setText("Resume");
+        L_Discription.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        L_Discription.setForeground(new java.awt.Color(18, 53, 36));
+        L_Discription.setText("Resume     ");
 
-        L_auteurs.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        L_auteurs.setForeground(new java.awt.Color(18, 53, 36));
-        L_auteurs.setText("Auteurs");
+        L_Encadran.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        L_Encadran.setForeground(new java.awt.Color(18, 53, 36));
+        L_Encadran.setText("Encadran  ");
+
+        L_Statut.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        L_Statut.setForeground(new java.awt.Color(18, 53, 36));
+        L_Statut.setText("Etudiant");
 
         L_publierle.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         L_publierle.setForeground(new java.awt.Color(18, 53, 36));
-        L_publierle.setText("Date");
+        L_publierle.setText("Soutenue le");
 
         B_pdf.setBackground(new java.awt.Color(18, 53, 36));
         B_pdf.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -108,13 +113,16 @@ private Utilisateur U;
         TA_resume.setRows(5);
         jScrollPane1.setViewportView(TA_resume);
 
-        TF_auteurs.setBackground(new java.awt.Color(239, 227, 194));
-        TF_auteurs.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        TF_auteurs.addActionListener(new java.awt.event.ActionListener() {
+        TF_Encadran.setBackground(new java.awt.Color(239, 227, 194));
+        TF_Encadran.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        TF_Encadran.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TF_auteursActionPerformed(evt);
+                TF_EncadranActionPerformed(evt);
             }
         });
+
+        TF_etudiant.setBackground(new java.awt.Color(239, 227, 194));
+        TF_etudiant.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
 
         TF_date.setBackground(new java.awt.Color(239, 227, 194));
         TF_date.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -124,14 +132,14 @@ private Utilisateur U;
             }
         });
 
-        B_SelectA.setBackground(new java.awt.Color(18, 53, 36));
-        B_SelectA.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        B_SelectA.setForeground(new java.awt.Color(239, 227, 194));
-        B_SelectA.setText("Select Auteurs");
-        B_SelectA.setFocusable(false);
-        B_SelectA.addActionListener(new java.awt.event.ActionListener() {
+        B_SelectE.setBackground(new java.awt.Color(18, 53, 36));
+        B_SelectE.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        B_SelectE.setForeground(new java.awt.Color(239, 227, 194));
+        B_SelectE.setText("Select Encadran");
+        B_SelectE.setFocusable(false);
+        B_SelectE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B_SelectAActionPerformed(evt);
+                B_SelectEActionPerformed(evt);
             }
         });
 
@@ -165,38 +173,44 @@ private Utilisateur U;
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(L_publierle)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(L_titre, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(L_upload, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(L_Discription))
+                            .addComponent(L_Statut, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(B_pdf)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(TF_titre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 922, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 922, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TF_etudiant, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 922, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(1, 1, 1))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
                             .addComponent(B_retourner1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(B_enregistrer))
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(L_auteurs, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(L_resume, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(L_titre, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(L_upload, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(L_Encadran, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(L_publierle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(TF_titre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 922, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(B_SelectA, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(TF_auteurs))
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 922, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(12, 12, 12))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(B_pdf)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(TF_date, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(18, Short.MAX_VALUE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(TF_date, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(B_SelectE, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(TF_Encadran, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,23 +225,27 @@ private Utilisateur U;
                     .addComponent(TF_titre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(L_resume)
+                    .addComponent(L_Discription)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(L_auteurs)
-                    .addComponent(B_SelectA)
-                    .addComponent(TF_auteurs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TF_etudiant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(L_Statut))
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(L_Encadran)
+                    .addComponent(B_SelectE)
+                    .addComponent(TF_Encadran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(L_publierle)
                     .addComponent(TF_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(185, 185, 185)
+                .addGap(131, 131, 131)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(B_enregistrer, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(B_retourner1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         pack();
@@ -241,63 +259,60 @@ private Utilisateur U;
         // TODO add your handling code here:
     }//GEN-LAST:event_TF_titreActionPerformed
 
-    private void B_SelectAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_SelectAActionPerformed
-            // Prepare list of pre-selected names
-    String currentText = TF_auteurs.getText().trim();
-    List<String> selectedProfesseurs = new ArrayList<>();
-    if (!currentText.isEmpty()) {
-        for (String name : currentText.split(",")) {
-            selectedProfesseurs.add(name.trim());
-        }
-    }
+    private void B_SelectEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_SelectEActionPerformed
+     String currentEncadrant = TF_Encadran.getText().trim();
 
-    // Create panel with pre-selected names
-    SelectProfesseursPanel selectProfPanel = new SelectProfesseursPanel(selectedProfesseurs);
-
-    // Create dialog
-    JDialog dialog = new JDialog(this, "Choisir Professeurs", true);
-    dialog.getContentPane().add(selectProfPanel);
+    SelectEncadrantPanel panel = new SelectEncadrantPanel(currentEncadrant);
+    JDialog dialog = new JDialog(this, "Choisir l'encadrant", true);
+    dialog.getContentPane().add(panel);
     dialog.pack();
     dialog.setLocationRelativeTo(this);
     dialog.setVisible(true);
 
-    // AFTER dialog is closed:
-    // Get new list of selected professors
-    String selected = selectProfPanel.getSelectedProfesseursText();
-    
-    // OVERWRITE the old text field content
-    TF_auteurs.setText(selected);
+    // Récupération du nom sélectionné
+    String selected = panel.getSelectedEncadrantText();
+    if (selected != null) {
+        TF_Encadran.setText(selected);
+    }
         
-    }//GEN-LAST:event_B_SelectAActionPerformed
+    }//GEN-LAST:event_B_SelectEActionPerformed
 
     private void B_enregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_enregistrerActionPerformed
         
-            // 1. Récupérer les données du formulaire
-    String titre = TF_titre.getText();
-    String resume = TA_resume.getText();
-    String auteurs = TF_auteurs.getText();
-    String date = TF_date.getText();
+
+        
+        
+    // 1. Récupérer les données du formulaire
+    String titre = TF_titre.getText().trim();
+    String resume = TA_resume.getText().trim();
+    String etudiant = TF_etudiant.getText().trim();
+    String encadrant = TF_Encadran.getText().trim();
+    String date = TF_date.getText().trim();
 
     // 2. Créer le contrôleur
-    UploadRapportController uploadController = new UploadRapportController();
+    UploadMemoireController uploadController = new UploadMemoireController();
 
     try {
         // 3. Appeler la méthode d'enregistrement
-        uploadController.uploadRapport(this.U, titre, resume, auteurs, date, selectedPdfFile);
+        uploadController.uploadMemoire(this.U, titre, resume, etudiant, encadrant, date, selectedPdfFile);
 
         // ✅ 4. Afficher une popup de succès
-        javax.swing.JOptionPane.showMessageDialog(this,
-                "Rapport enregistré avec succès!",
+        JOptionPane.showMessageDialog(this,
+                "Memoire enregistrée avec succès !",
                 "Succès",
-                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.INFORMATION_MESSAGE);
+
+        // 5. Fermer la fenêtre (ou rediriger)
 
     } catch (Exception ex) {
-        // ❌ 5. En cas d'erreur
-        javax.swing.JOptionPane.showMessageDialog(this,
-                "Erreur lors de l'enregistrement du rapport :\n" + ex.getMessage(),
+        // ❌ 6. En cas d'erreur
+        JOptionPane.showMessageDialog(this,
+                "Erreur lors de l'enregistrement de la Memoire :\n" + ex.getMessage(),
                 "Erreur",
-                javax.swing.JOptionPane.ERROR_MESSAGE);
+                JOptionPane.ERROR_MESSAGE);
     }
+        
+        
         
         
 
@@ -332,9 +347,9 @@ private Utilisateur U;
         this.dispose();
     }//GEN-LAST:event_B_retourner1ActionPerformed
 
-    private void TF_auteursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TF_auteursActionPerformed
+    private void TF_EncadranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TF_EncadranActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TF_auteursActionPerformed
+    }//GEN-LAST:event_TF_EncadranActionPerformed
     
     
     
@@ -398,14 +413,206 @@ private Utilisateur U;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Upload_Rapport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Upload_Memoire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Upload_Rapport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Upload_Memoire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Upload_Rapport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Upload_Memoire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Upload_Rapport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Upload_Memoire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Upload4(5L).setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Upload_Article(5L).setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Upload4(5L).setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Upload_Article(5L).setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Upload4(5L).setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Upload_Article(5L).setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Upload4(5L).setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Upload_Article(5L).setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Upload4(5L).setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Upload_Article(5L).setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Upload4(5L).setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Upload_Article(5L).setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Upload4(5L).setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Upload_Article(5L).setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Upload4(5L).setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Upload_Article(5L).setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Upload4(5L).setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Upload_Article(5L).setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Upload4(5L).setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Upload_Article(5L).setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Upload4(5L).setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Upload_Article(5L).setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Upload4(5L).setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Upload_Article(5L).setVisible(true);
+//            }
+//        });
         //</editor-fold>
 
         /* Create and display the form */
@@ -473,18 +680,20 @@ private Utilisateur U;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton B_SelectA;
+    private javax.swing.JButton B_SelectE;
     private javax.swing.JButton B_enregistrer;
     private javax.swing.JButton B_pdf;
     private javax.swing.JButton B_retourner1;
-    private javax.swing.JLabel L_auteurs;
+    private javax.swing.JLabel L_Discription;
+    private javax.swing.JLabel L_Encadran;
+    private javax.swing.JLabel L_Statut;
     private javax.swing.JLabel L_publierle;
-    private javax.swing.JLabel L_resume;
     private javax.swing.JLabel L_titre;
     private javax.swing.JLabel L_upload;
     private javax.swing.JTextArea TA_resume;
-    private javax.swing.JTextField TF_auteurs;
+    private javax.swing.JTextField TF_Encadran;
     private javax.swing.JTextField TF_date;
+    private javax.swing.JTextField TF_etudiant;
     private javax.swing.JTextField TF_titre;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -1,4 +1,4 @@
-package com.smi6.gestion_des_articles_informatique.view;
+package com.smi6.gestion_des_articles_informatique.view.uploads;
 
 import com.smi6.gestion_des_articles_informatique.model.Professeur;
 import jakarta.persistence.*;

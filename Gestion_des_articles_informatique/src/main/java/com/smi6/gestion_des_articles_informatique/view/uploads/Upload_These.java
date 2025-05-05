@@ -2,8 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.smi6.gestion_des_articles_informatique.view;
-import com.smi6.gestion_des_articles_informatique.controller.UploadMemoireController;
+package com.smi6.gestion_des_articles_informatique.view.uploads;
+import com.smi6.gestion_des_articles_informatique.controller.uploads.UploadTheseController;
 
 import com.smi6.gestion_des_articles_informatique.model.Utilisateur;
 
@@ -22,14 +22,14 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author YN
  */
-public class Upload_Memoire extends javax.swing.JFrame {
+public class Upload_These extends javax.swing.JFrame {
 private File selectedPdfFile;
 private Utilisateur U;
 
     /**
      * Creates new form Upload4
      */
-    public Upload_Memoire(Utilisateur U) {
+    public Upload_These(Utilisateur U) {
         initComponents();
         this.U = U;
         this.setLocationRelativeTo(null);
@@ -290,15 +290,15 @@ private Utilisateur U;
     String date = TF_date.getText().trim();
 
     // 2. Créer le contrôleur
-    UploadMemoireController uploadController = new UploadMemoireController();
+    UploadTheseController uploadController = new UploadTheseController();
 
     try {
         // 3. Appeler la méthode d'enregistrement
-        uploadController.uploadMemoire(this.U, titre, resume, etudiant, encadrant, date, selectedPdfFile);
+        uploadController.uploadThese(this.U, titre, resume, etudiant, encadrant, date, selectedPdfFile);
 
         // ✅ 4. Afficher une popup de succès
         JOptionPane.showMessageDialog(this,
-                "Memoire enregistrée avec succès !",
+                "Thèse enregistrée avec succès !",
                 "Succès",
                 JOptionPane.INFORMATION_MESSAGE);
 
@@ -307,7 +307,7 @@ private Utilisateur U;
     } catch (Exception ex) {
         // ❌ 6. En cas d'erreur
         JOptionPane.showMessageDialog(this,
-                "Erreur lors de l'enregistrement de la Memoire :\n" + ex.getMessage(),
+                "Erreur lors de l'enregistrement de la thèse :\n" + ex.getMessage(),
                 "Erreur",
                 JOptionPane.ERROR_MESSAGE);
     }
@@ -413,142 +413,14 @@ private Utilisateur U;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Upload_Memoire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Upload_These.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Upload_Memoire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Upload_These.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Upload_Memoire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Upload_These.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Upload_Memoire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Upload_These.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Upload4(5L).setVisible(true);
-//            }
-//        });
-        //</editor-fold>
-
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Upload_Article(5L).setVisible(true);
-//            }
-//        });
-        //</editor-fold>
-
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Upload4(5L).setVisible(true);
-//            }
-//        });
-        //</editor-fold>
-
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Upload_Article(5L).setVisible(true);
-//            }
-//        });
-        //</editor-fold>
-
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Upload4(5L).setVisible(true);
-//            }
-//        });
-        //</editor-fold>
-
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Upload_Article(5L).setVisible(true);
-//            }
-//        });
-        //</editor-fold>
-
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Upload4(5L).setVisible(true);
-//            }
-//        });
-        //</editor-fold>
-
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Upload_Article(5L).setVisible(true);
-//            }
-//        });
-        //</editor-fold>
-
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Upload4(5L).setVisible(true);
-//            }
-//        });
-        //</editor-fold>
-
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Upload_Article(5L).setVisible(true);
-//            }
-//        });
-        //</editor-fold>
-
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Upload4(5L).setVisible(true);
-//            }
-//        });
-        //</editor-fold>
-
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Upload_Article(5L).setVisible(true);
-//            }
-//        });
-        //</editor-fold>
-
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Upload4(5L).setVisible(true);
-//            }
-//        });
-        //</editor-fold>
-
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Upload_Article(5L).setVisible(true);
-//            }
-//        });
-        //</editor-fold>
-
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Upload4(5L).setVisible(true);
-//            }
-//        });
-        //</editor-fold>
-
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Upload_Article(5L).setVisible(true);
-//            }
-//        });
         //</editor-fold>
 
         /* Create and display the form */

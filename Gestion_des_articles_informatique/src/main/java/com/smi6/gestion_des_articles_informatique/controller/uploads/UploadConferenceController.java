@@ -1,4 +1,4 @@
-package com.smi6.gestion_des_articles_informatique.controller;
+package com.smi6.gestion_des_articles_informatique.controller.uploads;
 
 import com.smi6.gestion_des_articles_informatique.model.*;
 import jakarta.persistence.*;

@@ -1,4 +1,4 @@
-package com.smi6.gestion_des_articles_informatique.controller;
+package com.smi6.gestion_des_articles_informatique.controller.autentification;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
