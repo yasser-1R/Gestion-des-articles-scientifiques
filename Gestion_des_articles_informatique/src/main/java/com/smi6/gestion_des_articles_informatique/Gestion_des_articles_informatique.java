@@ -4,7 +4,6 @@
 
 package com.smi6.gestion_des_articles_informatique;
 import com.smi6.gestion_des_articles_informatique.view.connexion_home.Connexion2;
-import com.smi6.gestion_des_articles_informatique.view.*;
 
 /**
  *
@@ -72,6 +71,13 @@ public class Gestion_des_articles_informatique {
 //        
 Connexion2 T = new Connexion2();
 T.setVisible(true);
+
+
+
+
+
+
+
 //
 //         // 1. Create EntityManagerFactory
 //        EntityManagerFactory emf = null;

@@ -1,16 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.smi6.gestion_des_articles_informatique.view.statistiques;
 
 import com.smi6.gestion_des_articles_informatique.view.connexion_home.Accueille_avec_compte2;
 import com.smi6.gestion_des_articles_informatique.view.connexion_home.Accueille_admin2;
 import com.smi6.gestion_des_articles_informatique.view.connexion_home.Accueille_sans_compte2;
-import com.smi6.gestion_des_articles_informatique.model.Utilisateur;
+import com.smi6.gestion_des_articles_informatique.model.*;
+import com.smi6.gestion_des_articles_informatique.controller.search.GeneralSearchController;
 import jakarta.persistence.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 import java.util.List;
 import javax.swing.*;
 import javax.swing.table.*;
@@ -21,10 +19,12 @@ import javax.swing.table.*;
 public class Professeur_Resume extends javax.swing.JFrame {
 
     private Utilisateur U;
+    private GeneralSearchController searchController;
 
     /** Creates new form Professeur_Resume */
     public Professeur_Resume(Utilisateur U) {
         this.U = U;
+        this.searchController = new GeneralSearchController();
         initComponents();
         setLocationRelativeTo(null);
         loadData();
@@ -131,10 +131,33 @@ public class Professeur_Resume extends javax.swing.JFrame {
             btn.setFocusPainted(false);
 
             int idProf = (Integer) row[0];
+            String nomProf = (String) row[1];
+            
             btn.addActionListener(e -> {
-    new DetailsProfesseur( U,idProf).setVisible(true);
-    this.dispose();
-});
+                try {
+                    // Récupérer le professeur correspondant
+                    TypedQuery<Professeur> query = em.createQuery(
+                        "SELECT p FROM Professeur p WHERE p.id = :id", Professeur.class);
+                    query.setParameter("id", idProf);
+                    Professeur professeur = query.getSingleResult();
+                    
+                    // Utiliser GeneralSearchController pour récupérer toutes les publications
+                    List<Professeur> profList = new ArrayList<>();
+                    profList.add(professeur);
+                    
+                    Map<String, List<?>> searchResults = searchController.search(null, profList, null, null);
+                    
+                    // Ouvrir DetailsProfesseur avec les publications trouvées
+                    DetailsProfesseur detailsView = new DetailsProfesseur(U, idProf, nomProf, searchResults);
+                    detailsView.setVisible(true);
+                    this.dispose();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, 
+                        "Erreur lors de la récupération des publications: " + ex.getMessage(),
+                        "Erreur", JOptionPane.ERROR_MESSAGE);
+                    ex.printStackTrace();
+                }
+            });
 
             model.addRow(new Object[] {
                 row[1],
@@ -167,8 +190,8 @@ public class Professeur_Resume extends javax.swing.JFrame {
             }
         });
 
-        em.close();
-        emf.close();
+//        em.close();
+//        emf.close();
     }
 
     private void B_retourActionPerformed(java.awt.event.ActionEvent evt) {

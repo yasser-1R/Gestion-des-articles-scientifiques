@@ -4,10 +4,21 @@
  */
 package com.smi6.gestion_des_articles_informatique.view;
 
+import com.smi6.gestion_des_articles_informatique.controller.search.GeneralSearchController;
+import com.smi6.gestion_des_articles_informatique.model.Professeur;
 import com.smi6.gestion_des_articles_informatique.view.connexion_home.Accueille_avec_compte2;
 import com.smi6.gestion_des_articles_informatique.view.connexion_home.Accueille_admin2;
 import com.smi6.gestion_des_articles_informatique.view.connexion_home.Accueille_sans_compte2;
 import com.smi6.gestion_des_articles_informatique.model.Utilisateur;
+import com.smi6.gestion_des_articles_informatique.view.uploads.SelectProfesseursPanel;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,6 +50,13 @@ private Utilisateur U;
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        L_auteurs = new javax.swing.JLabel();
+        B_SelectA = new javax.swing.JButton();
+        TF_auteurs = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(239, 227, 194));
@@ -93,24 +111,86 @@ private Utilisateur U;
             }
         });
 
+        L_auteurs.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        L_auteurs.setForeground(new java.awt.Color(18, 53, 36));
+        L_auteurs.setText("Auteurs");
+
+        B_SelectA.setBackground(new java.awt.Color(18, 53, 36));
+        B_SelectA.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        B_SelectA.setForeground(new java.awt.Color(239, 227, 194));
+        B_SelectA.setText("Select Auteurs");
+        B_SelectA.setFocusable(false);
+        B_SelectA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_SelectAActionPerformed(evt);
+            }
+        });
+
+        TF_auteurs.setBackground(new java.awt.Color(239, 227, 194));
+        TF_auteurs.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        TF_auteurs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TF_auteursActionPerformed(evt);
+            }
+        });
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("de");
+
+        jLabel2.setText("a");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1050, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1038, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addComponent(L_auteurs, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(B_SelectA, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(TF_auteurs))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextField1)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE))
+                .addGap(252, 252, 252))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(158, 158, 158)
+                .addGap(65, 65, 65)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(L_auteurs)
+                    .addComponent(B_SelectA)
+                    .addComponent(TF_auteurs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(59, 59, 59)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 278, Short.MAX_VALUE)
+                .addGap(52, 52, 52)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -121,7 +201,10 @@ private Utilisateur U;
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1038, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,9 +215,68 @@ private Utilisateur U;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here
+        
+        
+        
+            try {
+        String keywords = jTextField2.getText().trim();
+        String dateDebut = jTextField1.getText().trim();
+        String dateFin = jTextField3.getText().trim();
+
+        // Extract selected professeurs from the TF_auteurs field
+        List<String> profNames = List.of(TF_auteurs.getText().split(","));
+        List<Professeur> professeurs = new ArrayList<>();
+
+        // Load all professeurs to match names
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
+        EntityManager em = emf.createEntityManager();
+        List<Professeur> all = em.createQuery("SELECT p FROM Professeur p", Professeur.class).getResultList();
+        em.close();
+        emf.close();
+
+        for (Professeur p : all) {
+            if (profNames.stream().map(String::trim).anyMatch(n -> n.equalsIgnoreCase(p.getNomComplet()))) {
+                professeurs.add(p);
+            }
+        }
+
+        // Call search
+        GeneralSearchController controller = new GeneralSearchController();
+        Map<String, List<?>> results = controller.search(
+            keywords.isEmpty() ? null : keywords,
+            professeurs.isEmpty() ? null : professeurs,
+            dateDebut.isEmpty() ? null : dateDebut,
+            dateFin.isEmpty() ? null : dateFin
+        );
+
+        // Count and show result
+        StringBuilder message = new StringBuilder("Résultats trouvés :\n");
+        int total = 0;
+        for (String key : results.keySet()) {
+            int count = results.get(key) != null ? results.get(key).size() : 0;
+            total += count;
+            message.append("- ").append(capitalize(key)).append(": ").append(count).append("\n");
+        }
+
+        message.append("\nTotal : ").append(total).append(" publication(s)");
+        JOptionPane.showMessageDialog(this, message.toString(), "Résultat de recherche", JOptionPane.INFORMATION_MESSAGE);
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Erreur : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    
+    private String capitalize(String s) {
+    return s == null || s.isEmpty() ? s : Character.toUpperCase(s.charAt(0)) + s.substring(1);
+}
+    
+    
+    
+    
+    
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         RechercheAvancee rv = new RechercheAvancee(this.U);
         rv.setVisible(true);
@@ -164,6 +306,43 @@ private Utilisateur U;
     this.dispose();
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void B_SelectAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_SelectAActionPerformed
+        // Prepare list of pre-selected names
+        String currentText = TF_auteurs.getText().trim();
+        List<String> selectedProfesseurs = new ArrayList<>();
+        if (!currentText.isEmpty()) {
+            for (String name : currentText.split(",")) {
+                selectedProfesseurs.add(name.trim());
+            }
+        }
+
+        // Create panel with pre-selected names
+        SelectProfesseursPanel selectProfPanel = new SelectProfesseursPanel(selectedProfesseurs);
+
+        // Create dialog
+        JDialog dialog = new JDialog(this, "Choisir Professeurs", true);
+        dialog.getContentPane().add(selectProfPanel);
+        dialog.pack();
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
+
+        // AFTER dialog is closed:
+        // Get new list of selected professors
+        String selected = selectProfPanel.getSelectedProfesseursText();
+
+        // OVERWRITE the old text field content
+        TF_auteurs.setText(selected);
+
+    }//GEN-LAST:event_B_SelectAActionPerformed
+
+    private void TF_auteursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TF_auteursActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TF_auteursActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,11 +383,18 @@ private Utilisateur U;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton B_SelectA;
+    private javax.swing.JLabel L_auteurs;
+    private javax.swing.JTextField TF_auteurs;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }
