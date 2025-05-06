@@ -225,9 +225,9 @@ private Utilisateur U;
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-//Search_Conference UC = new Search_Conference(U);
-//UC.setVisible(true);
-//this.dispose();
+Search_Conference UC = new Search_Conference(U);
+UC.setVisible(true);
+this.dispose();
 
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -267,9 +267,9 @@ private Utilisateur U;
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-//Search_Brevet UB = new Search_Brevet(U);
-//UB.setVisible(true);
-//this.dispose();        // TODO add your handling code here:
+Search_Brevet UB = new Search_Brevet(U);
+UB.setVisible(true);
+this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

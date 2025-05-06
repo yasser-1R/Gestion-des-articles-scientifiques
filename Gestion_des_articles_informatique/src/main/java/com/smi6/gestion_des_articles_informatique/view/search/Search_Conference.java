@@ -1,7 +1,9 @@
 package com.smi6.gestion_des_articles_informatique.view.search;
 
 import com.smi6.gestion_des_articles_informatique.controller.search.SearchArticleController;
+import com.smi6.gestion_des_articles_informatique.controller.search.SearchConferenceController;
 import com.smi6.gestion_des_articles_informatique.model.Article;
+import com.smi6.gestion_des_articles_informatique.model.Conference;
 import com.smi6.gestion_des_articles_informatique.model.Utilisateur;
 
 import java.util.ArrayList;
@@ -13,16 +15,16 @@ import javax.swing.JOptionPane;
  *
  * @author YN
  */
-public class Search_Article extends javax.swing.JFrame {
+public class Search_Conference extends javax.swing.JFrame {
 private Utilisateur U;
     /**
      * Creates new form Search_Article
      */
-    public Search_Article(Utilisateur U) {
+    public Search_Conference(Utilisateur U) {
         initComponents();
         this.U = U;
         this.setLocationRelativeTo(null);
-        
+
     }
 
     /**
@@ -37,9 +39,6 @@ private Utilisateur U;
         L_auteurs = new javax.swing.JLabel();
         B_SelectA = new javax.swing.JButton();
         TF_auteurs = new javax.swing.JTextField();
-        L_journaux = new javax.swing.JLabel();
-        B_SelectJ = new javax.swing.JButton();
-        TF_journaux = new javax.swing.JTextField();
         L_publierle = new javax.swing.JLabel();
         TF_date = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -49,9 +48,10 @@ private Utilisateur U;
         TF_date2 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         B_retourner1 = new javax.swing.JButton();
+        L_Lieu = new javax.swing.JLabel();
+        TF_Lieu = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1050, 600));
 
         L_auteurs.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         L_auteurs.setForeground(new java.awt.Color(18, 53, 36));
@@ -77,28 +77,9 @@ private Utilisateur U;
             }
         });
 
-        L_journaux.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        L_journaux.setForeground(new java.awt.Color(18, 53, 36));
-        L_journaux.setText("Journaux");
-
-        B_SelectJ.setBackground(new java.awt.Color(18, 53, 36));
-        B_SelectJ.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        B_SelectJ.setForeground(new java.awt.Color(239, 227, 194));
-        B_SelectJ.setText("Select journaux");
-        B_SelectJ.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        B_SelectJ.setFocusable(false);
-        B_SelectJ.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B_SelectJActionPerformed(evt);
-            }
-        });
-
-        TF_journaux.setBackground(new java.awt.Color(239, 227, 194));
-        TF_journaux.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-
         L_publierle.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         L_publierle.setForeground(new java.awt.Color(18, 53, 36));
-        L_publierle.setText("Publier entre");
+        L_publierle.setText("Date entre");
 
         TF_date.setBackground(new java.awt.Color(239, 227, 194));
         TF_date.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -160,6 +141,13 @@ private Utilisateur U;
             }
         });
 
+        L_Lieu.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        L_Lieu.setForeground(new java.awt.Color(18, 53, 36));
+        L_Lieu.setText("Lieu");
+
+        TF_Lieu.setBackground(new java.awt.Color(239, 227, 194));
+        TF_Lieu.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -168,11 +156,16 @@ private Utilisateur U;
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(B_retourner1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(L_publierle)
-                            .addComponent(L_journaux, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(L_auteurs, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(L_publierle2))
+                            .addComponent(L_publierle2)
+                            .addComponent(L_Lieu, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -183,26 +176,18 @@ private Utilisateur U;
                                 .addComponent(TF_date1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(510, Short.MAX_VALUE))
+                                .addContainerGap(527, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(B_SelectA, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(TF_auteurs))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(B_SelectJ, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(TF_journaux)))
+                                .addComponent(B_SelectA, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(TF_auteurs)
                                 .addGap(6, 6, 6))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(TF_date2)
-                                .addContainerGap())))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(B_retourner1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                                .addContainerGap())
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(TF_Lieu)
+                                .addContainerGap())))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,9 +199,8 @@ private Utilisateur U;
                     .addComponent(TF_auteurs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(L_journaux)
-                    .addComponent(B_SelectJ)
-                    .addComponent(TF_journaux, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(L_Lieu)
+                    .addComponent(TF_Lieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(L_publierle)
@@ -271,27 +255,6 @@ private Utilisateur U;
         // TODO add your handling code here:
     }//GEN-LAST:event_TF_auteursActionPerformed
 
-    private void B_SelectJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_SelectJActionPerformed
-        String currentText = TF_journaux.getText().trim();
-        List<String> selectedJournaux = new ArrayList<>();
-        if (!currentText.isEmpty()) {
-            for (String name : currentText.split(",")) {
-                selectedJournaux.add(name.trim());
-            }
-        }
-
-        SelectJournauxPanel_R selectJournauxPanel = new SelectJournauxPanel_R(selectedJournaux);
-        JDialog dialog = new JDialog(this, "Choisir Journaux", true);
-        dialog.getContentPane().add(selectJournauxPanel);
-        dialog.pack();
-        dialog.setLocationRelativeTo(this);
-        dialog.setVisible(true);
-
-        // ✅ Toujours mettre à jour le champ, même vide
-        String selected = selectJournauxPanel.getSelectedJournauxText();
-        TF_journaux.setText(selected); // <- mettra "" si aucun n'est sélectionné
-    }//GEN-LAST:event_B_SelectJActionPerformed
-
     private void TF_dateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TF_dateActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TF_dateActionPerformed
@@ -306,29 +269,27 @@ private Utilisateur U;
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     String auteurs = TF_auteurs.getText().trim();
-    String journaux = TF_journaux.getText().trim();
+    String lieu = TF_Lieu.getText().trim();
     String dateDebut = TF_date.getText().trim();
     String dateFin = TF_date1.getText().trim();
     String keywords = TF_date2.getText().trim();
 
-    SearchArticleController controller = new SearchArticleController();
-    List<Article> articles = new ArrayList<>();
+    SearchConferenceController controller = new SearchConferenceController();
+    List<Conference> conferences;
 
     try {
-        articles = controller.searchArticles(auteurs, journaux, dateDebut, dateFin, keywords);
+        conferences = controller.searchConferences(auteurs, lieu, dateDebut, dateFin, keywords);
     } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Erreur lors de la recherche : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Erreur : " + e.getMessage(), "Recherche", JOptionPane.ERROR_MESSAGE);
         return;
     }
 
-    // Extract article IDs for the result view
-    List<Integer> idsArticles = new ArrayList<>();
-    for (Article article : articles) {
-        idsArticles.add(article.getId());
+    List<Integer> ids = new ArrayList<>();
+    for (Conference c : conferences) {
+        ids.add(c.getId());
     }
 
-    // Open result view (only for articles here, others are empty)
-    ResultatsRechercheView resultView = new ResultatsRechercheView(U, idsArticles, null, null, null, null, null);
+    ResultatsRechercheView resultView = new ResultatsRechercheView(U, null, ids, null, null, null, null);
     resultView.setVisible(true);
     this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -376,18 +337,17 @@ private Utilisateur U;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton B_SelectA;
-    private javax.swing.JButton B_SelectJ;
     private javax.swing.JButton B_retourner1;
+    private javax.swing.JLabel L_Lieu;
     private javax.swing.JLabel L_auteurs;
-    private javax.swing.JLabel L_journaux;
     private javax.swing.JLabel L_publierle;
     private javax.swing.JLabel L_publierle1;
     private javax.swing.JLabel L_publierle2;
+    private javax.swing.JTextField TF_Lieu;
     private javax.swing.JTextField TF_auteurs;
     private javax.swing.JTextField TF_date;
     private javax.swing.JTextField TF_date1;
     private javax.swing.JTextField TF_date2;
-    private javax.swing.JTextField TF_journaux;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
