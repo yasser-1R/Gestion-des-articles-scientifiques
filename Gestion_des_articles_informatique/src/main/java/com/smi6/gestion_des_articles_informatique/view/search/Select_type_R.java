@@ -232,9 +232,9 @@ this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-//Search_These UT = new Search_These(U);
-//UT.setVisible(true);
-//this.dispose();
+Search_These UT = new Search_These(U);
+UT.setVisible(true);
+this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -261,9 +261,9 @@ this.dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-//Search_Rapport UR = new Search_Rapport(U);
-//UR.setVisible(true);
-//this.dispose();        // TODO add your handling code here:
+Search_Rapport UR = new Search_Rapport(U);
+UR.setVisible(true);
+this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -273,9 +273,9 @@ this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-//Search_Memoire UM = new Search_Memoire(U);
-//UM.setVisible(true);
-//this.dispose();        // TODO add your handling code here:
+Search_Memoire UM = new Search_Memoire(U);
+UM.setVisible(true);
+this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

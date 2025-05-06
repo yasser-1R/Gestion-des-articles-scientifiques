@@ -156,7 +156,10 @@ public class ResultatsRechercheView extends JFrame {
         btnRetour.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose(); // Fermer cette fenêtre
+                
+        Select_type_R  ST = new Select_type_R(utilisateur);
+        ST.setVisible(true);
+        dispose();
             }
         });
         
