@@ -289,6 +289,7 @@ private Utilisateur U;
         ids.add(c.getId());
     }
 
+    
     ResultatsRechercheView resultView = new ResultatsRechercheView(U, null, ids, null, null, null, null);
     resultView.setVisible(true);
     this.dispose();

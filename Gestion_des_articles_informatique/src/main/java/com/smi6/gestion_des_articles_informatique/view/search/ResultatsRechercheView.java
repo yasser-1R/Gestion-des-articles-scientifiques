@@ -8,42 +8,34 @@ import jakarta.persistence.Persistence;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Vue pour afficher les résultats de recherche des documents scientifiques
- */
 public class ResultatsRechercheView extends JFrame {
-
-    // Composants UI
     private JTable tableResultats;
     private DefaultTableModel tableModel;
     private JScrollPane scrollPane;
     private JButton btnRetour;
-
-    // Utilisateur connecté
     private Utilisateur utilisateur;
-
-    // Données à afficher
     private List<Integer> idsArticles;
     private List<Integer> idsConferences;
     private List<Integer> idsBrevets;
     private List<Integer> idsTheses;
     private List<Integer> idsMemoires;
     private List<Integer> idsRapports;
-
-    // Structure pour stocker les informations des documents
     private List<DocumentInfo> documentsInfo = new ArrayList<>();
+    // Define colors and font as constants
+    private final Color BACKGROUND_COLOR = new Color(239, 227, 194);
+    private final Color BUTTON_BACKGROUND = new Color(18, 53, 36);
+    private final Color BUTTON_TEXT = new Color(239, 227, 194);
+    private final Font CALIBRI_FONT = new Font("Calibri", Font.PLAIN, 14);
 
-    /**
-     * Constructeur
-     */
     public ResultatsRechercheView(
             Utilisateur utilisateur,
             List<Integer> idsArticles,
@@ -52,8 +44,7 @@ public class ResultatsRechercheView extends JFrame {
             List<Integer> idsTheses,
             List<Integer> idsMemoires,
             List<Integer> idsRapports) {
-        
-        // Initialisation des attributs
+
         this.utilisateur = utilisateur;
         this.idsArticles = idsArticles != null ? idsArticles : new ArrayList<>();
         this.idsConferences = idsConferences != null ? idsConferences : new ArrayList<>();
@@ -62,525 +53,278 @@ public class ResultatsRechercheView extends JFrame {
         this.idsMemoires = idsMemoires != null ? idsMemoires : new ArrayList<>();
         this.idsRapports = idsRapports != null ? idsRapports : new ArrayList<>();
 
-        // Configuration de la fenêtre
         setTitle("Résultats de recherche");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(1050, 600);
         setLocationRelativeTo(null);
-        
-        // Initialisation des composants UI
+
+        // Set default font for the entire UI
+        setUIFont(CALIBRI_FONT);
+
         initComponents();
-        
-        // Charger les données
         chargerDonnees();
     }
 
-    /**
-     * Initialise les composants de l'interface utilisateur
-     */
+    // Method to set default font for all UI components
+    private void setUIFont(Font font) {
+        UIManager.put("Button.font", font);
+        UIManager.put("Label.font", font);
+        UIManager.put("Table.font", font);
+        UIManager.put("TableHeader.font", font);
+        UIManager.put("TextField.font", font);
+        UIManager.put("TextArea.font", font);
+    }
+
     private void initComponents() {
-        // Définition des entêtes du tableau
-        String[] entetes = {"Type", "Titre", "Résumé", "Détails", "Voir PDF"};
-        
-        // Création du modèle de table non éditable
+        String[] entetes = {"Type", "Titre", "Date", "Détails", "Voir PDF"};
         tableModel = new DefaultTableModel(entetes, 0) {
-            @Override
             public boolean isCellEditable(int row, int column) {
-                return column == 3 || column == 4; // Seuls les boutons sont cliquables
+                return column == 3 || column == 4;
             }
-            
-            @Override
             public Class<?> getColumnClass(int columnIndex) {
-                if (columnIndex == 3 || columnIndex == 4) {
-                    return JButton.class;
-                }
+                if (columnIndex == 3 || columnIndex == 4) return JButton.class;
                 return String.class;
             }
         };
+
+        tableResultats = new JTable(tableModel) {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+            
+            // Override to set background color for cells except buttons (columns 3 and 4)
+            @Override
+            public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+                Component comp = super.prepareRenderer(renderer, row, column);
+                // Apply background color only to non-button cells
+                if (column != 3 && column != 4) {
+                    comp.setBackground(BACKGROUND_COLOR);
+                }
+                comp.setFont(CALIBRI_FONT);
+                return comp;
+            }
+        };
+        tableResultats.setRowHeight(40); // Smaller row height
+        tableResultats.setFont(CALIBRI_FONT);
+        tableResultats.getTableHeader().setFont(CALIBRI_FONT);
+        tableResultats.setGridColor(new Color(200, 200, 200));
         
-        // Création du tableau
-        tableResultats = new JTable(tableModel);
-        tableResultats.setRowHeight(50); // Hauteur de ligne augmentée pour plus de lisibilité
-        
-        // Définir les largeurs des colonnes
-        tableResultats.getColumnModel().getColumn(0).setPreferredWidth(100); // Type
-        tableResultats.getColumnModel().getColumn(1).setPreferredWidth(200); // Titre
-        tableResultats.getColumnModel().getColumn(2).setPreferredWidth(400); // Résumé
-        tableResultats.getColumnModel().getColumn(3).setPreferredWidth(100); // Détails
-        tableResultats.getColumnModel().getColumn(4).setPreferredWidth(100); // Voir PDF
-        
-        // Personnalisation du rendu des cellules pour les boutons
+        // Keep the header with default look
+        tableResultats.getTableHeader().setFont(CALIBRI_FONT);
+
+        // Custom button renderer that preserves the default Java Swing button behavior
         tableResultats.setDefaultRenderer(JButton.class, new TableCellRenderer() {
             @Override
-            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, 
-                    boolean hasFocus, int row, int column) {
-                JButton button = new JButton();
-                if (column == 3) {
-                    button.setText("Détails");
-                    button.setBackground(new Color(18, 53, 36));
-                    button.setForeground(new Color(239, 227, 194));
-                } else if (column == 4) {
-                    button.setText("Voir PDF");
-                    button.setBackground(new Color(18, 53, 36));
-                    button.setForeground(new Color(239, 227, 194));
-                }
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                JButton button = new JButton(value.toString());
+                button.setBackground(BUTTON_BACKGROUND);
+                button.setForeground(BUTTON_TEXT);
+                button.setFont(CALIBRI_FONT);
                 return button;
             }
         });
-        
-        // Ajout d'un gestionnaire d'événements pour les clics sur les cellules du tableau
-        tableResultats.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+
+        tableResultats.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 int row = tableResultats.rowAtPoint(evt.getPoint());
                 int col = tableResultats.columnAtPoint(evt.getPoint());
-                
-                if (row >= 0 && col >= 0) {
-                    if (col == 3) { // Bouton "Détails"
-                        afficherDetails(row);
-                    } else if (col == 4) { // Bouton "Voir PDF"
-                        ouvrirPDF(row);
-                    }
+                if (row >= 0 && col == 3) {
+                    // Simulate button click effect
+                    JButton button = (JButton) tableResultats.getDefaultRenderer(JButton.class)
+                            .getTableCellRendererComponent(tableResultats, "Détails", false, false, row, col);
+                    button.doClick();
+                    tableResultats.repaint();
+                    afficherDetails(row);
+                }
+                else if (row >= 0 && col == 4) {
+                    // Simulate button click effect
+                    JButton button = (JButton) tableResultats.getDefaultRenderer(JButton.class)
+                            .getTableCellRendererComponent(tableResultats, "Voir PDF", false, false, row, col);
+                    button.doClick();
+                    tableResultats.repaint();
+                    ouvrirPDF(row);
                 }
             }
         });
-        
-        // Création du conteneur de défilement pour le tableau
+
         scrollPane = new JScrollPane(tableResultats);
+        scrollPane.getViewport().setBackground(BACKGROUND_COLOR);
         
-        // Bouton de retour
         btnRetour = new JButton("Retour");
-        btnRetour.setBackground(new Color(18, 53, 36));
-        btnRetour.setForeground(new Color(239, 227, 194));
+        btnRetour.setBackground(BUTTON_BACKGROUND);
+        btnRetour.setForeground(BUTTON_TEXT);
+        btnRetour.setFont(CALIBRI_FONT);
         btnRetour.setFocusable(false);
-        btnRetour.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-        Select_type_R  ST = new Select_type_R(utilisateur);
-        ST.setVisible(true);
-        dispose();
-            }
+        btnRetour.addActionListener(e -> {
+            new Select_type_R(utilisateur).setVisible(true);
+            dispose();
         });
-        
-        // Panel pour le bouton retour
+
         JPanel panelBoutons = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panelBoutons.setBackground(BACKGROUND_COLOR);
         panelBoutons.add(btnRetour);
-        
-        // Organisation du layout
+
         setLayout(new BorderLayout());
         add(scrollPane, BorderLayout.CENTER);
         add(panelBoutons, BorderLayout.SOUTH);
+        
+        // Adjust column widths after the component is visible
+        SwingUtilities.invokeLater(this::ajusterLargeurColonnes);
+    }
+    
+    private void ajusterLargeurColonnes() {
+        TableColumnModel columnModel = tableResultats.getColumnModel();
+        
+        // Set specific widths for each column
+        columnModel.getColumn(0).setPreferredWidth(100);  // Type
+        columnModel.getColumn(1).setPreferredWidth(500);  // Titre (give more space)
+        columnModel.getColumn(2).setPreferredWidth(100);  // Date
+        columnModel.getColumn(3).setPreferredWidth(80);   // Détails
+        columnModel.getColumn(4).setPreferredWidth(80);   // Voir PDF
     }
 
-    /**
-     * Charge les données des documents depuis la base de données
-     */
     private void chargerDonnees() {
-        // Vider la liste actuelle
         documentsInfo.clear();
-        
-        // Charger les articles
         for (Integer id : idsArticles) {
-            Article article = chargerArticle(id);
-            if (article != null) {
-                DocumentInfo info = new DocumentInfo(
-                    "Article", 
-                    article.getId(), 
-                    article.getTitre(), 
-                    article.getResume(),
-                    article.getCheminPdf()
-                );
-                documentsInfo.add(info);
-            }
+            Article a = chargerArticle(id);
+            if (a != null) documentsInfo.add(new DocumentInfo("Article", a.getId(), a.getTitre(), a.getDatePublication(), a.getCheminPdf(), a));
         }
-        
-        // Charger les conférences
         for (Integer id : idsConferences) {
-            Conference conference = chargerConference(id);
-            if (conference != null) {
-                DocumentInfo info = new DocumentInfo(
-                    "Conférence", 
-                    conference.getId(), 
-                    conference.getTitre(), 
-                    conference.getResume(),
-                    conference.getCheminPdf()
-                );
-                documentsInfo.add(info);
-            }
+            Conference c = chargerConference(id);
+            if (c != null) documentsInfo.add(new DocumentInfo("Conférence", c.getId(), c.getTitre(), c.getDateConference(), c.getCheminPdf(), c));
         }
-        
-        // Charger les brevets
         for (Integer id : idsBrevets) {
-            Brevet brevet = chargerBrevet(id);
-            if (brevet != null) {
-                DocumentInfo info = new DocumentInfo(
-                    "Brevet", 
-                    brevet.getId(), 
-                    brevet.getTitre(), 
-                    brevet.getDescription(),
-                    brevet.getCheminPdf()
-                );
-                documentsInfo.add(info);
-            }
+            Brevet b = chargerBrevet(id);
+            if (b != null) documentsInfo.add(new DocumentInfo("Brevet", b.getId(), b.getTitre(), b.getDateDepot(), b.getCheminPdf(), b));
         }
-        
-        // Charger les thèses
         for (Integer id : idsTheses) {
-            These these = chargerThese(id);
-            if (these != null) {
-                DocumentInfo info = new DocumentInfo(
-                    "Thèse", 
-                    these.getId(), 
-                    these.getTitre(), 
-                    these.getResume(),
-                    these.getCheminPdf()
-                );
-                documentsInfo.add(info);
-            }
+            These t = chargerThese(id);
+            if (t != null) documentsInfo.add(new DocumentInfo("Thèse", t.getId(), t.getTitre(), t.getDateSoutenance(), t.getCheminPdf(), t));
         }
-        
-        // Charger les mémoires
         for (Integer id : idsMemoires) {
-            Memoire memoire = chargerMemoire(id);
-            if (memoire != null) {
-                DocumentInfo info = new DocumentInfo(
-                    "Mémoire", 
-                    memoire.getId(), 
-                    memoire.getTitre(), 
-                    memoire.getResume(),
-                    memoire.getCheminPdf()
-                );
-                documentsInfo.add(info);
-            }
+            Memoire m = chargerMemoire(id);
+            if (m != null) documentsInfo.add(new DocumentInfo("Mémoire", m.getId(), m.getTitre(), m.getDateSoutenance(), m.getCheminPdf(), m));
         }
-        
-        // Charger les rapports
         for (Integer id : idsRapports) {
-            RapportRecherche rapport = chargerRapport(id);
-            if (rapport != null) {
-                DocumentInfo info = new DocumentInfo(
-                    "Rapport", 
-                    rapport.getId(), 
-                    rapport.getTitre(), 
-                    rapport.getResume(),
-                    rapport.getCheminPdf()
-                );
-                documentsInfo.add(info);
-            }
+            RapportRecherche r = chargerRapport(id);
+            if (r != null) documentsInfo.add(new DocumentInfo("Rapport", r.getId(), r.getTitre(), r.getDatePublication(), r.getCheminPdf(), r));
         }
-        
-        // Remplir le tableau avec les données chargées
         remplirTableau();
     }
-    
-    /**
-     * Remplit le tableau avec les données des documents
-     */
+
     private void remplirTableau() {
-        // Effacer les données actuelles du tableau
         tableModel.setRowCount(0);
-        
-        // Ajouter chaque document au tableau
         for (DocumentInfo doc : documentsInfo) {
-            tableModel.addRow(new Object[]{
-                doc.getType(),
-                doc.getTitre(),
-                doc.getResume(),
-                "Détails",
-                "Voir PDF"
-            });
+            tableModel.addRow(new Object[]{doc.getType(), doc.getTitre(), doc.getFormattedDate(), "Détails", "Voir PDF"});
         }
     }
-    
-    /**
-     * Affiche les détails d'un document
-     */
+
     private void afficherDetails(int row) {
         if (row >= 0 && row < documentsInfo.size()) {
             DocumentInfo doc = documentsInfo.get(row);
-            
-            // À implémenter selon les besoins
-            // Pour l'instant, affichons juste une boîte de dialogue
-            JOptionPane.showMessageDialog(
-                this,
-                "Type: " + doc.getType() + "\n" +
-                "Titre: " + doc.getTitre() + "\n" +
-                "Résumé: " + doc.getResume(),
-                "Détails du document",
-                JOptionPane.INFORMATION_MESSAGE
-            );
+            PublicationDetailsDialog dialog = new PublicationDetailsDialog(this, doc.getEntity());
+            dialog.setVisible(true);
         }
     }
-    
-    /**
-     * Ouvre le PDF associé à un document
-     */
+
     private void ouvrirPDF(int row) {
         if (row >= 0 && row < documentsInfo.size()) {
             DocumentInfo doc = documentsInfo.get(row);
             String cheminPdf = doc.getCheminPdf();
-            
             if (cheminPdf != null && !cheminPdf.isEmpty()) {
                 try {
                     File pdfFile = new File(cheminPdf);
                     if (pdfFile.exists()) {
-                        // Ouvrir le PDF dans le navigateur par défaut
-                        Desktop.getDesktop().browse(new URI("file:///" + pdfFile.getAbsolutePath().replace("\\", "/")));
+                        // Fix the URI creation to properly handle special characters
+                        URI uri = pdfFile.toURI();
+                        Desktop.getDesktop().browse(uri);
                     } else {
-                        JOptionPane.showMessageDialog(
-                            this,
-                            "Le fichier PDF n'a pas été trouvé: " + cheminPdf,
-                            "Erreur",
-                            JOptionPane.ERROR_MESSAGE
-                        );
+                        JOptionPane.showMessageDialog(this, "Le fichier PDF n'a pas été trouvé: " + cheminPdf, "Erreur", JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (Exception e) {
-                    JOptionPane.showMessageDialog(
-                        this,
-                        "Erreur lors de l'ouverture du PDF: " + e.getMessage(),
-                        "Erreur",
-                        JOptionPane.ERROR_MESSAGE
-                    );
+                    JOptionPane.showMessageDialog(this, "Erreur lors de l'ouverture du PDF: " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+                    e.printStackTrace(); // Print stack trace for debugging
                 }
             } else {
-                JOptionPane.showMessageDialog(
-                    this,
-                    "Aucun PDF n'est associé à ce document.",
-                    "Information",
-                    JOptionPane.INFORMATION_MESSAGE
-                );
+                JOptionPane.showMessageDialog(this, "Aucun PDF n'est associé à ce document.", "Information", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }
-    
-    /**
-     * Méthodes pour charger les entités depuis la base de données
-     * Ces méthodes devraient être implémentées avec JPA/Hibernate
-     */
-    
-    
-    
-    
-    
-    
+
     private Article chargerArticle(Integer id) {
-    Article article = null;
-    EntityManagerFactory emf = null;
-    EntityManager em = null;
-
-    try {
-        // Create EntityManagerFactory directly (specify your persistence unit name)
-        emf = Persistence.createEntityManagerFactory("my-persistence-unit");
-        em = emf.createEntityManager();
-
-        // Retrieve the article from the database
-        article = em.find(Article.class, id);
-    } catch (Exception e) {
-        System.err.println("Erreur lors du chargement de l'article (ID: " + id + "): " + e.getMessage());
-    } finally {
-        // Close resources
-        if (em != null) {
-            em.close();
-        }
-        if (emf != null) {
-            emf.close();
-        }
+        return chargerEntite(Article.class, id);
     }
-
-    return article;
-    }
-    
-    
-    
-    
-    
-    
     private Conference chargerConference(Integer id) {
-    Conference conference = null;
-    EntityManagerFactory emf = null;
-    EntityManager em = null;
-
-    try {
-        emf = Persistence.createEntityManagerFactory("my-persistence-unit");
-        em = emf.createEntityManager();
-        conference = em.find(Conference.class, id);
-    } catch (Exception e) {
-        System.err.println("Erreur lors du chargement de la conférence (ID: " + id + "): " + e.getMessage());
-    } finally {
-        if (em != null) em.close();
-        if (emf != null) emf.close();
+        return chargerEntite(Conference.class, id);
     }
-
-    return conference;
-}
-
-    
-    
     private Brevet chargerBrevet(Integer id) {
-    Brevet brevet = null;
-    EntityManagerFactory emf = null;
-    EntityManager em = null;
-
-    try {
-        emf = Persistence.createEntityManagerFactory("my-persistence-unit");
-        em = emf.createEntityManager();
-        brevet = em.find(Brevet.class, id);
-    } catch (Exception e) {
-        System.err.println("Erreur lors du chargement du brevet (ID: " + id + "): " + e.getMessage());
-    } finally {
-        if (em != null) em.close();
-        if (emf != null) emf.close();
+        return chargerEntite(Brevet.class, id);
     }
-
-    return brevet;
-}
-
-    
-    
-    
-    
-
-    
-    
-    
     private These chargerThese(Integer id) {
-    These these = null;
-    EntityManagerFactory emf = null;
-    EntityManager em = null;
-
-    try {
-        emf = Persistence.createEntityManagerFactory("my-persistence-unit");
-        em = emf.createEntityManager();
-        these = em.find(These.class, id);
-    } catch (Exception e) {
-        System.err.println("Erreur lors du chargement de la thèse (ID: " + id + "): " + e.getMessage());
-    } finally {
-        if (em != null) em.close();
-        if (emf != null) emf.close();
+        return chargerEntite(These.class, id);
     }
-
-    return these;
-}
-
-    
-    
-    
-    
     private Memoire chargerMemoire(Integer id) {
-    Memoire memoire = null;
-    EntityManagerFactory emf = null;
-    EntityManager em = null;
-
-    try {
-        emf = Persistence.createEntityManagerFactory("my-persistence-unit");
-        em = emf.createEntityManager();
-        memoire = em.find(Memoire.class, id);
-    } catch (Exception e) {
-        System.err.println("Erreur lors du chargement du mémoire (ID: " + id + "): " + e.getMessage());
-    } finally {
-        if (em != null) em.close();
-        if (emf != null) emf.close();
+        return chargerEntite(Memoire.class, id);
     }
-
-    return memoire;
-}
-
-    
-    
-    
-    
-    
     private RapportRecherche chargerRapport(Integer id) {
-    RapportRecherche rapport = null;
-    EntityManagerFactory emf = null;
-    EntityManager em = null;
+        return chargerEntite(RapportRecherche.class, id);
+    }
 
+    private <T> T chargerEntite(Class<T> clazz, Integer id) {
+   EntityManagerFactory emf = null;
+    EntityManager em = null;
     try {
         emf = Persistence.createEntityManagerFactory("my-persistence-unit");
         em = emf.createEntityManager();
-        rapport = em.find(RapportRecherche.class, id);
+        T entity = em.find(clazz, id);
+
+        // Force lazy collections to load before closing EM
+        if (entity instanceof Article a) {
+            a.getProfesseurs().size();
+            a.getJournaux().size();
+        } else if (entity instanceof Conference c) {
+            c.getProfesseurs().size();
+        } else if (entity instanceof Brevet b) {
+            b.getInventeurs().size();
+        } else if (entity instanceof RapportRecherche r) {
+            r.getAuteurs().size();
+        }
+
+        return entity;
     } catch (Exception e) {
-        System.err.println("Erreur lors du chargement du rapport (ID: " + id + "): " + e.getMessage());
+        System.err.println("Erreur lors du chargement de " + clazz.getSimpleName() + " (ID: " + id + "): " + e.getMessage());
+        return null;
     } finally {
         if (em != null) em.close();
         if (emf != null) emf.close();
     }
+    }
 
-    return rapport;
-}
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /**
-     * Classe interne pour stocker les informations des documents
-     */
-    private class DocumentInfo {
+    private static class DocumentInfo {
         private String type;
         private Integer id;
         private String titre;
-        private String resume;
+        private java.util.Date date;
         private String cheminPdf;
-        
-        public DocumentInfo(String type, Integer id, String titre, String resume, String cheminPdf) {
+        private Object entity;
+
+        public DocumentInfo(String type, Integer id, String titre, java.util.Date date, String cheminPdf, Object entity) {
             this.type = type;
             this.id = id;
             this.titre = titre;
-            this.resume = resume;
+            this.date = date;
             this.cheminPdf = cheminPdf;
+            this.entity = entity;
         }
-        
-        public String getType() {
-            return type;
+
+        public String getType() { return type; }
+        public Integer getId() { return id; }
+        public String getTitre() { return titre; }
+        public java.util.Date getDate() { return date; }
+        public String getFormattedDate() {
+            return (date != null) ? new java.text.SimpleDateFormat("dd/MM/yyyy").format(date) : "";
         }
-        
-        public Integer getId() {
-            return id;
-        }
-        
-        public String getTitre() {
-            return titre;
-        }
-        
-        public String getResume() {
-            return resume;
-        }
-        
-        public String getCheminPdf() {
-            return cheminPdf;
-        }
-    }
-    
-    /**
-     * Méthode main pour tester la vue (à supprimer en production)
-     */
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            // Données de test
-            Utilisateur user = new Utilisateur();
-            List<Integer> articles = new ArrayList<>();
-            articles.add(7);
-            List<Integer> conferences = new ArrayList<>();
-            conferences.add(7);
-            List<Integer> brevets = new ArrayList<>();
-            List<Integer> theses = new ArrayList<>();
-            List<Integer> memoires = new ArrayList<>();
-            List<Integer> rapports = new ArrayList<>();
-            
-            ResultatsRechercheView view = new ResultatsRechercheView(
-                user, articles, conferences, brevets, theses, memoires, rapports);
-            view.setVisible(true);
-        });
+        public String getCheminPdf() { return cheminPdf; }
+        public Object getEntity() { return entity; }
     }
 }
