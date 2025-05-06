@@ -1,8 +1,10 @@
 package com.smi6.gestion_des_articles_informatique.view.search;
 
 import com.smi6.gestion_des_articles_informatique.controller.search.SearchArticleController;
+import com.smi6.gestion_des_articles_informatique.controller.search.SearchBrevetController;
 import com.smi6.gestion_des_articles_informatique.controller.search.SearchConferenceController;
 import com.smi6.gestion_des_articles_informatique.model.Article;
+import com.smi6.gestion_des_articles_informatique.model.Brevet;
 import com.smi6.gestion_des_articles_informatique.model.Conference;
 import com.smi6.gestion_des_articles_informatique.model.Utilisateur;
 
@@ -52,6 +54,7 @@ private Utilisateur U;
         TF_Lieu = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1050, 600));
 
         L_auteurs.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         L_auteurs.setForeground(new java.awt.Color(18, 53, 36));
@@ -176,7 +179,7 @@ private Utilisateur U;
                                 .addComponent(TF_date1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(527, Short.MAX_VALUE))
+                                .addContainerGap(522, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(B_SelectA, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -212,7 +215,7 @@ private Utilisateur U;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(L_publierle2)
                     .addComponent(TF_date2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 247, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(B_retourner1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -268,28 +271,28 @@ private Utilisateur U;
     }//GEN-LAST:event_TF_date2ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    String auteurs = TF_auteurs.getText().trim();
-    String lieu = TF_Lieu.getText().trim();
+  String inventeurs = TF_auteurs.getText().trim();
+    String statut = TF_Lieu.getText().trim(); // TF_Lieu = Statut
     String dateDebut = TF_date.getText().trim();
     String dateFin = TF_date1.getText().trim();
-    String keywords = TF_date2.getText().trim();
+    String keyword = TF_date2.getText().trim();
 
-    SearchConferenceController controller = new SearchConferenceController();
-    List<Conference> conferences;
+    SearchBrevetController controller = new SearchBrevetController();
+    List<Brevet> brevets;
 
     try {
-        conferences = controller.searchConferences(auteurs, lieu, dateDebut, dateFin, keywords);
+        brevets = controller.searchBrevets(inventeurs, statut, dateDebut, dateFin, keyword);
     } catch (Exception e) {
         JOptionPane.showMessageDialog(this, "Erreur : " + e.getMessage(), "Recherche", JOptionPane.ERROR_MESSAGE);
         return;
     }
 
     List<Integer> ids = new ArrayList<>();
-    for (Conference c : conferences) {
-        ids.add(c.getId());
+    for (Brevet b : brevets) {
+        ids.add(b.getId());
     }
 
-    ResultatsRechercheView resultView = new ResultatsRechercheView(U, null, ids, null, null, null, null);
+    ResultatsRechercheView resultView = new ResultatsRechercheView(U, null, null, ids, null, null, null);
     resultView.setVisible(true);
     this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
