@@ -34,7 +34,11 @@ public class ResultatsRechercheView extends JFrame {
     private final Color BACKGROUND_COLOR = new Color(239, 227, 194);
     private final Color BUTTON_BACKGROUND = new Color(18, 53, 36);
     private final Color BUTTON_TEXT = new Color(239, 227, 194);
-    private final Font CALIBRI_FONT = new Font("Calibri", Font.PLAIN, 14);
+    private final Color BUTTON_PRESSED_BACKGROUND = new Color(10, 30, 20); // Darker color for pressed state
+    private final Font CALIBRI_FONT = new Font("Calibri", Font.PLAIN, 16);
+    
+    // Track which button is currently pressed for visual feedback
+    private Point pressedButtonCell = null;
 
     public ResultatsRechercheView(
             Utilisateur utilisateur,
@@ -99,12 +103,19 @@ public class ResultatsRechercheView extends JFrame {
                 // Apply background color only to non-button cells
                 if (column != 3 && column != 4) {
                     comp.setBackground(BACKGROUND_COLOR);
+                } else {
+                    // For button cells, check if this button is currently being pressed
+                    if (pressedButtonCell != null && pressedButtonCell.x == row && pressedButtonCell.y == column) {
+                        comp.setBackground(BUTTON_PRESSED_BACKGROUND);
+                    } else {
+                        comp.setBackground(BUTTON_BACKGROUND);
+                    }
                 }
                 comp.setFont(CALIBRI_FONT);
                 return comp;
             }
         };
-        tableResultats.setRowHeight(40); // Smaller row height
+        tableResultats.setRowHeight(45); // Increased row height for larger font
         tableResultats.setFont(CALIBRI_FONT);
         tableResultats.getTableHeader().setFont(CALIBRI_FONT);
         tableResultats.setGridColor(new Color(200, 200, 200));
@@ -117,7 +128,12 @@ public class ResultatsRechercheView extends JFrame {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 JButton button = new JButton(value.toString());
-                button.setBackground(BUTTON_BACKGROUND);
+                // Check if this button is currently pressed
+                if (pressedButtonCell != null && pressedButtonCell.x == row && pressedButtonCell.y == column) {
+                    button.setBackground(BUTTON_PRESSED_BACKGROUND);
+                } else {
+                    button.setBackground(BUTTON_BACKGROUND);
+                }
                 button.setForeground(BUTTON_TEXT);
                 button.setFont(CALIBRI_FONT);
                 return button;
@@ -125,24 +141,44 @@ public class ResultatsRechercheView extends JFrame {
         });
 
         tableResultats.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
+            public void mousePressed(MouseEvent evt) {
                 int row = tableResultats.rowAtPoint(evt.getPoint());
                 int col = tableResultats.columnAtPoint(evt.getPoint());
-                if (row >= 0 && col == 3) {
-                    // Simulate button click effect
-                    JButton button = (JButton) tableResultats.getDefaultRenderer(JButton.class)
-                            .getTableCellRendererComponent(tableResultats, "Détails", false, false, row, col);
-                    button.doClick();
+                if (row >= 0 && (col == 3 || col == 4)) {
+                    pressedButtonCell = new Point(row, col);
                     tableResultats.repaint();
-                    afficherDetails(row);
                 }
-                else if (row >= 0 && col == 4) {
-                    // Simulate button click effect
-                    JButton button = (JButton) tableResultats.getDefaultRenderer(JButton.class)
-                            .getTableCellRendererComponent(tableResultats, "Voir PDF", false, false, row, col);
-                    button.doClick();
+            }
+            
+            public void mouseReleased(MouseEvent evt) {
+                if (pressedButtonCell != null) {
+                    int row = pressedButtonCell.x;
+                    int col = pressedButtonCell.y;
+                    
+                    // Clear the pressed state
+                    pressedButtonCell = null;
                     tableResultats.repaint();
-                    ouvrirPDF(row);
+                    
+                    // Only perform action if released on the same cell
+                    int releaseRow = tableResultats.rowAtPoint(evt.getPoint());
+                    int releaseCol = tableResultats.columnAtPoint(evt.getPoint());
+                    
+                    if (row == releaseRow && col == releaseCol) {
+                        // Perform the button action
+                        if (col == 3) {
+                            afficherDetails(row);
+                        } else if (col == 4) {
+                            ouvrirPDF(row);
+                        }
+                    }
+                }
+            }
+            
+            public void mouseExited(MouseEvent evt) {
+                // Clear pressed state if mouse exits the table
+                if (pressedButtonCell != null) {
+                    pressedButtonCell = null;
+                    tableResultats.repaint();
                 }
             }
         });
@@ -176,11 +212,11 @@ public class ResultatsRechercheView extends JFrame {
         TableColumnModel columnModel = tableResultats.getColumnModel();
         
         // Set specific widths for each column
-        columnModel.getColumn(0).setPreferredWidth(100);  // Type
-        columnModel.getColumn(1).setPreferredWidth(500);  // Titre (give more space)
+        columnModel.getColumn(0).setPreferredWidth(80);   // Type - made smaller
+        columnModel.getColumn(1).setPreferredWidth(450);  // Titre - made smaller
         columnModel.getColumn(2).setPreferredWidth(100);  // Date
-        columnModel.getColumn(3).setPreferredWidth(80);   // Détails
-        columnModel.getColumn(4).setPreferredWidth(80);   // Voir PDF
+        columnModel.getColumn(3).setPreferredWidth(90);   // Détails - slightly wider for larger font
+        columnModel.getColumn(4).setPreferredWidth(90);   // Voir PDF - slightly wider for larger font
     }
 
     private void chargerDonnees() {
