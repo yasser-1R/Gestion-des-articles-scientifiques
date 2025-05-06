@@ -6,6 +6,7 @@ package com.smi6.gestion_des_articles_informatique.view.connexion_home;
 
 import com.smi6.gestion_des_articles_informatique.model.Utilisateur;
 import com.smi6.gestion_des_articles_informatique.view.Rechercher;
+import com.smi6.gestion_des_articles_informatique.view.search.Select_type_R;
 import com.smi6.gestion_des_articles_informatique.view.statistiques.Professeur_Resume;
 import com.smi6.gestion_des_articles_informatique.view.uploads.Select_type;
 import java.awt.Component;
@@ -272,8 +273,8 @@ private Utilisateur U;
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        Select_type  ST = new Select_type(this.U);
-        ST.setVisible(true);
+        Select_type_R STR = new Select_type_R(this.U);
+        STR.setVisible(true);
         this.dispose();
 
     }//GEN-LAST:event_jButton6ActionPerformed
