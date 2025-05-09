@@ -305,7 +305,7 @@ private Utilisateur U;
     }//GEN-LAST:event_TF_date2ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    String auteurs = TF_auteurs.getText().trim();
+            String auteurs = TF_auteurs.getText().trim();
     String journaux = TF_journaux.getText().trim();
     String dateDebut = TF_date.getText().trim();
     String dateFin = TF_date1.getText().trim();
@@ -321,14 +321,13 @@ private Utilisateur U;
         return;
     }
 
-    // Extract article IDs for the result view
-    List<Integer> idsArticles = new ArrayList<>();
-    for (Article article : articles) {
-        idsArticles.add(article.getId());
+    if (articles.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Aucun article trouvé avec les critères spécifiés.", "Aucun Résultat", JOptionPane.INFORMATION_MESSAGE);
+        return;
     }
 
-    // Open result view (only for articles here, others are empty)
-    ResultatsRechercheView resultView = new ResultatsRechercheView(U, idsArticles, null, null, null, null, null);
+    // ✅ Show results in PublicationListView
+    PublicationListView resultView = new PublicationListView(articles, null, null, null, null, null);
     resultView.setVisible(true);
     this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed

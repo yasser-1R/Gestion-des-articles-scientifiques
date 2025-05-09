@@ -64,7 +64,7 @@ public class SearchArticleController {
             return query.getResultList();
 
         } finally {
-            em.close();
+//            em.close();
         }
     }
 
