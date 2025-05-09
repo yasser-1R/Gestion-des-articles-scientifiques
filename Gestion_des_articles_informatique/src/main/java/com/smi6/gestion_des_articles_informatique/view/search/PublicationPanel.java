@@ -91,8 +91,8 @@ private void populateFields(String titreStr, Date date, String typeStr) {
         titre = new javax.swing.JTextField();
         titre2 = new javax.swing.JTextField();
 
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        setPreferredSize(new java.awt.Dimension(1000, 120));
+        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        setPreferredSize(new java.awt.Dimension(990, 120));
 
         B_Lire.setBackground(new java.awt.Color(18, 53, 36));
         B_Lire.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -127,12 +127,12 @@ private void populateFields(String titreStr, Date date, String typeStr) {
                 .addGroup(optionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(B_Lire, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                     .addComponent(B_Infos, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(6, 6, 6))
         );
         optionLayout.setVerticalGroup(
             optionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(optionLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addComponent(B_Lire, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(B_Infos, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -141,7 +141,8 @@ private void populateFields(String titreStr, Date date, String typeStr) {
 
         type.setBackground(new java.awt.Color(239, 227, 194));
         type.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        type.setText("Titre");
+        type.setText("Type");
+        type.setFocusable(false);
         type.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 typeActionPerformed(evt);
@@ -151,6 +152,7 @@ private void populateFields(String titreStr, Date date, String typeStr) {
         titre.setBackground(new java.awt.Color(239, 227, 194));
         titre.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         titre.setText("Titre");
+        titre.setFocusable(false);
         titre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 titreActionPerformed(evt);
@@ -159,7 +161,8 @@ private void populateFields(String titreStr, Date date, String typeStr) {
 
         titre2.setBackground(new java.awt.Color(239, 227, 194));
         titre2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        titre2.setText("Titre");
+        titre2.setText("Date");
+        titre2.setFocusable(false);
         titre2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 titre2ActionPerformed(evt);
@@ -172,7 +175,7 @@ private void populateFields(String titreStr, Date date, String typeStr) {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(titre, javax.swing.GroupLayout.DEFAULT_SIZE, 892, Short.MAX_VALUE)
+                    .addComponent(titre, javax.swing.GroupLayout.DEFAULT_SIZE, 880, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -183,15 +186,17 @@ private void populateFields(String titreStr, Date date, String typeStr) {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(option, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(titre2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(titre, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(16, 16, 16))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(option, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11))
         );
     }// </editor-fold>//GEN-END:initComponents
 
