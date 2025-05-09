@@ -5,7 +5,7 @@
 package com.smi6.gestion_des_articles_informatique.view.connexion_home;
 
 import com.smi6.gestion_des_articles_informatique.model.Utilisateur;
-import com.smi6.gestion_des_articles_informatique.view.Rechercher;
+import com.smi6.gestion_des_articles_informatique.view.search.Rechercher;
 import com.smi6.gestion_des_articles_informatique.view.search.Select_type_R;
 import java.awt.Component;
 import java.awt.Image;

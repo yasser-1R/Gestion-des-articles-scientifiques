@@ -104,17 +104,23 @@ public class PublicationDetailsDialog extends JDialog {
 
     private void populateContent(Object pub) {
         if (pub instanceof Article a) {
-            addSectionTitle("Informations Générales");
-            addFieldWithValue("Titre", a.getTitre());
-            addFieldWithValue("Date de publication", formatDate(a.getDatePublication()));
-            
-            addSectionTitle("Contenu");
-            addFieldWithValue("Résumé", a.getResume());
-            
-            addSectionTitle("Auteurs et Publication");
-            addFieldWithValue("Professeurs", joinNames(a.getProfesseurs()));
-            addFieldWithValue("Journaux", a.getJournaux().stream().map(Journal::getNom).collect(Collectors.joining(", ")));
-        } else if (pub instanceof Conference c) {
+                    addSectionTitle("Informations Générales");
+        addFieldWithValue("Titre", a.getTitre());
+        addFieldWithValue("Date de publication", formatDate(a.getDatePublication()));
+        
+        addSectionTitle("Contenu");
+        addFieldWithValue("Résumé", a.getResume());
+        
+        addSectionTitle("Auteurs et Publication");
+        addFieldWithValue("Professeurs", joinNames(a.getProfesseurs()));
+        
+        // 🔽 Journals with Quartile
+        String journalsWithQuartile = a.getJournaux().stream()
+            .map(journal -> journal.getNom() + " (" + journal.getQuartile() + ")")
+            .collect(Collectors.joining(", "));
+        addFieldWithValue("Journaux", journalsWithQuartile);
+    
+           } else if (pub instanceof Conference c) {
             addSectionTitle("Informations Générales");
             addFieldWithValue("Titre", c.getTitre());
             addFieldWithValue("Date", formatDate(c.getDateConference()));
