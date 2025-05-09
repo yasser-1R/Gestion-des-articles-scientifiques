@@ -305,7 +305,7 @@ private Utilisateur U;
     }//GEN-LAST:event_TF_date2ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-            String auteurs = TF_auteurs.getText().trim();
+        String auteurs = TF_auteurs.getText().trim();
     String journaux = TF_journaux.getText().trim();
     String dateDebut = TF_date.getText().trim();
     String dateFin = TF_date1.getText().trim();
@@ -326,10 +326,9 @@ private Utilisateur U;
         return;
     }
 
-    // ✅ Show results in PublicationListView
-    PublicationListView resultView = new PublicationListView(articles, null, null, null, null, null);
-    resultView.setVisible(true);
-    this.dispose();
+    // ✅ Show modal dialog without disposing the current window
+    PublicationListView dialog = new PublicationListView( articles, null, null, null, null, null);
+    dialog.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void B_retourner1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_retourner1ActionPerformed

@@ -1,27 +1,22 @@
 package com.smi6.gestion_des_articles_informatique.view.statistiques;
 
-import com.smi6.gestion_des_articles_informatique.view.connexion_home.Accueille_avec_compte2;
-import com.smi6.gestion_des_articles_informatique.view.connexion_home.Accueille_admin2;
-import com.smi6.gestion_des_articles_informatique.view.connexion_home.Accueille_sans_compte2;
-import com.smi6.gestion_des_articles_informatique.model.*;
 import com.smi6.gestion_des_articles_informatique.controller.search.GeneralSearchController;
+import com.smi6.gestion_des_articles_informatique.model.*;
+import com.smi6.gestion_des_articles_informatique.view.connexion_home.*;
+import com.smi6.gestion_des_articles_informatique.view.search.PublicationListView;
 import jakarta.persistence.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
-import java.util.List;
+
 import javax.swing.*;
 import javax.swing.table.*;
+import java.awt.*;
+import java.util.*;
+import java.util.List;
 
-/**
- * @author YN
- */
 public class Professeur_Resume extends javax.swing.JFrame {
 
     private Utilisateur U;
     private GeneralSearchController searchController;
 
-    /** Creates new form Professeur_Resume */
     public Professeur_Resume(Utilisateur U) {
         this.U = U;
         this.searchController = new GeneralSearchController();
@@ -36,7 +31,7 @@ public class Professeur_Resume extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return column == 7; // only the button column is editable
+                return column == 7;
             }
         };
         L_title = new javax.swing.JLabel();
@@ -65,37 +60,33 @@ public class Professeur_Resume extends javax.swing.JFrame {
         B_retour.setForeground(new java.awt.Color(239, 227, 194));
         B_retour.setText("Retourner");
         B_retour.setFocusable(false);
-        B_retour.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B_retourActionPerformed(evt);
-            }
-        });
+        B_retour.addActionListener(this::B_retourActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1020, Short.MAX_VALUE)
-                    .addComponent(L_title))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(B_retour)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1020, Short.MAX_VALUE)
+                        .addComponent(L_title))
+                    .addContainerGap())
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(B_retour)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(L_title)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(B_retour, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(20, 20, 20)
+                    .addComponent(L_title)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+                    .addGap(18, 18, 18)
+                    .addComponent(B_retour, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap())
         );
 
         pack();
@@ -131,28 +122,32 @@ public class Professeur_Resume extends javax.swing.JFrame {
             btn.setFocusPainted(false);
 
             int idProf = (Integer) row[0];
-            String nomProf = (String) row[1];
-            
+
             btn.addActionListener(e -> {
                 try {
-                    // Récupérer le professeur correspondant
                     TypedQuery<Professeur> query = em.createQuery(
                         "SELECT p FROM Professeur p WHERE p.id = :id", Professeur.class);
                     query.setParameter("id", idProf);
                     Professeur professeur = query.getSingleResult();
-                    
-                    // Utiliser GeneralSearchController pour récupérer toutes les publications
+
                     List<Professeur> profList = new ArrayList<>();
                     profList.add(professeur);
-                    
+
                     Map<String, List<?>> searchResults = searchController.search(null, profList, null, null);
-                    
-                    // Ouvrir DetailsProfesseur avec les publications trouvées
-                    DetailsProfesseur detailsView = new DetailsProfesseur(U, idProf, nomProf, searchResults);
-                    detailsView.setVisible(true);
-                    this.dispose();
+
+                    PublicationListView dialog = new PublicationListView(
+    (List<Article>) searchResults.get("articles"),
+    (List<Conference>) searchResults.get("conferences"),
+    (List<Brevet>) searchResults.get("brevets"),
+    (List<These>) searchResults.get("theses"),
+    (List<Memoire>) searchResults.get("memoires"),
+    (List<RapportRecherche>) searchResults.get("rapports")
+);
+dialog.setVisible(true); // modal dialog blocks here
+
+
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(this, 
+                    JOptionPane.showMessageDialog(this,
                         "Erreur lors de la récupération des publications: " + ex.getMessage(),
                         "Erreur", JOptionPane.ERROR_MESSAGE);
                     ex.printStackTrace();
@@ -173,12 +168,7 @@ public class Professeur_Resume extends javax.swing.JFrame {
 
         jTable1.getColumn("Professeur").setPreferredWidth(200);
 
-        jTable1.getColumn("Actions").setCellRenderer(new TableCellRenderer() {
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                return (Component) value;
-            }
-        });
+        jTable1.getColumn("Actions").setCellRenderer((table, value, isSelected, hasFocus, row, column) -> (Component) value);
 
         jTable1.getColumn("Actions").setCellEditor(new DefaultCellEditor(new JCheckBox()) {
             private JButton button;
@@ -189,35 +179,25 @@ public class Professeur_Resume extends javax.swing.JFrame {
                 return button;
             }
         });
-
-//        em.close();
-//        emf.close();
     }
 
     private void B_retourActionPerformed(java.awt.event.ActionEvent evt) {
-        Utilisateur user = this.U;
-        if (user != null) {
-            if (user.getRole() == Utilisateur.Role.admin) {
-                Accueille_admin2 adminView = new Accueille_admin2(user);
-                adminView.setVisible(true);
-            } else if (user.getRole() == Utilisateur.Role.utilisateur) {
-                Accueille_avec_compte2 userView = new Accueille_avec_compte2(user);
-                userView.setVisible(true);
+        if (U != null) {
+            if (U.getRole() == Utilisateur.Role.admin) {
+                new Accueille_admin2(U).setVisible(true);
+            } else if (U.getRole() == Utilisateur.Role.utilisateur) {
+                new Accueille_avec_compte2(U).setVisible(true);
             } else {
-                Accueille_sans_compte2 A = new Accueille_sans_compte2();
-                A.setVisible(true);
+                new Accueille_sans_compte2().setVisible(true);
             }
         } else {
-            Accueille_sans_compte2 A = new Accueille_sans_compte2();
-            A.setVisible(true);
+            new Accueille_sans_compte2().setVisible(true);
         }
         this.dispose();
     }
 
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(() -> {
-            new Professeur_Resume(null).setVisible(true);
-        });
+        java.awt.EventQueue.invokeLater(() -> new Professeur_Resume(null).setVisible(true));
     }
 
     // Variables declaration

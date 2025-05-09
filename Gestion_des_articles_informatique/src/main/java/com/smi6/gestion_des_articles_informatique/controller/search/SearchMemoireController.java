@@ -60,8 +60,8 @@ public class SearchMemoireController {
         } catch (Exception e) {
             throw new Exception("Erreur lors de la recherche des mémoires : " + e.getMessage(), e);
         } finally {
-            if (em != null) em.close();
-            if (emf != null) emf.close();
+//            if (em != null) em.close();
+//            if (emf != null) emf.close();
         }
 
         return results;

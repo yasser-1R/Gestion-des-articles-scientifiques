@@ -290,9 +290,15 @@ private Utilisateur U;
     }
 
     
-    ResultatsRechercheView resultView = new ResultatsRechercheView(U, null, ids, null, null, null, null);
-    resultView.setVisible(true);
-    this.dispose();
+   PublicationListView dialog = new PublicationListView(
+    null,       // articles
+    conferences,// conferences
+    null,       // brevets
+    null,       // theses
+    null,       // memoires
+    null        // rapports
+);
+dialog.setVisible(true); // modal blocks until closed
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void B_retourner1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_retourner1ActionPerformed

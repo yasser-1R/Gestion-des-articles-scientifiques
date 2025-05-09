@@ -56,7 +56,7 @@ public class SearchTheseController {
 
             return query.getResultList();
         } finally {
-            em.close();
+//            em.close();
         }
     }
 

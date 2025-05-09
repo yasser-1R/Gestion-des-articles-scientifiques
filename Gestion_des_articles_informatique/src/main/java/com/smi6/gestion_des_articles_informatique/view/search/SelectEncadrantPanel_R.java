@@ -16,8 +16,8 @@ public class SelectEncadrantPanel_R extends javax.swing.JPanel {
     private ButtonGroup buttonGroup = new ButtonGroup();
     private JRadioButton selectedRadio = null;
     private JPanel panelProfesseurs;
-    private JTextField TF_nouveau;
-    private JButton B_ajouter;
+//    private JTextField TF_nouveau;
+//    private JButton B_ajouter;
 
     public SelectEncadrantPanel_R(String preSelectedName) {
         initComponents();
@@ -68,8 +68,8 @@ List<Professeur> professeurs = em.createQuery("FROM Professeur ORDER BY LOWER(no
         L_selectionner = new javax.swing.JLabel();
         ScrollPaneEncadrant = new javax.swing.JScrollPane();
         B_valider = new javax.swing.JButton();
-        TF_nouveau = new javax.swing.JTextField();
-        B_ajouter = new javax.swing.JButton();
+//        TF_nouveau = new javax.swing.JTextField();
+//        B_ajouter = new javax.swing.JButton();
 
         L_selectionner.setFont(new java.awt.Font("Calibri", 0, 24));
         L_selectionner.setText("Sélectionner l'encadrant");
@@ -80,59 +80,59 @@ List<Professeur> professeurs = em.createQuery("FROM Professeur ORDER BY LOWER(no
         B_valider.setText("Valider");
         B_valider.setFocusable(false);
         B_valider.addActionListener(evt -> javax.swing.SwingUtilities.getWindowAncestor(this).dispose());
-
-        TF_nouveau.setFont(new java.awt.Font("Calibri", 0, 16));
-        TF_nouveau.setToolTipText("Ajouter un nouvel encadrant");
-
-        B_ajouter.setBackground(new java.awt.Color(18, 53, 36));
-        B_ajouter.setFont(new java.awt.Font("Calibri", 0, 16));
-        B_ajouter.setForeground(new java.awt.Color(239, 227, 194));
-        B_ajouter.setText("Ajouter");
-        B_ajouter.setFocusable(false);
-        B_ajouter.addActionListener(evt -> {
-            String nom = TF_nouveau.getText().trim();
-            if (nom.isEmpty()) return;
-
-            // Vérifier que le nom n'existe pas déjà
-List<String> nomsExistants = new ArrayList<>();
-Enumeration<AbstractButton> buttons = buttonGroup.getElements();
-while (buttons.hasMoreElements()) {
-    nomsExistants.add(buttons.nextElement().getText().toLowerCase());
-}
-
-
-            if (nomsExistants.contains(nom.toLowerCase())) {
-                JOptionPane.showMessageDialog(this, "Ce professeur existe déjà.");
-                return;
-            }
-
-            try {
-                EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
-                EntityManager em = emf.createEntityManager();
-                em.getTransaction().begin();
-
-                Professeur newProf = new Professeur();
-                newProf.setNomComplet(nom);
-                em.persist(newProf);
-
-                em.getTransaction().commit();
-                em.close();
-                emf.close();
-
-                JRadioButton newRadio = new JRadioButton(nom);
-                newRadio.setFont(new Font("Calibri", Font.PLAIN, 16));
-                buttonGroup.add(newRadio);
-                panelProfesseurs.add(newRadio);
-                panelProfesseurs.revalidate();
-                panelProfesseurs.repaint();
-
-                newRadio.setSelected(true);
-                TF_nouveau.setText("");
-
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Erreur lors de l'ajout : " + ex.getMessage());
-            }
-        });
+//
+//        TF_nouveau.setFont(new java.awt.Font("Calibri", 0, 16));
+//        TF_nouveau.setToolTipText("Ajouter un nouvel encadrant");
+//
+//        B_ajouter.setBackground(new java.awt.Color(18, 53, 36));
+//        B_ajouter.setFont(new java.awt.Font("Calibri", 0, 16));
+//        B_ajouter.setForeground(new java.awt.Color(239, 227, 194));
+//        B_ajouter.setText("Ajouter");
+//        B_ajouter.setFocusable(false);
+//        B_ajouter.addActionListener(evt -> {
+//            String nom = TF_nouveau.getText().trim();
+//            if (nom.isEmpty()) return;
+//
+//            // Vérifier que le nom n'existe pas déjà
+//List<String> nomsExistants = new ArrayList<>();
+//Enumeration<AbstractButton> buttons = buttonGroup.getElements();
+//while (buttons.hasMoreElements()) {
+//    nomsExistants.add(buttons.nextElement().getText().toLowerCase());
+//}
+//
+//
+//            if (nomsExistants.contains(nom.toLowerCase())) {
+//                JOptionPane.showMessageDialog(this, "Ce professeur existe déjà.");
+//                return;
+//            }
+//
+//            try {
+//                EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
+//                EntityManager em = emf.createEntityManager();
+//                em.getTransaction().begin();
+//
+//                Professeur newProf = new Professeur();
+//                newProf.setNomComplet(nom);
+//                em.persist(newProf);
+//
+//                em.getTransaction().commit();
+//                em.close();
+//                emf.close();
+//
+//                JRadioButton newRadio = new JRadioButton(nom);
+//                newRadio.setFont(new Font("Calibri", Font.PLAIN, 16));
+//                buttonGroup.add(newRadio);
+//                panelProfesseurs.add(newRadio);
+//                panelProfesseurs.revalidate();
+//                panelProfesseurs.repaint();
+//
+//                newRadio.setSelected(true);
+//                TF_nouveau.setText("");
+//
+//            } catch (Exception ex) {
+//                JOptionPane.showMessageDialog(this, "Erreur lors de l'ajout : " + ex.getMessage());
+//            }
+//        });
 
         setPreferredSize(new java.awt.Dimension(420, 450));
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -141,14 +141,7 @@ while (buttons.hasMoreElements()) {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup().addGap(30, 30, 30)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(L_selectionner)
-                        .addComponent(ScrollPaneEncadrant, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(B_valider)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(TF_nouveau, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(B_ajouter)))
+
                     .addContainerGap(30, Short.MAX_VALUE))
         );
 
@@ -159,9 +152,7 @@ while (buttons.hasMoreElements()) {
                     .addGap(18, 18, 18)
                     .addComponent(ScrollPaneEncadrant, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(TF_nouveau, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(B_ajouter))
+
                     .addGap(18, 18, 18)
                     .addComponent(B_valider)
                     .addGap(20, 20, 20))

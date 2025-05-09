@@ -65,7 +65,7 @@ public class SearchBrevetController {
             return query.getResultList();
 
         } finally {
-            em.close();
+//            em.close();
         }
     }
 

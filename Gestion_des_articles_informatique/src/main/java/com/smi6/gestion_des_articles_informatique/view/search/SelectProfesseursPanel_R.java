@@ -16,7 +16,7 @@ public class SelectProfesseursPanel_R extends javax.swing.JPanel {
     private List<JCheckBox> checkBoxes = new ArrayList<>();
     private List<String> preSelectedProfesseurs;
     private JPanel panelProfesseurs;
-    private JTextField TF_newProf;
+//    private JTextField TF_newProf;
 
     public SelectProfesseursPanel_R(List<String> preSelectedProfesseurs) {
         this.preSelectedProfesseurs = preSelectedProfesseurs;

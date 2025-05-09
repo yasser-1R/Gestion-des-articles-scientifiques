@@ -271,7 +271,7 @@ private Utilisateur U;
     }//GEN-LAST:event_TF_date2ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-  String inventeurs = TF_auteurs.getText().trim();
+    String inventeurs = TF_auteurs.getText().trim();
     String statut = TF_Lieu.getText().trim(); // TF_Lieu = Statut
     String dateDebut = TF_date.getText().trim();
     String dateFin = TF_date1.getText().trim();
@@ -287,14 +287,17 @@ private Utilisateur U;
         return;
     }
 
-    List<Integer> ids = new ArrayList<>();
-    for (Brevet b : brevets) {
-        ids.add(b.getId());
-    }
+    // Open PublicationListView directly with Brevet list
+PublicationListView dialog = new PublicationListView(
+    null,      // articles
+    null,      // conferences
+    brevets,   // brevets
+    null,      // theses
+    null,      // memoires
+    null       // rapports
+);
+dialog.setVisible(true);  // Modal dialog will block until closed
 
-    ResultatsRechercheView resultView = new ResultatsRechercheView(U, null, null, ids, null, null, null);
-    resultView.setVisible(true);
-    this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void B_retourner1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_retourner1ActionPerformed

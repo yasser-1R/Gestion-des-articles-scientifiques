@@ -58,7 +58,7 @@ public class SearchRapportController {
             return query.getResultList();
 
         } finally {
-            em.close();
+//            em.close();
         }
     }
 

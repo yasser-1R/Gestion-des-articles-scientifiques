@@ -16,9 +16,9 @@ public class SelectJournauxPanel_R extends javax.swing.JPanel {
     private List<JCheckBox> checkBoxes = new ArrayList<>();
     private List<String> preSelectedJournaux;
     private JPanel panelJournaux;
-    private JTextField TF_nouveau;
-    private JTextField TF_quartile;
-    private JButton B_ajouter;
+//    private JTextField TF_nouveau;
+//    private JTextField TF_quartile;
+//    private JButton B_ajouter;
 
     public SelectJournauxPanel_R(List<String> preSelectedJournaux) {
         this.preSelectedJournaux = preSelectedJournaux;
@@ -71,9 +71,9 @@ public class SelectJournauxPanel_R extends javax.swing.JPanel {
         L_selectionner = new javax.swing.JLabel();
         ScrollPaneJournaux = new javax.swing.JScrollPane();
         B_valider = new javax.swing.JButton();
-        TF_nouveau = new javax.swing.JTextField();
-        TF_quartile = new javax.swing.JTextField();
-        B_ajouter = new javax.swing.JButton();
+//        TF_nouveau = new javax.swing.JTextField();
+//        TF_quartile = new javax.swing.JTextField();
+//        B_ajouter = new javax.swing.JButton();
 
         L_selectionner.setFont(new java.awt.Font("Calibri", 0, 24));
         L_selectionner.setText("Sélectionner les Journaux");
@@ -85,59 +85,59 @@ public class SelectJournauxPanel_R extends javax.swing.JPanel {
         B_valider.setFocusable(false);
         B_valider.addActionListener(evt -> javax.swing.SwingUtilities.getWindowAncestor(this).dispose());
 
-        TF_nouveau.setFont(new java.awt.Font("Calibri", 0, 16));
-        TF_nouveau.setToolTipText("Ajouter un nouveau journal");
-
-        TF_quartile = new JTextField();
-        TF_quartile.setFont(new Font("Calibri", Font.PLAIN, 16));
-        TF_quartile.setToolTipText("Quartile (Q1, Q2, etc.)");
-        TF_quartile.setPreferredSize(new Dimension(50, 30));
-
-        B_ajouter.setBackground(new java.awt.Color(18, 53, 36));
-        B_ajouter.setFont(new java.awt.Font("Calibri", 0, 16));
-        B_ajouter.setForeground(new java.awt.Color(239, 227, 194));
-        B_ajouter.setText("Ajouter");
-        B_ajouter.setFocusable(false);
-        B_ajouter.addActionListener(e -> {
-            String nom = TF_nouveau.getText().trim();
-            String quartile = TF_quartile.getText().trim();
-            if (nom.isEmpty()) return;
-
-            for (JCheckBox cb : checkBoxes) {
-                if (cb.getText().equalsIgnoreCase(nom)) {
-                    JOptionPane.showMessageDialog(this, "Ce journal existe déjà.");
-                    return;
-                }
-            }
-
-            try {
-                EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
-                EntityManager em = emf.createEntityManager();
-                em.getTransaction().begin();
-
-                Journal newJournal = new Journal();
-                newJournal.setNom(nom);
-                newJournal.setQuartile(quartile);
-                em.persist(newJournal);
-
-                em.getTransaction().commit();
-                em.close();
-                emf.close();
-
-                JCheckBox cb = new JCheckBox(nom);
-                cb.setFont(new Font("Calibri", Font.PLAIN, 16));
-                cb.setSelected(true);
-                checkBoxes.add(cb);
-                panelJournaux.add(cb);
-                panelJournaux.revalidate();
-                panelJournaux.repaint();
-
-                TF_nouveau.setText("");
-                TF_quartile.setText("");
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Erreur lors de l'ajout : " + ex.getMessage());
-            }
-        });
+//        TF_nouveau.setFont(new java.awt.Font("Calibri", 0, 16));
+//        TF_nouveau.setToolTipText("Ajouter un nouveau journal");
+//
+//        TF_quartile = new JTextField();
+//        TF_quartile.setFont(new Font("Calibri", Font.PLAIN, 16));
+//        TF_quartile.setToolTipText("Quartile (Q1, Q2, etc.)");
+//        TF_quartile.setPreferredSize(new Dimension(50, 30));
+//
+//        B_ajouter.setBackground(new java.awt.Color(18, 53, 36));
+//        B_ajouter.setFont(new java.awt.Font("Calibri", 0, 16));
+//        B_ajouter.setForeground(new java.awt.Color(239, 227, 194));
+//        B_ajouter.setText("Ajouter");
+//        B_ajouter.setFocusable(false);
+//        B_ajouter.addActionListener(e -> {
+//            String nom = TF_nouveau.getText().trim();
+//            String quartile = TF_quartile.getText().trim();
+//            if (nom.isEmpty()) return;
+//
+//            for (JCheckBox cb : checkBoxes) {
+//                if (cb.getText().equalsIgnoreCase(nom)) {
+//                    JOptionPane.showMessageDialog(this, "Ce journal existe déjà.");
+//                    return;
+//                }
+//            }
+//
+//            try {
+//                EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
+//                EntityManager em = emf.createEntityManager();
+//                em.getTransaction().begin();
+//
+//                Journal newJournal = new Journal();
+//                newJournal.setNom(nom);
+//                newJournal.setQuartile(quartile);
+//                em.persist(newJournal);
+//
+//                em.getTransaction().commit();
+//                em.close();
+//                emf.close();
+//
+//                JCheckBox cb = new JCheckBox(nom);
+//                cb.setFont(new Font("Calibri", Font.PLAIN, 16));
+//                cb.setSelected(true);
+//                checkBoxes.add(cb);
+//                panelJournaux.add(cb);
+//                panelJournaux.revalidate();
+//                panelJournaux.repaint();
+//
+//                TF_nouveau.setText("");
+//                TF_quartile.setText("");
+//            } catch (Exception ex) {
+//                JOptionPane.showMessageDialog(this, "Erreur lors de l'ajout : " + ex.getMessage());
+//            }
+//        });
 
         setPreferredSize(new java.awt.Dimension(420, 450));
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -149,13 +149,7 @@ public class SelectJournauxPanel_R extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(L_selectionner)
                         .addComponent(ScrollPaneJournaux, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(B_valider)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(TF_nouveau, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(TF_quartile, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(B_ajouter)))
+                        .addComponent(B_valider))
                     .addContainerGap(30, Short.MAX_VALUE))
         );
 
@@ -166,10 +160,6 @@ public class SelectJournauxPanel_R extends javax.swing.JPanel {
                     .addGap(18, 18, 18)
                     .addComponent(ScrollPaneJournaux, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(TF_nouveau, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(TF_quartile, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(B_ajouter))
                     .addGap(18, 18, 18)
                     .addComponent(B_valider)
                     .addGap(20, 20, 20))
