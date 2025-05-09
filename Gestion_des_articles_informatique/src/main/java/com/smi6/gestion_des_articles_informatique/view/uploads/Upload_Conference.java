@@ -308,7 +308,7 @@ private Utilisateur U;
                 "Conférence enregistrée avec succès!",
                 "Succès",
                 javax.swing.JOptionPane.INFORMATION_MESSAGE);
-         resetForm()
+         resetForm();
 
     } catch (Exception ex) {
         // ❌ 5. En cas d'erreur

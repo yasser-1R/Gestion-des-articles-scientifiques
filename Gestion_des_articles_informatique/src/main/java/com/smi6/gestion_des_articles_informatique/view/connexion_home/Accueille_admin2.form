@@ -29,10 +29,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jButton5" pref="142" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="761" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButton3" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
-                          <Component id="jButton4" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jButton3" min="-2" pref="135" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="0" pref="409" max="32767" attributes="0"/>
@@ -60,9 +57,7 @@
                   <Component id="jButton3" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                   <Component id="jButton5" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jButton4" min="-2" pref="50" max="-2" attributes="0"/>
-              <EmptySpace pref="74" max="32767" attributes="0"/>
+              <EmptySpace pref="136" max="32767" attributes="0"/>
               <Component id="jButton2" min="-2" pref="50" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButton6" min="-2" pref="50" max="-2" attributes="0"/>
@@ -100,32 +95,6 @@
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="ImageIcon originalIcon3 = new ImageIcon(getClass().getResource(&quot;/icones/SeConnecter.png&quot;));&#xa;Image scaledImage3 = originalIcon3.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);&#xa;ImageIcon resizedIcon3 = new ImageIcon(scaledImage3);&#xa;&#xa;// Appliquer l&#x2019;ic&#xf4;ne&#xa;jButton3.setIcon(resizedIcon3);&#xa;jButton3.setIconTextGap(10); // Espace entre ic&#xf4;ne et texte&#xa;&#xa;// Centrage vertical du texte + ic&#xf4;ne&#xa;jButton3.setHorizontalAlignment(SwingConstants.CENTER); // Centre tout (ic&#xf4;ne + texte)&#xa;jButton3.setVerticalAlignment(SwingConstants.CENTER);&#xa;&#xa;// Pour &#xe9;viter que le texte soit d&#xe9;cal&#xe9; par la taille du bouton&#xa;jButton3.setHorizontalTextPosition(SwingConstants.RIGHT); // Texte &#xe0; droite de l&#x2019;ic&#xf4;ne&#xa;jButton3.setVerticalTextPosition(SwingConstants.CENTER);"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButton4">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="24" green="35" red="12" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Calibri" size="18" style="0"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="c2" green="e3" red="ef" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Favoris"/>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
-            <BevelBorder/>
-          </Border>
-        </Property>
-        <Property name="focusable" type="boolean" value="false"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
-      </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="ImageIcon originalIcon4 = new ImageIcon(getClass().getResource(&quot;/icones/Favoris.png&quot;));&#xa;Image scaledImage4 = originalIcon4.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);&#xa;ImageIcon resizedIcon4 = new ImageIcon(scaledImage4);&#xa;&#xa;// Appliquer l&#x2019;ic&#xf4;ne&#xa;jButton4.setIcon(resizedIcon4);&#xa;jButton4.setIconTextGap(10); // Espace entre ic&#xf4;ne et texte&#xa;&#xa;// Centrage vertical du texte + ic&#xf4;ne&#xa;jButton4.setHorizontalAlignment(SwingConstants.CENTER); // Centre tout (ic&#xf4;ne + texte)&#xa;jButton4.setVerticalAlignment(SwingConstants.CENTER);&#xa;&#xa;// Pour &#xe9;viter que le texte soit d&#xe9;cal&#xe9; par la taille du bouton&#xa;jButton4.setHorizontalTextPosition(SwingConstants.RIGHT); // Texte &#xe0; droite de l&#x2019;ic&#xf4;ne&#xa;jButton4.setVerticalTextPosition(SwingConstants.CENTER);"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
