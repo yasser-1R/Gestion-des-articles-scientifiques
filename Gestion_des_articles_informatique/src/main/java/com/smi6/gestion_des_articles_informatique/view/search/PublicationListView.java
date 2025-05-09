@@ -28,11 +28,15 @@ public class PublicationListView extends JFrame {
         container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
         container.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
+        // Add publications to the container and calculate the total count
+        int totalCount = 0;
+
         if (articles != null) {
             for (Article a : articles) {
                 container.add(new PublicationPanel(a));
                 container.add(Box.createVerticalStrut(10));
             }
+            totalCount += articles.size();
         }
 
         if (conferences != null) {
@@ -40,6 +44,7 @@ public class PublicationListView extends JFrame {
                 container.add(new PublicationPanel(c));
                 container.add(Box.createVerticalStrut(10));
             }
+            totalCount += conferences.size();
         }
 
         if (brevets != null) {
@@ -47,6 +52,7 @@ public class PublicationListView extends JFrame {
                 container.add(new PublicationPanel(b));
                 container.add(Box.createVerticalStrut(10));
             }
+            totalCount += brevets.size();
         }
 
         if (theses != null) {
@@ -54,6 +60,7 @@ public class PublicationListView extends JFrame {
                 container.add(new PublicationPanel(t));
                 container.add(Box.createVerticalStrut(10));
             }
+            totalCount += theses.size();
         }
 
         if (memoires != null) {
@@ -61,6 +68,7 @@ public class PublicationListView extends JFrame {
                 container.add(new PublicationPanel(m));
                 container.add(Box.createVerticalStrut(10));
             }
+            totalCount += memoires.size();
         }
 
         if (rapports != null) {
@@ -68,16 +76,18 @@ public class PublicationListView extends JFrame {
                 container.add(new PublicationPanel(r));
                 container.add(Box.createVerticalStrut(10));
             }
+            totalCount += rapports.size();
         }
 
         JScrollPane scrollPane = new JScrollPane(container);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
         add(scrollPane, BorderLayout.CENTER);
 
-        // 🔚 Bottom panel with Close button
+        // 🔚 Bottom panel with Close button and count label
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JButton closeButton = new JButton("Close");
 
+        // Close button
+        JButton closeButton = new JButton("Close");
         closeButton.setBackground(new Color(18, 53, 36));
         closeButton.setFont(new Font("Calibri", Font.PLAIN, 16));
         closeButton.setForeground(new Color(239, 227, 194));
@@ -90,6 +100,13 @@ public class PublicationListView extends JFrame {
         });
 
         bottomPanel.add(closeButton);
+
+        // Count label
+        JLabel countLabel = new JLabel("Nombre total de publications trouvees: " + totalCount);
+        countLabel.setFont(new Font("Calibri", Font.PLAIN, 16));
+        countLabel.setForeground(new Color(18, 53, 36));
+        bottomPanel.add(countLabel);
+
         add(bottomPanel, BorderLayout.SOUTH);
 
         setVisible(true);

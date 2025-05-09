@@ -85,26 +85,14 @@ private void populateFields(String titreStr, Date date, String typeStr) {
     private void initComponents() {
 
         option = new javax.swing.JPanel();
-        B_Lire = new javax.swing.JButton();
         B_Infos = new javax.swing.JButton();
+        B_Lire = new javax.swing.JButton();
         type = new javax.swing.JTextField();
         titre = new javax.swing.JTextField();
         titre2 = new javax.swing.JTextField();
 
-        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(18, 53, 36), 2, true));
         setPreferredSize(new java.awt.Dimension(990, 120));
-
-        B_Lire.setBackground(new java.awt.Color(18, 53, 36));
-        B_Lire.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        B_Lire.setForeground(new java.awt.Color(239, 227, 194));
-        B_Lire.setText("Lire");
-        B_Lire.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        B_Lire.setFocusable(false);
-        B_Lire.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B_LireActionPerformed(evt);
-            }
-        });
 
         B_Infos.setBackground(new java.awt.Color(18, 53, 36));
         B_Infos.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -118,25 +106,31 @@ private void populateFields(String titreStr, Date date, String typeStr) {
             }
         });
 
+        B_Lire.setBackground(new java.awt.Color(18, 53, 36));
+        B_Lire.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        B_Lire.setForeground(new java.awt.Color(239, 227, 194));
+        B_Lire.setText("Lire");
+        B_Lire.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        B_Lire.setFocusable(false);
+        B_Lire.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_LireActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout optionLayout = new javax.swing.GroupLayout(option);
         option.setLayout(optionLayout);
         optionLayout.setHorizontalGroup(
             optionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(optionLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(optionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(B_Lire, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                    .addComponent(B_Infos, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
-                .addGap(6, 6, 6))
+            .addComponent(B_Lire, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(B_Infos, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
         );
         optionLayout.setVerticalGroup(
             optionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(optionLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(B_Lire, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(B_Infos, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(B_Lire, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(B_Infos, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
         );
 
         type.setBackground(new java.awt.Color(239, 227, 194));
@@ -150,7 +144,7 @@ private void populateFields(String titreStr, Date date, String typeStr) {
         });
 
         titre.setBackground(new java.awt.Color(239, 227, 194));
-        titre.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        titre.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         titre.setText("Titre");
         titre.setFocusable(false);
         titre.addActionListener(new java.awt.event.ActionListener() {
@@ -174,28 +168,30 @@ private void populateFields(String titreStr, Date date, String typeStr) {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(titre, javax.swing.GroupLayout.DEFAULT_SIZE, 880, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(titre2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(titre, javax.swing.GroupLayout.DEFAULT_SIZE, 886, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(option, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(option, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(titre2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(titre, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(option, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(titre2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(titre, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(option, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11))
         );
     }// </editor-fold>//GEN-END:initComponents
