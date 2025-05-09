@@ -301,6 +301,7 @@ private Utilisateur U;
                 "Memoire enregistrée avec succès !",
                 "Succès",
                 JOptionPane.INFORMATION_MESSAGE);
+         resetForm();
 
         // 5. Fermer la fenêtre (ou rediriger)
 
@@ -318,6 +319,23 @@ private Utilisateur U;
 
     }//GEN-LAST:event_B_enregistrerActionPerformed
 
+    private void resetForm() {
+    // Clear all the text fields
+    TF_titre.setText("");
+    TA_resume.setText("");
+    TF_etudiant.setText("");
+    TF_Encadran.setText("");
+    TF_date.setText("");
+    
+    // Reset the PDF button text
+    B_pdf.setText("PDF");
+
+    // Reset the selected file
+    selectedPdfFile = null;
+}
+
+    
+    
     private void B_pdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_pdfActionPerformed
         // TODO add your handling code here:
             JFileChooser fileChooser = new JFileChooser();

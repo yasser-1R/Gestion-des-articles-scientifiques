@@ -61,9 +61,6 @@ public class ProfileView extends javax.swing.JFrame {
         jLabellogin = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButtonChangerMdp1 = new javax.swing.JButton();
-        jPasswordFieldAncienMdp1 = new javax.swing.JPasswordField();
-        jPasswordFieldNouveauMdp1 = new javax.swing.JPasswordField();
-        jPasswordFieldConfirmMdp1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1050, 600));
@@ -144,28 +141,6 @@ public class ProfileView extends javax.swing.JFrame {
             }
         });
 
-        jPasswordFieldAncienMdp1.setBackground(new java.awt.Color(239, 227, 194));
-        jPasswordFieldAncienMdp1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jPasswordFieldAncienMdp1.setForeground(new java.awt.Color(0, 0, 0));
-        jPasswordFieldAncienMdp1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordFieldAncienMdp1ActionPerformed(evt);
-            }
-        });
-
-        jPasswordFieldNouveauMdp1.setBackground(new java.awt.Color(239, 227, 194));
-        jPasswordFieldNouveauMdp1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jPasswordFieldNouveauMdp1.setForeground(new java.awt.Color(0, 0, 0));
-
-        jPasswordFieldConfirmMdp1.setBackground(new java.awt.Color(239, 227, 194));
-        jPasswordFieldConfirmMdp1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jPasswordFieldConfirmMdp1.setForeground(new java.awt.Color(0, 0, 0));
-        jPasswordFieldConfirmMdp1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordFieldConfirmMdp1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -180,8 +155,7 @@ public class ProfileView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonChangerMdp1)
-                        .addGap(723, 723, 723)
-                        .addComponent(jButtonChangerMdp))
+                        .addGap(805, 805, 805))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -196,10 +170,8 @@ public class ProfileView extends javax.swing.JFrame {
                             .addComponent(jPasswordFieldNouveauMdp)
                             .addComponent(jPasswordFieldAncienMdp)
                             .addComponent(jLabellogin, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
-                            .addComponent(jLabelNom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPasswordFieldAncienMdp1)
-                            .addComponent(jPasswordFieldNouveauMdp1)
-                            .addComponent(jPasswordFieldConfirmMdp1))))
+                            .addComponent(jLabelNom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jButtonChangerMdp))
                 .addContainerGap(146, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -213,35 +185,29 @@ public class ProfileView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelNom))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabellogin, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPasswordFieldAncienMdp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPasswordFieldNouveauMdp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jPasswordFieldConfirmMdp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(jPasswordFieldAncienMdp1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(jPasswordFieldNouveauMdp1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addComponent(jPasswordFieldConfirmMdp1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonChangerMdp)
-                    .addComponent(jButtonChangerMdp1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonChangerMdp)
+                .addGap(87, 87, 87)
+                .addComponent(jButtonChangerMdp1)
+                .addGap(48, 48, 48))
         );
 
         pack();
@@ -292,14 +258,6 @@ public class ProfileView extends javax.swing.JFrame {
     this.dispose();
     }//GEN-LAST:event_jButtonChangerMdp1ActionPerformed
 
-    private void jPasswordFieldAncienMdp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldAncienMdp1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordFieldAncienMdp1ActionPerformed
-
-    private void jPasswordFieldConfirmMdp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldConfirmMdp1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordFieldConfirmMdp1ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -348,11 +306,8 @@ public class ProfileView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelNom;
     private javax.swing.JLabel jLabellogin;
     private javax.swing.JPasswordField jPasswordFieldAncienMdp;
-    private javax.swing.JPasswordField jPasswordFieldAncienMdp1;
     private javax.swing.JPasswordField jPasswordFieldConfirmMdp;
-    private javax.swing.JPasswordField jPasswordFieldConfirmMdp1;
     private javax.swing.JPasswordField jPasswordFieldNouveauMdp;
-    private javax.swing.JPasswordField jPasswordFieldNouveauMdp1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }
