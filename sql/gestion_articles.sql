@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2025 at 06:02 PM
+-- Generation Time: May 10, 2025 at 01:08 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -68,7 +68,8 @@ INSERT INTO `articles` (`id`, `chemin_pdf`, `date_publication`, `resume`, `titre
 (31, 'pdfs\\article18.pdf', '2024-03-28', 'Research on wireless sensor networks for environmental monitoring applications.', 'Wireless Sensor Networks in Environmental Monitoring', 9),
 (32, 'pdfs\\article19.pdf', '2024-04-10', 'This study presents a novel approach to augmented reality for industrial maintenance.', 'Augmented Reality Systems for Industrial Maintenance', 10),
 (33, 'pdfs\\article20.pdf', '2024-04-25', 'An investigation into data privacy concerns in social media platforms and proposed frameworks.', 'Data Privacy Frameworks for Social Media Platforms', 8),
-(34, 'pdfs\\article21.pdf', '2024-05-01', 'This paper discusses edge computing architectures for latency-sensitive applications.', 'Edge Computing for Latency-Critical Applications', 9);
+(34, 'pdfs\\article21.pdf', '2024-05-01', 'This paper discusses edge computing architectures for latency-sensitive applications.', 'Edge Computing for Latency-Critical Applications', 9),
+(35, 'pdfs\\article35.pdf', '2000-12-12', 'rrrrrr', 'XXXX', 9);
 
 -- --------------------------------------------------------
 
@@ -113,7 +114,10 @@ INSERT INTO `article_journal` (`id_article`, `id_journal`) VALUES
 (18, 17),
 (19, 18),
 (20, 16),
-(21, 17);
+(21, 17),
+(35, 24),
+(35, 21),
+(35, 20);
 
 -- --------------------------------------------------------
 
@@ -186,7 +190,8 @@ INSERT INTO `article_professeur` (`id_article`, `id_professeur`) VALUES
 (20, 22),
 (20, 23),
 (21, 24),
-(21, 25);
+(21, 25),
+(35, 21);
 
 -- --------------------------------------------------------
 
@@ -232,7 +237,8 @@ INSERT INTO `brevets` (`id`, `chemin_pdf`, `date_depot`, `description`, `statut`
 (29, 'pdfs\\brevet17.pdf', '2024-03-05', 'An AI algorithm for automated code optimization and performance enhancement.', 'Pending', 'AI Code Optimization Algorithm', 9),
 (30, 'pdfs\\brevet18.pdf', '2024-03-28', 'A robotics system for automated quality control in manufacturing.', 'Approved', 'Automated QC Robotics System', 10),
 (31, 'pdfs\\brevet19.pdf', '2024-04-18', 'A machine learning approach for personalized learning content delivery.', 'Under Review', 'Personalized Learning Content System', 8),
-(32, 'pdfs\\brevet20.pdf', '2024-04-30', 'A system for real-time language translation using neural networks.', 'Pending', 'Neural Network Translation System', 9);
+(32, 'pdfs\\brevet20.pdf', '2024-04-30', 'A system for real-time language translation using neural networks.', 'Pending', 'Neural Network Translation System', 9),
+(33, 'pdfs\\brevet33.pdf', '2025-12-12', 'rrrrrrr', 'ac', 'fffffff', 9);
 
 -- --------------------------------------------------------
 
@@ -289,7 +295,14 @@ INSERT INTO `brevet_professeur` (`id_brevet`, `id_professeur`) VALUES
 (19, 22),
 (19, 23),
 (20, 24),
-(20, 25);
+(20, 25),
+(33, 26),
+(33, 22),
+(33, 25),
+(33, 27),
+(33, 23),
+(33, 24),
+(33, 21);
 
 -- --------------------------------------------------------
 
@@ -674,9 +687,7 @@ INSERT INTO `utilisateurs` (`id`, `nom_complet`, `login`, `mot_de_passe`, `role`
 (10, 'Aya Elhamraoui', 'ayaU', '1234', 'utilisateur'),
 (11, 'Aya Admin', 'ayaA', '1234', 'admin'),
 (12, 'Mohamed Daif', 'mohamedU', '1234', 'utilisateur'),
-(13, 'Mohamed Admin', 'mohamedA', '1234', 'admin'),
-(14, 'U', 'U', '1', 'utilisateur'),
-(15, 'A', 'A', '1', 'admin');
+(13, 'Mohamed Admin', 'mohamedA', '1234', 'admin');
 
 -- --------------------------------------------------------
 
@@ -814,13 +825,13 @@ ALTER TABLE `utilisateurs`
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `brevets`
 --
 ALTER TABLE `brevets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `conferences`
