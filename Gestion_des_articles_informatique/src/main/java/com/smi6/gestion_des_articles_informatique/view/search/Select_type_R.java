@@ -421,7 +421,7 @@ this.dispose();        // TODO add your handling code here:
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
-        Rechercher R = new Rechercher(U);
+        Search_All R = new Search_All(U);
 R.setVisible(true);
 this.dispose(); 
     }//GEN-LAST:event_jButton11ActionPerformed

@@ -2,13 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.smi6.gestion_des_articles_informatique.view.connexion_home;
+package com.smi6.gestion_des_articles_informatique.gestionAdmin;
 
 import com.smi6.gestion_des_articles_informatique.model.Utilisateur;
-import dao.UtilisateurDAO;
+import java.awt.Image;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,6 +24,8 @@ public class GestionUtilisateurView extends javax.swing.JFrame {
     public GestionUtilisateurView() {
         initComponents();
        chargerUtilisateurs();
+               this.setLocationRelativeTo(null);
+
     }
 
 
@@ -63,9 +66,9 @@ public class GestionUtilisateurView extends javax.swing.JFrame {
         btnAjouter = new javax.swing.JButton();
         btnSupprimer = new javax.swing.JButton();
         btnModifier = new javax.swing.JButton();
+        B_retourner1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1050, 600));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -101,6 +104,18 @@ public class GestionUtilisateurView extends javax.swing.JFrame {
             }
         });
 
+        B_retourner1.setBackground(new java.awt.Color(18, 53, 36));
+        B_retourner1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        B_retourner1.setForeground(new java.awt.Color(239, 227, 194));
+        B_retourner1.setText("Fermer");
+        B_retourner1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        B_retourner1.setFocusable(false);
+        B_retourner1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_retourner1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -119,6 +134,10 @@ public class GestionUtilisateurView extends javax.swing.JFrame {
                         .addGap(200, 200, 200)
                         .addComponent(btnModifier, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(207, 207, 207))))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(B_retourner1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,8 +149,26 @@ public class GestionUtilisateurView extends javax.swing.JFrame {
                     .addComponent(btnAjouter)
                     .addComponent(btnSupprimer)
                     .addComponent(btnModifier))
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addComponent(B_retourner1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
+
+        ImageIcon originalIcon11 = new ImageIcon(getClass().getResource("/icones/Retour1.png"));
+        Image scaledImage11 = originalIcon11.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon11 = new ImageIcon(scaledImage11);
+
+        // Appliquer l’icône
+        B_retourner1.setIcon(resizedIcon11);
+        B_retourner1.setIconTextGap(10); // Espace entre icône et texte
+
+        // Centrage vertical du texte + icône
+        B_retourner1.setHorizontalAlignment(SwingConstants.CENTER); // Centre tout (icône + texte)
+        B_retourner1.setVerticalAlignment(SwingConstants.CENTER);
+
+        // Pour éviter que le texte soit décalé par la taille du bouton
+        B_retourner1.setHorizontalTextPosition(SwingConstants.RIGHT); // Texte à droite de l’icône
+        B_retourner1.setVerticalTextPosition(SwingConstants.CENTER);  // Aligné verticalement
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -201,42 +238,48 @@ public class GestionUtilisateurView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnSupprimerActionPerformed
 
+    private void B_retourner1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_retourner1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_B_retourner1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GestionUtilisateurView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GestionUtilisateurView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GestionUtilisateurView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GestionUtilisateurView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GestionUtilisateurView().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(GestionUtilisateurView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(GestionUtilisateurView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(GestionUtilisateurView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(GestionUtilisateurView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new GestionUtilisateurView().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton B_retourner1;
     private javax.swing.JButton btnAjouter;
     private javax.swing.JButton btnModifier;
     private javax.swing.JButton btnSupprimer;

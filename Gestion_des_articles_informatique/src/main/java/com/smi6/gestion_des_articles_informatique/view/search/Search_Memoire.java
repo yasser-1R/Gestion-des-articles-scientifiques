@@ -1,5 +1,6 @@
 package com.smi6.gestion_des_articles_informatique.view.search;
 
+import com.smi6.gestion_des_articles_informatique.view.results.PublicationListView;
 import com.smi6.gestion_des_articles_informatique.controller.search.SearchArticleController;
 import com.smi6.gestion_des_articles_informatique.controller.search.SearchConferenceController;
 import com.smi6.gestion_des_articles_informatique.controller.search.SearchMemoireController;
@@ -371,7 +372,7 @@ dialog.setVisible(true); // will block until closed
     private void B_SelectEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_SelectEActionPerformed
         String currentEncadrant = TF_Encadran.getText().trim();
 
-        SelectEncadrantPanel_R panel = new SelectEncadrantPanel_R(currentEncadrant);
+        SelectEncadrantPanel_R2 panel = new SelectEncadrantPanel_R2(currentEncadrant);
         JDialog dialog = new JDialog(this, "Choisir l'encadrant", true);
         dialog.getContentPane().add(panel);
         dialog.pack();

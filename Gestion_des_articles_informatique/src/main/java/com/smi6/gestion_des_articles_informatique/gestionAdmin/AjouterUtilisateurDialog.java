@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package com.smi6.gestion_des_articles_informatique.view.connexion_home;
+package com.smi6.gestion_des_articles_informatique.gestionAdmin;
 
 import com.smi6.gestion_des_articles_informatique.model.Utilisateur;
-import dao.UtilisateurDAO;
+import com.smi6.gestion_des_articles_informatique.gestionAdmin.UtilisateurDAO;
 import javax.swing.JOptionPane;
 
 /**

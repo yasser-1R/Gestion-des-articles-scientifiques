@@ -1,4 +1,4 @@
-package com.smi6.gestion_des_articles_informatique.view.search;
+package com.smi6.gestion_des_articles_informatique.view.results;
 
 import com.smi6.gestion_des_articles_informatique.model.*;
 

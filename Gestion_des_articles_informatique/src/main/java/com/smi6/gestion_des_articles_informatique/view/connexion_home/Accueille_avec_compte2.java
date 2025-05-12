@@ -5,7 +5,7 @@
 package com.smi6.gestion_des_articles_informatique.view.connexion_home;
 
 import com.smi6.gestion_des_articles_informatique.model.Utilisateur;
-import com.smi6.gestion_des_articles_informatique.view.search.Rechercher;
+import com.smi6.gestion_des_articles_informatique.view.search.Search_All;
 import com.smi6.gestion_des_articles_informatique.view.search.Select_type_R;
 import com.smi6.gestion_des_articles_informatique.view.statistiques.Professeur_Resume;
 import com.smi6.gestion_des_articles_informatique.view.uploads.Select_type;
@@ -232,7 +232,7 @@ private Utilisateur U;
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Rechercher R = new Rechercher(this.U);
+        Search_All R = new Search_All(this.U);
         R.setVisible(true);
         this.dispose();
 

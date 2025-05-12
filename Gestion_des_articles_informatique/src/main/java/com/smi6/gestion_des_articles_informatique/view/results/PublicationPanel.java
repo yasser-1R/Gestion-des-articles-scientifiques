@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.smi6.gestion_des_articles_informatique.view.search;
+package com.smi6.gestion_des_articles_informatique.view.results;
 
 import com.smi6.gestion_des_articles_informatique.model.Article;
 import com.smi6.gestion_des_articles_informatique.model.Brevet;
@@ -10,7 +10,7 @@ import com.smi6.gestion_des_articles_informatique.model.Conference;
 import com.smi6.gestion_des_articles_informatique.model.Memoire;
 import com.smi6.gestion_des_articles_informatique.model.RapportRecherche;
 import com.smi6.gestion_des_articles_informatique.model.These;
-import com.smi6.gestion_des_articles_informatique.view.search.PublicationDetailsDialog;
+import com.smi6.gestion_des_articles_informatique.view.results.PublicationDetailsDialog;
 import java.awt.Image;
 import java.util.Date;
 import javax.swing.ImageIcon;

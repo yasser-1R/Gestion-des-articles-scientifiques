@@ -16,7 +16,7 @@ import com.smi6.gestion_des_articles_informatique.view.connexion_home.Accueille_
 import com.smi6.gestion_des_articles_informatique.view.connexion_home.Accueille_admin2;
 import com.smi6.gestion_des_articles_informatique.view.connexion_home.Accueille_sans_compte2;
 import com.smi6.gestion_des_articles_informatique.model.Utilisateur;
-import com.smi6.gestion_des_articles_informatique.view.search.PublicationListView;
+import com.smi6.gestion_des_articles_informatique.view.results.PublicationListView;
 import com.smi6.gestion_des_articles_informatique.view.search.SelectProfesseursPanel_R;
 import com.smi6.gestion_des_articles_informatique.view.search.Select_type_R;
 import com.smi6.gestion_des_articles_informatique.view.uploads.SelectProfesseursPanel;
@@ -37,12 +37,12 @@ import javax.swing.SwingConstants;
  *
  * @author AYA HM1
  */
-public class Rechercher extends javax.swing.JFrame {
+public class Search_All extends javax.swing.JFrame {
 private Utilisateur U;
     /**
      * Creates new form Cherche
      */
-    public Rechercher(Utilisateur U) {
+    public Search_All(Utilisateur U) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.U = U;
@@ -72,7 +72,6 @@ private Utilisateur U;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(239, 227, 194));
-        setPreferredSize(new java.awt.Dimension(1050, 600));
 
         TF_date2.setBackground(new java.awt.Color(239, 227, 194));
         TF_date2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N

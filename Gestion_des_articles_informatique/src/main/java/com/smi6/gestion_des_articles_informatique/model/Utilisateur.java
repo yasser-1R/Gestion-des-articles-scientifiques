@@ -5,6 +5,16 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "utilisateurs")
 public class Utilisateur {
+    
+    
+    public Utilisateur(Integer id, String nomComplet, String login, String motDePasse, Role role) {
+    this.id = id;
+    this.nomComplet = nomComplet;
+    this.login = login;
+    this.motDePasse = motDePasse;
+    this.role = role;
+}
+    public  Utilisateur(){}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

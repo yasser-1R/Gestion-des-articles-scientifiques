@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package dao;
+package com.smi6.gestion_des_articles_informatique.gestionAdmin;
 
 import com.smi6.gestion_des_articles_informatique.model.Utilisateur;
 import jakarta.persistence.EntityManager;

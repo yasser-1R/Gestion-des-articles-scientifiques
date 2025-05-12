@@ -3,7 +3,7 @@ package com.smi6.gestion_des_articles_informatique.view.statistiques;
 import com.smi6.gestion_des_articles_informatique.controller.search.GeneralSearchController;
 import com.smi6.gestion_des_articles_informatique.model.*;
 import com.smi6.gestion_des_articles_informatique.view.connexion_home.*;
-import com.smi6.gestion_des_articles_informatique.view.search.PublicationListView;
+import com.smi6.gestion_des_articles_informatique.view.results.PublicationListView;
 import jakarta.persistence.*;
 
 import javax.swing.*;

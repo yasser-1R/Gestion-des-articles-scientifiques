@@ -1,5 +1,6 @@
 package com.smi6.gestion_des_articles_informatique.view.search;
 
+import com.smi6.gestion_des_articles_informatique.view.results.PublicationListView;
 import com.smi6.gestion_des_articles_informatique.controller.search.SearchArticleController;
 import com.smi6.gestion_des_articles_informatique.controller.search.SearchConferenceController;
 import com.smi6.gestion_des_articles_informatique.model.Article;

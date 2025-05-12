@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package com.smi6.gestion_des_articles_informatique.view.connexion_home;
+package com.smi6.gestion_des_articles_informatique.gestionAdmin;
 
 import com.smi6.gestion_des_articles_informatique.model.Utilisateur;
-import dao.UtilisateurDAO;
+import com.smi6.gestion_des_articles_informatique.gestionAdmin.UtilisateurDAO;
 import javax.swing.JOptionPane;
 
 /**
@@ -53,7 +53,6 @@ private Utilisateur utilisateur;
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1050, 600));
 
         comboRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
