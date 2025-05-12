@@ -3,6 +3,9 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[1120, 600]"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -24,58 +27,54 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace pref="17" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="L_titre" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
-                              <Component id="L_upload" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
-                              <Component id="L_Discription" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="L_Statut" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="L_Discription" alignment="0" pref="150" max="32767" attributes="0"/>
+                          <Component id="L_titre" alignment="0" max="32767" attributes="0"/>
+                          <Component id="L_upload" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="B_pdf" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="TF_titre" alignment="0" min="-2" pref="922" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane1" alignment="0" min="-2" pref="922" max="-2" attributes="0"/>
-                                  <Component id="TF_etudiant" alignment="0" min="-2" pref="922" max="-2" attributes="0"/>
-                              </Group>
+                          <Component id="TF_titre" min="-2" pref="939" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" pref="939" max="-2" attributes="0"/>
+                          <Component id="B_pdf" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="B_retourner1" min="-2" pref="165" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="B_enregistrer" min="-2" pref="165" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="L_Encadran" alignment="0" max="32767" attributes="0"/>
+                          <Component id="L_publierle" alignment="0" pref="150" max="32767" attributes="0"/>
+                          <Component id="L_Statut" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="TF_etudiant" min="-2" pref="939" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                           </Group>
-                      </Group>
-                  </Group>
-                  <Group type="103" alignment="1" groupAlignment="1" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="B_retourner1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="B_enregistrer" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="L_Encadran" max="32767" attributes="0"/>
-                              <Component id="L_publierle" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="TF_date" min="-2" pref="129" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jLabel1" min="-2" pref="137" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="B_SelectE" min="-2" pref="204" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="TF_Encadran" min="-2" pref="700" max="-2" attributes="0"/>
+                                  <Component id="TF_date" min="-2" pref="129" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel1" min="-2" pref="91" max="-2" attributes="0"/>
+                                  <Component id="TF_Encadran" min="-2" pref="718" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="16" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -114,12 +113,12 @@
                   <Component id="TF_date" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
+              <EmptySpace pref="154" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="B_enregistrer" alignment="3" min="-2" pref="59" max="-2" attributes="0"/>
-                  <Component id="B_retourner1" alignment="3" min="-2" pref="59" max="-2" attributes="0"/>
+                  <Component id="B_enregistrer" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="B_retourner1" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="45" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -135,6 +134,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Upload"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="ImageIcon originalIcon = new ImageIcon(getClass().getResource(&quot;/icones/upload.png&quot;));&#xa;Image scaledImage = originalIcon.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);&#xa;ImageIcon resizedIcon = new ImageIcon(scaledImage);&#xa;&#xa;// Appliquer l&#x2019;ic&#xf4;ne&#xa;L_upload.setIcon(resizedIcon);&#xa;L_upload.setIconTextGap(10); // Espace entre ic&#xf4;ne et texte&#xa;&#xa;// Centrage vertical du texte + ic&#xf4;ne&#xa;L_upload.setHorizontalAlignment(SwingConstants.CENTER);&#xa;L_upload.setVerticalAlignment(SwingConstants.CENTER);&#xa;&#xa;// Position du texte par rapport &#xe0; l&#x2019;ic&#xf4;ne&#xa;L_upload.setHorizontalTextPosition(SwingConstants.RIGHT); &#xa;L_upload.setVerticalTextPosition(SwingConstants.CENTER);"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="L_titre">
       <Properties>
@@ -146,6 +148,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Titre"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="ImageIcon originalIcon1 = new ImageIcon(getClass().getResource(&quot;/icones/text.png&quot;));&#xa;Image scaledImage1 = originalIcon1.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);&#xa;ImageIcon resizedIcon1 = new ImageIcon(scaledImage1);&#xa;&#xa;// Appliquer l&#x2019;ic&#xf4;ne&#xa;L_titre.setIcon(resizedIcon1);&#xa;L_titre.setIconTextGap(10); // Espace entre ic&#xf4;ne et texte&#xa;&#xa;// Centrage vertical du texte + ic&#xf4;ne&#xa;L_titre.setHorizontalAlignment(SwingConstants.CENTER);&#xa;L_titre.setVerticalAlignment(SwingConstants.CENTER);&#xa;&#xa;// Position du texte par rapport &#xe0; l&#x2019;ic&#xf4;ne&#xa;L_titre.setHorizontalTextPosition(SwingConstants.RIGHT); &#xa;L_titre.setVerticalTextPosition(SwingConstants.CENTER);"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="L_Discription">
       <Properties>
@@ -157,6 +162,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Resume     "/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="ImageIcon originalIcon2 = new ImageIcon(getClass().getResource(&quot;/icones/resume.png&quot;));&#xa;Image scaledImage2 = originalIcon2.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);&#xa;ImageIcon resizedIcon2 = new ImageIcon(scaledImage2);&#xa;&#xa;// Appliquer l&#x2019;ic&#xf4;ne&#xa;L_Discription.setIcon(resizedIcon2);&#xa;L_Discription.setIconTextGap(10); // Espace entre ic&#xf4;ne et texte&#xa;&#xa;// Centrage vertical du texte + ic&#xf4;ne&#xa;L_Discription.setHorizontalAlignment(SwingConstants.CENTER);&#xa;L_Discription.setVerticalAlignment(SwingConstants.CENTER);&#xa;&#xa;// Position du texte par rapport &#xe0; l&#x2019;ic&#xf4;ne&#xa;L_Discription.setHorizontalTextPosition(SwingConstants.RIGHT); &#xa;L_Discription.setVerticalTextPosition(SwingConstants.CENTER);"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="L_Encadran">
       <Properties>
@@ -166,8 +174,11 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="24" green="35" red="12" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Encadran  "/>
+        <Property name="text" type="java.lang.String" value="Encadrant"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="ImageIcon originalIcon99 = new ImageIcon(getClass().getResource(&quot;/icones/Profile.png&quot;));&#xa;Image scaledImage99 = originalIcon99.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);&#xa;ImageIcon resizedIcon99 = new ImageIcon(scaledImage99);&#xa;&#xa;// Appliquer l&#x2019;ic&#xf4;ne&#xa;L_Encadran.setIcon(resizedIcon99);&#xa;L_Encadran.setIconTextGap(10); // Espace entre ic&#xf4;ne et texte&#xa;&#xa;// Centrage vertical du texte + ic&#xf4;ne&#xa;L_Encadran.setHorizontalAlignment(SwingConstants.CENTER);&#xa;L_Encadran.setVerticalAlignment(SwingConstants.CENTER);&#xa;&#xa;// Position du texte par rapport &#xe0; l&#x2019;ic&#xf4;ne&#xa;L_Encadran.setHorizontalTextPosition(SwingConstants.RIGHT); &#xa;L_Encadran.setVerticalTextPosition(SwingConstants.CENTER);"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="L_Statut">
       <Properties>
@@ -179,6 +190,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Etudiant"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="ImageIcon originalIcon31 = new ImageIcon(getClass().getResource(&quot;/icones/etudiant.png&quot;));&#xa;Image scaledImage31 = originalIcon31.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);&#xa;ImageIcon resizedIcon31 = new ImageIcon(scaledImage31);&#xa;&#xa;// Appliquer l&#x2019;ic&#xf4;ne&#xa;L_Statut.setIcon(resizedIcon31);&#xa;L_Statut.setIconTextGap(10); // Espace entre ic&#xf4;ne et texte&#xa;&#xa;// Centrage vertical du texte + ic&#xf4;ne&#xa;L_Statut.setHorizontalAlignment(SwingConstants.CENTER);&#xa;L_Statut.setVerticalAlignment(SwingConstants.CENTER);&#xa;&#xa;// Position du texte par rapport &#xe0; l&#x2019;ic&#xf4;ne&#xa;L_Statut.setHorizontalTextPosition(SwingConstants.RIGHT); &#xa;L_Statut.setVerticalTextPosition(SwingConstants.CENTER);"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="L_publierle">
       <Properties>
@@ -190,6 +204,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Soutenue le"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="ImageIcon originalIcon33 = new ImageIcon(getClass().getResource(&quot;/icones/publie.png&quot;));&#xa;Image scaledImage33 = originalIcon33.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);&#xa;ImageIcon resizedIcon33 = new ImageIcon(scaledImage33);&#xa;&#xa;// Appliquer l&#x2019;ic&#xf4;ne&#xa;L_publierle.setIcon(resizedIcon33);&#xa;L_publierle.setIconTextGap(10); // Espace entre ic&#xf4;ne et texte&#xa;&#xa;// Centrage vertical du texte + ic&#xf4;ne&#xa;L_publierle.setHorizontalAlignment(SwingConstants.CENTER);&#xa;L_publierle.setVerticalAlignment(SwingConstants.CENTER);&#xa;&#xa;// Position du texte par rapport &#xe0; l&#x2019;ic&#xf4;ne&#xa;L_publierle.setHorizontalTextPosition(SwingConstants.RIGHT); &#xa;L_publierle.setVerticalTextPosition(SwingConstants.CENTER);"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="B_pdf">
       <Properties>
@@ -290,7 +307,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="c2" green="e3" red="ef" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Select Encadran"/>
+        <Property name="text" type="java.lang.String" value="Select Encadrant"/>
         <Property name="focusable" type="boolean" value="false"/>
       </Properties>
       <Events>
@@ -314,6 +331,9 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="B_enregistrerActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="ImageIcon originalIcon111 = new ImageIcon(getClass().getResource(&quot;/icones/enregistre.png&quot;));&#xa;Image scaledImage111 = originalIcon111.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);&#xa;ImageIcon resizedIcon111 = new ImageIcon(scaledImage111);&#xa;&#xa;// Appliquer l&#x2019;ic&#xf4;ne&#xa;B_enregistrer.setIcon(resizedIcon111);&#xa;B_enregistrer.setIconTextGap(10); // Espace entre ic&#xf4;ne et texte&#xa;&#xa;// Centrage vertical du texte + ic&#xf4;ne&#xa;B_enregistrer.setHorizontalAlignment(SwingConstants.CENTER); // Centre tout (ic&#xf4;ne + texte)&#xa;B_enregistrer.setVerticalAlignment(SwingConstants.CENTER);&#xa;&#xa;// Pour &#xe9;viter que le texte soit d&#xe9;cal&#xe9; par la taille du bouton&#xa;B_enregistrer.setHorizontalTextPosition(SwingConstants.RIGHT); // Texte &#xe0; droite de l&#x2019;ic&#xf4;ne&#xa;B_enregistrer.setVerticalTextPosition(SwingConstants.CENTER);  // Align&#xe9; verticalement"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
@@ -340,6 +360,9 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="B_retourner1ActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="ImageIcon originalIcon11 = new ImageIcon(getClass().getResource(&quot;/icones/Retour1.png&quot;));&#xa;Image scaledImage11 = originalIcon11.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);&#xa;ImageIcon resizedIcon11 = new ImageIcon(scaledImage11);&#xa;&#xa;// Appliquer l&#x2019;ic&#xf4;ne&#xa;B_retourner1.setIcon(resizedIcon11);&#xa;B_retourner1.setIconTextGap(10); // Espace entre ic&#xf4;ne et texte&#xa;&#xa;// Centrage vertical du texte + ic&#xf4;ne&#xa;B_retourner1.setHorizontalAlignment(SwingConstants.CENTER); // Centre tout (ic&#xf4;ne + texte)&#xa;B_retourner1.setVerticalAlignment(SwingConstants.CENTER);&#xa;&#xa;// Pour &#xe9;viter que le texte soit d&#xe9;cal&#xe9; par la taille du bouton&#xa;B_retourner1.setHorizontalTextPosition(SwingConstants.RIGHT); // Texte &#xe0; droite de l&#x2019;ic&#xf4;ne&#xa;B_retourner1.setVerticalTextPosition(SwingConstants.CENTER);  // Align&#xe9; verticalement"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

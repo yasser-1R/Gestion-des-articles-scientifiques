@@ -7,8 +7,11 @@ import com.smi6.gestion_des_articles_informatique.model.Utilisateur;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 
 
 /**
@@ -63,7 +66,6 @@ public class ProfileView extends javax.swing.JFrame {
         jButtonChangerMdp1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1050, 600));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
@@ -73,10 +75,10 @@ public class ProfileView extends javax.swing.JFrame {
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel1.setText("Nom_Complet");
+        jLabel1.setText("Nom_Complet :");
 
         jButtonChangerMdp.setBackground(new java.awt.Color(18, 53, 36));
-        jButtonChangerMdp.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jButtonChangerMdp.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jButtonChangerMdp.setForeground(new java.awt.Color(255, 255, 255));
         jButtonChangerMdp.setText("Changer");
         jButtonChangerMdp.addActionListener(new java.awt.event.ActionListener() {
@@ -86,17 +88,16 @@ public class ProfileView extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel4.setText("Entrer le nouvelle mots de passe");
+        jLabel4.setText("Entrer le nouvelle mots de passe :");
 
         jLabel5.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel5.setText("Entrer l'ancien mots de passe");
+        jLabel5.setText("Entrer l'ancien mots de passe :");
 
         jLabel6.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel6.setText("Confirmation du nouveau mot de passe ");
+        jLabel6.setText("Confirmation du nouveau mot de passe : ");
 
         jPasswordFieldConfirmMdp.setBackground(new java.awt.Color(239, 227, 194));
         jPasswordFieldConfirmMdp.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jPasswordFieldConfirmMdp.setForeground(new java.awt.Color(0, 0, 0));
         jPasswordFieldConfirmMdp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordFieldConfirmMdpActionPerformed(evt);
@@ -105,11 +106,9 @@ public class ProfileView extends javax.swing.JFrame {
 
         jPasswordFieldNouveauMdp.setBackground(new java.awt.Color(239, 227, 194));
         jPasswordFieldNouveauMdp.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jPasswordFieldNouveauMdp.setForeground(new java.awt.Color(0, 0, 0));
 
         jPasswordFieldAncienMdp.setBackground(new java.awt.Color(239, 227, 194));
         jPasswordFieldAncienMdp.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jPasswordFieldAncienMdp.setForeground(new java.awt.Color(0, 0, 0));
         jPasswordFieldAncienMdp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordFieldAncienMdpActionPerformed(evt);
@@ -117,7 +116,7 @@ public class ProfileView extends javax.swing.JFrame {
         });
 
         jLabel7.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel7.setText("Login");
+        jLabel7.setText("Login :");
 
         jLabelNom.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabelNom.setForeground(new java.awt.Color(18, 53, 36));
@@ -129,10 +128,10 @@ public class ProfileView extends javax.swing.JFrame {
 
         jLabel3.setBackground(new java.awt.Color(18, 53, 36));
         jLabel3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel3.setText("changer le mot de passe");
+        jLabel3.setText("changer le mot de passe :");
 
         jButtonChangerMdp1.setBackground(new java.awt.Color(18, 53, 36));
-        jButtonChangerMdp1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jButtonChangerMdp1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jButtonChangerMdp1.setForeground(new java.awt.Color(255, 255, 255));
         jButtonChangerMdp1.setText("Retourner");
         jButtonChangerMdp1.addActionListener(new java.awt.event.ActionListener() {
@@ -145,23 +144,15 @@ public class ProfileView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonChangerMdp1)
-                        .addGap(805, 805, 805))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(247, 247, 247)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(46, 46, 46)
@@ -171,8 +162,21 @@ public class ProfileView extends javax.swing.JFrame {
                             .addComponent(jPasswordFieldAncienMdp)
                             .addComponent(jLabellogin, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
                             .addComponent(jLabelNom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jButtonChangerMdp))
-                .addContainerGap(146, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButtonChangerMdp, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButtonChangerMdp1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(151, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(361, 361, 361)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,34 +185,95 @@ public class ProfileView extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelNom))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabellogin, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPasswordFieldAncienMdp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPasswordFieldNouveauMdp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jPasswordFieldConfirmMdp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButtonChangerMdp)
-                .addGap(87, 87, 87)
-                .addComponent(jButtonChangerMdp1)
-                .addGap(48, 48, 48))
+                .addComponent(jButtonChangerMdp, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jButtonChangerMdp1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55))
         );
+
+        ImageIcon originalIcon1 = new ImageIcon(getClass().getResource("/icones/Profile.png"));
+        Image scaledImage1 = originalIcon1.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon1 = new ImageIcon(scaledImage1);
+
+        // Appliquer l’icône
+        jLabel2.setIcon(resizedIcon1);
+        jLabel2.setIconTextGap(10); // Espace entre icône et texte
+
+        // Centrage vertical du texte + icône
+        jLabel2.setHorizontalAlignment(SwingConstants.CENTER);
+        jLabel2.setVerticalAlignment(SwingConstants.CENTER);
+
+        // Position du texte par rapport à l’icône
+        jLabel2.setHorizontalTextPosition(SwingConstants.RIGHT);
+        jLabel2.setVerticalTextPosition(SwingConstants.CENTER);
+        ImageIcon originalIcon3 = new ImageIcon(getClass().getResource("/icones/chan.png"));
+        Image scaledImage3 = originalIcon3.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon3 = new ImageIcon(scaledImage3);
+
+        // Appliquer l’icône
+        jButtonChangerMdp.setIcon(resizedIcon3);
+        jButtonChangerMdp.setIconTextGap(10); // Espace entre icône et texte
+
+        // Centrage vertical du texte + icône
+        jButtonChangerMdp.setHorizontalAlignment(SwingConstants.CENTER); // Centre tout (icône + texte)
+        jButtonChangerMdp.setVerticalAlignment(SwingConstants.CENTER);
+
+        // Pour éviter que le texte soit décalé par la taille du bouton
+        jButtonChangerMdp.setHorizontalTextPosition(SwingConstants.RIGHT); // Texte à droite de l’icône
+        jButtonChangerMdp.setVerticalTextPosition(SwingConstants.CENTER);
+        ImageIcon originalIcon2 = new ImageIcon(getClass().getResource("/icones/mdp.png"));
+        Image scaledImage2 = originalIcon2.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon2 = new ImageIcon(scaledImage2);
+
+        // Appliquer l’icône
+        jLabel3.setIcon(resizedIcon2);
+        jLabel3.setIconTextGap(10); // Espace entre icône et texte
+
+        // Centrage vertical du texte + icône
+        jLabel3.setHorizontalAlignment(SwingConstants.CENTER);
+        jLabel3.setVerticalAlignment(SwingConstants.CENTER);
+
+        // Position du texte par rapport à l’icône
+        jLabel3.setHorizontalTextPosition(SwingConstants.RIGHT);
+        jLabel3.setVerticalTextPosition(SwingConstants.CENTER);
+        ImageIcon originalIcon8 = new ImageIcon(getClass().getResource("/icones/Retour1.png"));
+        Image scaledImage8 = originalIcon8.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon8 = new ImageIcon(scaledImage8);
+
+        // Appliquer l’icône
+        jButtonChangerMdp1.setIcon(resizedIcon8);
+        jButtonChangerMdp1.setIconTextGap(10); // Espace entre icône et texte
+
+        // Centrage vertical du texte + icône
+        jButtonChangerMdp1.setHorizontalAlignment(SwingConstants.CENTER); // Centre tout (icône + texte)
+        jButtonChangerMdp1.setVerticalAlignment(SwingConstants.CENTER);
+
+        // Pour éviter que le texte soit décalé par la taille du bouton
+        jButtonChangerMdp1.setHorizontalTextPosition(SwingConstants.RIGHT); // Texte à droite de l’icône
+        jButtonChangerMdp1.setVerticalTextPosition(SwingConstants.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

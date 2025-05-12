@@ -11,9 +11,12 @@ import com.smi6.gestion_des_articles_informatique.model.Memoire;
 import com.smi6.gestion_des_articles_informatique.model.RapportRecherche;
 import com.smi6.gestion_des_articles_informatique.model.These;
 import com.smi6.gestion_des_articles_informatique.view.search.PublicationDetailsDialog;
+import java.awt.Image;
 import java.util.Date;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 /**
@@ -123,7 +126,9 @@ private void populateFields(String titreStr, Date date, String typeStr) {
         optionLayout.setHorizontalGroup(
             optionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(B_Lire, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(B_Infos, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, optionLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(B_Infos, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         optionLayout.setVerticalGroup(
             optionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,6 +137,37 @@ private void populateFields(String titreStr, Date date, String typeStr) {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(B_Infos, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
         );
+
+        ImageIcon originalIcon1 = new ImageIcon(getClass().getResource("/icones/info.png"));
+        Image scaledImage1 = originalIcon1.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon1 = new ImageIcon(scaledImage1);
+
+        // Appliquer l’icône
+        B_Infos.setIcon(resizedIcon1);
+        B_Infos.setIconTextGap(10); // Espace entre icône et texte
+
+        // Centrage vertical du texte + icône
+        B_Infos.setHorizontalAlignment(SwingConstants.CENTER); // Centre tout (icône + texte)
+        B_Infos.setVerticalAlignment(SwingConstants.CENTER);
+
+        // Pour éviter que le texte soit décalé par la taille du bouton
+        B_Infos.setHorizontalTextPosition(SwingConstants.RIGHT); // Texte à droite de l’icône
+        B_Infos.setVerticalTextPosition(SwingConstants.CENTER);  // Aligné verticalement
+        ImageIcon originalIcon = new ImageIcon(getClass().getResource("/icones/lire.png"));
+        Image scaledImage = originalIcon.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon = new ImageIcon(scaledImage);
+
+        // Appliquer l’icône
+        B_Lire.setIcon(resizedIcon);
+        B_Lire.setIconTextGap(10); // Espace entre icône et texte
+
+        // Centrage vertical du texte + icône
+        B_Lire.setHorizontalAlignment(SwingConstants.CENTER); // Centre tout (icône + texte)
+        B_Lire.setVerticalAlignment(SwingConstants.CENTER);
+
+        // Pour éviter que le texte soit décalé par la taille du bouton
+        B_Lire.setHorizontalTextPosition(SwingConstants.RIGHT); // Texte à droite de l’icône
+        B_Lire.setVerticalTextPosition(SwingConstants.CENTER);  // Aligné verticalement
 
         type.setBackground(new java.awt.Color(239, 227, 194));
         type.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -173,10 +209,9 @@ private void populateFields(String titreStr, Date date, String typeStr) {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(titre2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(titre, javax.swing.GroupLayout.DEFAULT_SIZE, 886, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(titre2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(titre, javax.swing.GroupLayout.PREFERRED_SIZE, 788, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(option, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );

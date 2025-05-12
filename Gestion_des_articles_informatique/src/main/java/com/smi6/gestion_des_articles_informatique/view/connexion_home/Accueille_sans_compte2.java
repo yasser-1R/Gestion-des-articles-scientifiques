@@ -45,7 +45,6 @@ private Utilisateur U = null;
         jButton9 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1050, 600));
 
         jButton2.setBackground(new java.awt.Color(18, 53, 36));
         jButton2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -75,24 +74,23 @@ private Utilisateur U = null;
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(410, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(384, 384, 384))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(417, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(413, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(188, 188, 188)
+                .addGap(208, 208, 208)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 306, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 242, Short.MAX_VALUE)
                 .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(50, 50, 50))
         );
 
         ImageIcon originalIcon = new ImageIcon(getClass().getResource("/icones/SansCompte.png"));
@@ -110,6 +108,21 @@ private Utilisateur U = null;
         // Pour éviter que le texte soit décalé par la taille du bouton
         jButton2.setHorizontalTextPosition(SwingConstants.RIGHT); // Texte à droite de l’icône
         jButton2.setVerticalTextPosition(SwingConstants.CENTER);  // Aligné verticalement
+        ImageIcon originalIcon1 = new ImageIcon(getClass().getResource("/icones/Retour.png"));
+        Image scaledImage1 = originalIcon1.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon1 = new ImageIcon(scaledImage1);
+
+        // Appliquer l’icône
+        jButton9.setIcon(resizedIcon1);
+        jButton9.setIconTextGap(10); // Espace entre icône et texte
+
+        // Centrage vertical du texte + icône
+        jButton9.setHorizontalAlignment(SwingConstants.CENTER); // Centre tout (icône + texte)
+        jButton9.setVerticalAlignment(SwingConstants.CENTER);
+
+        // Pour éviter que le texte soit décalé par la taille du bouton
+        jButton9.setHorizontalTextPosition(SwingConstants.RIGHT); // Texte à droite de l’icône
+        jButton9.setVerticalTextPosition(SwingConstants.CENTER);  // Aligné verticalement
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

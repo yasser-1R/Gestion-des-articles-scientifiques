@@ -240,6 +240,21 @@ private Utilisateur U;
         // Pour éviter que le texte soit décalé par la taille du bouton
         jButton8.setHorizontalTextPosition(SwingConstants.RIGHT); // Texte à droite de l’icône
         jButton8.setVerticalTextPosition(SwingConstants.CENTER);
+        ImageIcon originalIcon9 = new ImageIcon(getClass().getResource("/icones/gestion_utilisateur.png"));
+        Image scaledImage9 = originalIcon9.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon9 = new ImageIcon(scaledImage9);
+
+        // Appliquer l’icône
+        jButton5.setIcon(resizedIcon9);
+        jButton5.setIconTextGap(10); // Espace entre icône et texte
+
+        // Centrage vertical du texte + icône
+        jButton5.setHorizontalAlignment(SwingConstants.CENTER); // Centre tout (icône + texte)
+        jButton5.setVerticalAlignment(SwingConstants.CENTER);
+
+        // Pour éviter que le texte soit décalé par la taille du bouton
+        jButton5.setHorizontalTextPosition(SwingConstants.RIGHT); // Texte à droite de l’icône
+        jButton5.setVerticalTextPosition(SwingConstants.CENTER);  // Aligné verticalement
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

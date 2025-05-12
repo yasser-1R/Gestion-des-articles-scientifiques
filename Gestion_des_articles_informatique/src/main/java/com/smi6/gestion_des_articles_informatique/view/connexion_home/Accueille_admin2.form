@@ -223,6 +223,9 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="ImageIcon originalIcon9 = new ImageIcon(getClass().getResource(&quot;/icones/gestion_utilisateur.png&quot;));&#xa;Image scaledImage9 = originalIcon9.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);&#xa;ImageIcon resizedIcon9 = new ImageIcon(scaledImage9);&#xa;&#xa;// Appliquer l&#x2019;ic&#xf4;ne&#xa;jButton5.setIcon(resizedIcon9);&#xa;jButton5.setIconTextGap(10); // Espace entre ic&#xf4;ne et texte&#xa;&#xa;// Centrage vertical du texte + ic&#xf4;ne&#xa;jButton5.setHorizontalAlignment(SwingConstants.CENTER); // Centre tout (ic&#xf4;ne + texte)&#xa;jButton5.setVerticalAlignment(SwingConstants.CENTER);&#xa;&#xa;// Pour &#xe9;viter que le texte soit d&#xe9;cal&#xe9; par la taille du bouton&#xa;jButton5.setHorizontalTextPosition(SwingConstants.RIGHT); // Texte &#xe0; droite de l&#x2019;ic&#xf4;ne&#xa;jButton5.setVerticalTextPosition(SwingConstants.CENTER);  // Align&#xe9; verticalement"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

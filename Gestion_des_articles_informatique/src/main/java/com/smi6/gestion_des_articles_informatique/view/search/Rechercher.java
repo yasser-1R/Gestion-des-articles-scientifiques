@@ -24,11 +24,14 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -69,6 +72,7 @@ private Utilisateur U;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(239, 227, 194));
+        setPreferredSize(new java.awt.Dimension(1050, 600));
 
         TF_date2.setBackground(new java.awt.Color(239, 227, 194));
         TF_date2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -166,37 +170,36 @@ private Utilisateur U;
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(L_auteurs, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
-                        .addComponent(B_SelectA, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(TF_auteurs, javax.swing.GroupLayout.DEFAULT_SIZE, 702, Short.MAX_VALUE))
+                        .addComponent(B_retourner1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(L_publierle2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(L_publierle, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                            .addComponent(L_auteurs, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(L_publierle)
-                            .addComponent(L_publierle2))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(TF_date, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(L_publierle1)
+                                .addGap(18, 18, 18)
+                                .addComponent(TF_date1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 459, Short.MAX_VALUE))
                             .addComponent(TF_date2)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(TF_date, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(L_publierle1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TF_date1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(B_retourner1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(B_SelectA, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(TF_auteurs)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(L_auteurs)
                     .addComponent(B_SelectA)
@@ -211,13 +214,89 @@ private Utilisateur U;
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(L_publierle2)
-                    .addComponent(TF_date2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 286, Short.MAX_VALUE)
+                    .addComponent(TF_date2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 324, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(B_retourner1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36))
+                    .addComponent(B_retourner1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(53, 53, 53))
         );
+
+        ImageIcon originalIcon44 = new ImageIcon(getClass().getResource("/icones/cle.png"));
+        Image scaledImage44 = originalIcon44.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon44 = new ImageIcon(scaledImage44);
+
+        // Appliquer l’icône
+        L_publierle2.setIcon(resizedIcon44);
+        L_publierle2.setIconTextGap(10); // Espace entre icône et texte
+
+        // Centrage vertical du texte + icône
+        L_publierle2.setHorizontalAlignment(SwingConstants.CENTER);
+        L_publierle2.setVerticalAlignment(SwingConstants.CENTER);
+
+        // Position du texte par rapport à l’icône
+        L_publierle2.setHorizontalTextPosition(SwingConstants.RIGHT);
+        L_publierle2.setVerticalTextPosition(SwingConstants.CENTER);
+        ImageIcon originalIcon = new ImageIcon(getClass().getResource("/icones/Profile.png"));
+        Image scaledImage = originalIcon.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon = new ImageIcon(scaledImage);
+
+        // Appliquer l’icône
+        L_auteurs.setIcon(resizedIcon);
+        L_auteurs.setIconTextGap(10); // Espace entre icône et texte
+
+        // Centrage vertical du texte + icône
+        L_auteurs.setHorizontalAlignment(SwingConstants.CENTER);
+        L_auteurs.setVerticalAlignment(SwingConstants.CENTER);
+
+        // Position du texte par rapport à l’icône
+        L_auteurs.setHorizontalTextPosition(SwingConstants.RIGHT);
+        L_auteurs.setVerticalTextPosition(SwingConstants.CENTER);
+        ImageIcon originalIcon22 = new ImageIcon(getClass().getResource("/icones/SansCompte.png"));
+        Image scaledImage22 = originalIcon22.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon22 = new ImageIcon(scaledImage22);
+
+        // Appliquer l’icône
+        jButton2.setIcon(resizedIcon22);
+        jButton2.setIconTextGap(10); // Espace entre icône et texte
+
+        // Centrage vertical du texte + icône
+        jButton2.setHorizontalAlignment(SwingConstants.CENTER); // Centre tout (icône + texte)
+        jButton2.setVerticalAlignment(SwingConstants.CENTER);
+
+        // Pour éviter que le texte soit décalé par la taille du bouton
+        jButton2.setHorizontalTextPosition(SwingConstants.RIGHT); // Texte à droite de l’icône
+        jButton2.setVerticalTextPosition(SwingConstants.CENTER);  // Aligné verticalement
+        ImageIcon originalIcon33 = new ImageIcon(getClass().getResource("/icones/publie.png"));
+        Image scaledImage33 = originalIcon33.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon33 = new ImageIcon(scaledImage33);
+
+        // Appliquer l’icône
+        L_publierle.setIcon(resizedIcon33);
+        L_publierle.setIconTextGap(10); // Espace entre icône et texte
+
+        // Centrage vertical du texte + icône
+        L_publierle.setHorizontalAlignment(SwingConstants.CENTER);
+        L_publierle.setVerticalAlignment(SwingConstants.CENTER);
+
+        // Position du texte par rapport à l’icône
+        L_publierle.setHorizontalTextPosition(SwingConstants.RIGHT);
+        L_publierle.setVerticalTextPosition(SwingConstants.CENTER);
+        ImageIcon originalIcon11 = new ImageIcon(getClass().getResource("/icones/Retour1.png"));
+        Image scaledImage11 = originalIcon11.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon11 = new ImageIcon(scaledImage11);
+
+        // Appliquer l’icône
+        B_retourner1.setIcon(resizedIcon11);
+        B_retourner1.setIconTextGap(10); // Espace entre icône et texte
+
+        // Centrage vertical du texte + icône
+        B_retourner1.setHorizontalAlignment(SwingConstants.CENTER); // Centre tout (icône + texte)
+        B_retourner1.setVerticalAlignment(SwingConstants.CENTER);
+
+        // Pour éviter que le texte soit décalé par la taille du bouton
+        B_retourner1.setHorizontalTextPosition(SwingConstants.RIGHT); // Texte à droite de l’icône
+        B_retourner1.setVerticalTextPosition(SwingConstants.CENTER);  // Aligné verticalement
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -330,49 +409,6 @@ private Utilisateur U;
         ST.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_B_retourner1ActionPerformed
-
-    
-    
-    
-    
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Rechercher.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Rechercher.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Rechercher.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Rechercher.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Rechercher().setVisible(true);
-//            }
-//        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton B_SelectA;

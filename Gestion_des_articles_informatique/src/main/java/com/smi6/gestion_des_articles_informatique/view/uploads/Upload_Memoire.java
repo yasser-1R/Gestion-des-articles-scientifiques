@@ -6,12 +6,15 @@ package com.smi6.gestion_des_articles_informatique.view.uploads;
 import com.smi6.gestion_des_articles_informatique.controller.uploads.UploadMemoireController;
 
 import com.smi6.gestion_des_articles_informatique.model.Utilisateur;
+import java.awt.Image;
 
 import java.io.File;
+import javax.swing.ImageIcon;
 
 import javax.swing.JDialog;
 import javax.swing.JFileChooser; 
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -78,7 +81,7 @@ private Utilisateur U;
 
         L_Encadran.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         L_Encadran.setForeground(new java.awt.Color(18, 53, 36));
-        L_Encadran.setText("Encadran  ");
+        L_Encadran.setText("Encadrant");
 
         L_Statut.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         L_Statut.setForeground(new java.awt.Color(18, 53, 36));
@@ -135,7 +138,7 @@ private Utilisateur U;
         B_SelectE.setBackground(new java.awt.Color(18, 53, 36));
         B_SelectE.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         B_SelectE.setForeground(new java.awt.Color(239, 227, 194));
-        B_SelectE.setText("Select Encadran");
+        B_SelectE.setText("Select Encadrant");
         B_SelectE.setFocusable(false);
         B_SelectE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,44 +176,40 @@ private Utilisateur U;
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(L_titre, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(L_upload, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(L_Discription))
-                            .addComponent(L_Statut, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(L_Encadran, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(L_Statut, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(L_publierle, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
+                        .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TF_etudiant)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(TF_date, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(B_SelectE, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(TF_Encadran))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(L_titre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(L_upload, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(L_Discription, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(B_pdf)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(TF_titre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 922, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 922, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TF_etudiant, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 922, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(1, 1, 1))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(B_retourner1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(B_enregistrer))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(L_Encadran, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(L_publierle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(TF_date, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(B_SelectE, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(TF_Encadran, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(16, Short.MAX_VALUE))
+                            .addComponent(TF_titre)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 867, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(B_retourner1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(B_enregistrer, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,12 +240,133 @@ private Utilisateur U;
                     .addComponent(L_publierle)
                     .addComponent(TF_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(131, 131, 131)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(B_enregistrer, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(B_retourner1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(45, Short.MAX_VALUE))
+                    .addComponent(B_enregistrer, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(B_retourner1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(54, 54, 54))
         );
+
+        ImageIcon originalIcon = new ImageIcon(getClass().getResource("/icones/upload.png"));
+        Image scaledImage = originalIcon.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon = new ImageIcon(scaledImage);
+
+        // Appliquer l’icône
+        L_upload.setIcon(resizedIcon);
+        L_upload.setIconTextGap(10); // Espace entre icône et texte
+
+        // Centrage vertical du texte + icône
+        L_upload.setHorizontalAlignment(SwingConstants.CENTER);
+        L_upload.setVerticalAlignment(SwingConstants.CENTER);
+
+        // Position du texte par rapport à l’icône
+        L_upload.setHorizontalTextPosition(SwingConstants.RIGHT);
+        L_upload.setVerticalTextPosition(SwingConstants.CENTER);
+        ImageIcon originalIcon1 = new ImageIcon(getClass().getResource("/icones/text.png"));
+        Image scaledImage1 = originalIcon1.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon1 = new ImageIcon(scaledImage1);
+
+        // Appliquer l’icône
+        L_titre.setIcon(resizedIcon1);
+        L_titre.setIconTextGap(10); // Espace entre icône et texte
+
+        // Centrage vertical du texte + icône
+        L_titre.setHorizontalAlignment(SwingConstants.CENTER);
+        L_titre.setVerticalAlignment(SwingConstants.CENTER);
+
+        // Position du texte par rapport à l’icône
+        L_titre.setHorizontalTextPosition(SwingConstants.RIGHT);
+        L_titre.setVerticalTextPosition(SwingConstants.CENTER);
+        ImageIcon originalIcon2 = new ImageIcon(getClass().getResource("/icones/resume.png"));
+        Image scaledImage2 = originalIcon2.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon2 = new ImageIcon(scaledImage2);
+
+        // Appliquer l’icône
+        L_Discription.setIcon(resizedIcon2);
+        L_Discription.setIconTextGap(10); // Espace entre icône et texte
+
+        // Centrage vertical du texte + icône
+        L_Discription.setHorizontalAlignment(SwingConstants.CENTER);
+        L_Discription.setVerticalAlignment(SwingConstants.CENTER);
+
+        // Position du texte par rapport à l’icône
+        L_Discription.setHorizontalTextPosition(SwingConstants.RIGHT);
+        L_Discription.setVerticalTextPosition(SwingConstants.CENTER);
+        ImageIcon originalIcon4 = new ImageIcon(getClass().getResource("/icones/Profile.png"));
+        Image scaledImage4 = originalIcon4.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon4 = new ImageIcon(scaledImage4);
+
+        // Appliquer l’icône
+        L_Encadran.setIcon(resizedIcon4);
+        L_Encadran.setIconTextGap(10); // Espace entre icône et texte
+
+        // Centrage vertical du texte + icône
+        L_Encadran.setHorizontalAlignment(SwingConstants.CENTER);
+        L_Encadran.setVerticalAlignment(SwingConstants.CENTER);
+
+        // Position du texte par rapport à l’icône
+        L_Encadran.setHorizontalTextPosition(SwingConstants.RIGHT);
+        L_Encadran.setVerticalTextPosition(SwingConstants.CENTER);
+        ImageIcon originalIcon3 = new ImageIcon(getClass().getResource("/icones/etudiant.png"));
+        Image scaledImage3 = originalIcon3.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon3 = new ImageIcon(scaledImage3);
+
+        // Appliquer l’icône
+        L_Statut.setIcon(resizedIcon3);
+        L_Statut.setIconTextGap(10); // Espace entre icône et texte
+
+        // Centrage vertical du texte + icône
+        L_Statut.setHorizontalAlignment(SwingConstants.CENTER);
+        L_Statut.setVerticalAlignment(SwingConstants.CENTER);
+
+        // Position du texte par rapport à l’icône
+        L_Statut.setHorizontalTextPosition(SwingConstants.RIGHT);
+        L_Statut.setVerticalTextPosition(SwingConstants.CENTER);
+        ImageIcon originalIcon33 = new ImageIcon(getClass().getResource("/icones/publie.png"));
+        Image scaledImage33 = originalIcon33.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon33 = new ImageIcon(scaledImage33);
+
+        // Appliquer l’icône
+        L_publierle.setIcon(resizedIcon33);
+        L_publierle.setIconTextGap(10); // Espace entre icône et texte
+
+        // Centrage vertical du texte + icône
+        L_publierle.setHorizontalAlignment(SwingConstants.CENTER);
+        L_publierle.setVerticalAlignment(SwingConstants.CENTER);
+
+        // Position du texte par rapport à l’icône
+        L_publierle.setHorizontalTextPosition(SwingConstants.RIGHT);
+        L_publierle.setVerticalTextPosition(SwingConstants.CENTER);
+        ImageIcon originalIcon111 = new ImageIcon(getClass().getResource("/icones/enregistre.png"));
+        Image scaledImage111 = originalIcon111.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon111 = new ImageIcon(scaledImage111);
+
+        // Appliquer l’icône
+        B_enregistrer.setIcon(resizedIcon111);
+        B_enregistrer.setIconTextGap(10); // Espace entre icône et texte
+
+        // Centrage vertical du texte + icône
+        B_enregistrer.setHorizontalAlignment(SwingConstants.CENTER); // Centre tout (icône + texte)
+        B_enregistrer.setVerticalAlignment(SwingConstants.CENTER);
+
+        // Pour éviter que le texte soit décalé par la taille du bouton
+        B_enregistrer.setHorizontalTextPosition(SwingConstants.RIGHT); // Texte à droite de l’icône
+        B_enregistrer.setVerticalTextPosition(SwingConstants.CENTER);  // Aligné verticalement
+        ImageIcon originalIcon11 = new ImageIcon(getClass().getResource("/icones/Retour1.png"));
+        Image scaledImage11 = originalIcon11.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon11 = new ImageIcon(scaledImage11);
+
+        // Appliquer l’icône
+        B_retourner1.setIcon(resizedIcon11);
+        B_retourner1.setIconTextGap(10); // Espace entre icône et texte
+
+        // Centrage vertical du texte + icône
+        B_retourner1.setHorizontalAlignment(SwingConstants.CENTER); // Centre tout (icône + texte)
+        B_retourner1.setVerticalAlignment(SwingConstants.CENTER);
+
+        // Pour éviter que le texte soit décalé par la taille du bouton
+        B_retourner1.setHorizontalTextPosition(SwingConstants.RIGHT); // Texte à droite de l’icône
+        B_retourner1.setVerticalTextPosition(SwingConstants.CENTER);  // Aligné verticalement
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
