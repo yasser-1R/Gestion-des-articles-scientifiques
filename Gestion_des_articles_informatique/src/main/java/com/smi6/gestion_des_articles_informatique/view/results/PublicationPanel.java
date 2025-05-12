@@ -261,24 +261,48 @@ private void populateFields(String titreStr, Date date, String typeStr) {
     }//GEN-LAST:event_B_LireActionPerformed
 
     private void B_InfosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_InfosActionPerformed
-        // TODO add your handling code here:
-            Object publication = null;
+// TODO add your handling code here:
+Object publication = null;
 
-    if (A != null) publication = A;
-    else if (C != null) publication = C;
-    else if (B != null) publication = B;
-    else if (T != null) publication = T;
-    else if (M != null) publication = M;
-    else if (R != null) publication = R;
+if (A != null) publication = A;
+else if (C != null) publication = C;
+else if (B != null) publication = B;
+else if (T != null) publication = T;
+else if (M != null) publication = M;
+else if (R != null) publication = R;
 
-    if (publication != null) {
-        JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        PublicationDetailsDialog dialog = new PublicationDetailsDialog(parentFrame, publication);
-        dialog.setVisible(true);
+if (publication != null) {
+    JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+    
+    // Create the dialog based on the publication type
+    PublicationDetailsDialog dialog;
+    
+    if (publication instanceof Article) {
+        dialog = new PublicationDetailsDialog(parentFrame, (Article) publication);
+    } else if (publication instanceof Conference) {
+        dialog = new PublicationDetailsDialog(parentFrame, (Conference) publication);
+    } else if (publication instanceof Brevet) {
+        dialog = new PublicationDetailsDialog(parentFrame, (Brevet) publication);
+    } else if (publication instanceof These) {
+        dialog = new PublicationDetailsDialog(parentFrame, (These) publication);
+    } else if (publication instanceof Memoire) {
+        dialog = new PublicationDetailsDialog(parentFrame, (Memoire) publication);
+    } else if (publication instanceof RapportRecherche) {
+        dialog = new PublicationDetailsDialog(parentFrame, (RapportRecherche) publication);
     } else {
-        JOptionPane.showMessageDialog(this, "Aucune publication à afficher.", "Erreur", JOptionPane.ERROR_MESSAGE);
+        // In case an unsupported publication type is found
+        dialog = null;
+        JOptionPane.showMessageDialog(this, "Type de publication inconnu.", "Erreur", JOptionPane.ERROR_MESSAGE);
     }
-        
+    
+    // Show the dialog if it was created
+    if (dialog != null) {
+        dialog.setVisible(true);
+    }
+} else {
+    JOptionPane.showMessageDialog(this, "Aucune publication à afficher.", "Erreur", JOptionPane.ERROR_MESSAGE);
+}
+ 
         
     }//GEN-LAST:event_B_InfosActionPerformed
 

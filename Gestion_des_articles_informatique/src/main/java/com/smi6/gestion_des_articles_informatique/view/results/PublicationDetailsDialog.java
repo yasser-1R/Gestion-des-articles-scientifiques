@@ -8,8 +8,8 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.text.SimpleDateFormat;
-import java.util.stream.Collectors;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PublicationDetailsDialog extends JDialog {
 
@@ -26,8 +26,43 @@ public class PublicationDetailsDialog extends JDialog {
     private final JPanel contentPanel = new JPanel();
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
-    public PublicationDetailsDialog(JFrame parent, Object publication) {
-        super(parent, "Détails de la publication", true);
+    // Constructor for Article
+    public PublicationDetailsDialog(JFrame parent, Article publication) {
+        super(parent, "Détails de l'Article", true);
+        initializeDialog(parent, publication);
+    }
+
+    // Constructor for Conference
+    public PublicationDetailsDialog(JFrame parent, Conference publication) {
+        super(parent, "Détails de la Conférence", true);
+        initializeDialog(parent, publication);
+    }
+
+    // Constructor for Brevet
+    public PublicationDetailsDialog(JFrame parent, Brevet publication) {
+        super(parent, "Détails du Brevet", true);
+        initializeDialog(parent, publication);
+    }
+
+    // Constructor for These
+    public PublicationDetailsDialog(JFrame parent, These publication) {
+        super(parent, "Détails de la Thèse", true);
+        initializeDialog(parent, publication);
+    }
+
+    // Constructor for Memoire
+    public PublicationDetailsDialog(JFrame parent, Memoire publication) {
+        super(parent, "Détails du Mémoire", true);
+        initializeDialog(parent, publication);
+    }
+
+    // Constructor for RapportRecherche
+    public PublicationDetailsDialog(JFrame parent, RapportRecherche publication) {
+        super(parent, "Détails du Rapport de Recherche", true);
+        initializeDialog(parent, publication);
+    }
+
+    private void initializeDialog(JFrame parent, Object publication) {
         setSize(700, 500); // Increased size for better readability
         setLocationRelativeTo(parent);
         setLayout(new BorderLayout());
@@ -104,23 +139,21 @@ public class PublicationDetailsDialog extends JDialog {
 
     private void populateContent(Object pub) {
         if (pub instanceof Article a) {
-                    addSectionTitle("Informations Générales");
-        addFieldWithValue("Titre", a.getTitre());
-        addFieldWithValue("Date de publication", formatDate(a.getDatePublication()));
-        
-        addSectionTitle("Contenu");
-        addFieldWithValue("Résumé", a.getResume());
-        
-        addSectionTitle("Auteurs et Publication");
-        addFieldWithValue("Professeurs", joinNames(a.getProfesseurs()));
-        
-        // 🔽 Journals with Quartile
-        String journalsWithQuartile = a.getJournaux().stream()
-            .map(journal -> journal.getNom() + " (" + journal.getQuartile() + ")")
-            .collect(Collectors.joining(", "));
-        addFieldWithValue("Journaux", journalsWithQuartile);
-    
-           } else if (pub instanceof Conference c) {
+            addSectionTitle("Informations Générales");
+            addFieldWithValue("Titre", a.getTitre());
+            addFieldWithValue("Date de publication", formatDate(a.getDatePublication()));
+            
+            addSectionTitle("Contenu");
+            addFieldWithValue("Résumé", a.getResume());
+            
+            addSectionTitle("Auteurs et Publication");
+            addFieldWithValue("Professeurs", joinNames(a.getProfesseurs()));
+            
+            String journalsWithQuartile = a.getJournaux().stream()
+                .map(journal -> journal.getNom() + " (" + journal.getQuartile() + ")")
+                .collect(Collectors.joining(", "));
+            addFieldWithValue("Journaux", journalsWithQuartile);
+        } else if (pub instanceof Conference c) {
             addSectionTitle("Informations Générales");
             addFieldWithValue("Titre", c.getTitre());
             addFieldWithValue("Date", formatDate(c.getDateConference()));
