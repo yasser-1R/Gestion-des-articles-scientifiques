@@ -18,7 +18,8 @@ public class PublicationListView extends JFrame {
             List<RapportRecherche> rapports) {
 
         setTitle("Liste des Publications");
-        setSize(1050, 600);
+        setSize(1070, 620);
+        setMinimumSize(new Dimension(1070, 620)); 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
@@ -34,7 +35,7 @@ public class PublicationListView extends JFrame {
         if (articles != null) {
             for (Article a : articles) {
                 container.add(new PublicationPanel(a));
-                container.add(Box.createVerticalStrut(10));
+                container.add(Box.createVerticalStrut(0));
             }
             totalCount += articles.size();
         }
@@ -42,7 +43,7 @@ public class PublicationListView extends JFrame {
         if (conferences != null) {
             for (Conference c : conferences) {
                 container.add(new PublicationPanel(c));
-                container.add(Box.createVerticalStrut(10));
+                container.add(Box.createVerticalStrut(0));
             }
             totalCount += conferences.size();
         }
@@ -50,7 +51,7 @@ public class PublicationListView extends JFrame {
         if (brevets != null) {
             for (Brevet b : brevets) {
                 container.add(new PublicationPanel(b));
-                container.add(Box.createVerticalStrut(10));
+                container.add(Box.createVerticalStrut(0));
             }
             totalCount += brevets.size();
         }
@@ -58,7 +59,7 @@ public class PublicationListView extends JFrame {
         if (theses != null) {
             for (These t : theses) {
                 container.add(new PublicationPanel(t));
-                container.add(Box.createVerticalStrut(10));
+                container.add(Box.createVerticalStrut(0));
             }
             totalCount += theses.size();
         }
@@ -66,7 +67,7 @@ public class PublicationListView extends JFrame {
         if (memoires != null) {
             for (Memoire m : memoires) {
                 container.add(new PublicationPanel(m));
-                container.add(Box.createVerticalStrut(10));
+                container.add(Box.createVerticalStrut(0));
             }
             totalCount += memoires.size();
         }
@@ -74,7 +75,7 @@ public class PublicationListView extends JFrame {
         if (rapports != null) {
             for (RapportRecherche r : rapports) {
                 container.add(new PublicationPanel(r));
-                container.add(Box.createVerticalStrut(10));
+                container.add(Box.createVerticalStrut(0));
             }
             totalCount += rapports.size();
         }
@@ -87,7 +88,7 @@ public class PublicationListView extends JFrame {
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
         // Close button
-        JButton closeButton = new JButton("Close");
+        JButton closeButton = new JButton("Fermer");
         closeButton.setBackground(new Color(18, 53, 36));
         closeButton.setFont(new Font("Calibri", Font.PLAIN, 16));
         closeButton.setForeground(new Color(239, 227, 194));
@@ -108,7 +109,8 @@ public class PublicationListView extends JFrame {
         bottomPanel.add(countLabel);
 
         add(bottomPanel, BorderLayout.SOUTH);
-
+        setSize(1070, 620);
+        setMinimumSize(new Dimension(1070, 620)); 
         setVisible(true);
     }
 }

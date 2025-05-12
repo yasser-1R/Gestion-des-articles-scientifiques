@@ -370,20 +370,31 @@ dialog.setVisible(true); // will block until closed
     }//GEN-LAST:event_B_retourner1ActionPerformed
 
     private void B_SelectEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_SelectEActionPerformed
-        String currentEncadrant = TF_Encadran.getText().trim();
+         // Prepare list of pre-selected names
+        String currentText = TF_Encadran.getText().trim();
+        List<String> selectedProfesseurs = new ArrayList<>();
+        if (!currentText.isEmpty()) {
+            for (String name : currentText.split(",")) {
+                selectedProfesseurs.add(name.trim());
+            }
+        }
 
-        SelectEncadrantPanel_R2 panel = new SelectEncadrantPanel_R2(currentEncadrant);
-        JDialog dialog = new JDialog(this, "Choisir l'encadrant", true);
-        dialog.getContentPane().add(panel);
+        // Create panel with pre-selected names
+        SelectProfesseursPanel_R selectProfPanel = new SelectProfesseursPanel_R(selectedProfesseurs);
+
+        // Create dialog
+        JDialog dialog = new JDialog(this, "Choisir Professeurs", true);
+        dialog.getContentPane().add(selectProfPanel);
         dialog.pack();
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
 
-        // Récupération du nom sélectionné
-        String selected = panel.getSelectedEncadrantText();
-        if (selected != null) {
-            TF_Encadran.setText(selected);
-        }
+        // AFTER dialog is closed:
+        // Get new list of selected professors
+        String selected = selectProfPanel.getSelectedProfesseursText();
+
+        // OVERWRITE the old text field content
+        TF_Encadran.setText(selected);
 
     }//GEN-LAST:event_B_SelectEActionPerformed
 

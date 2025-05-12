@@ -10,17 +10,18 @@ public class SearchTheseController {
 
     private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
 
-    public List<These> searchTheses(String encadrant, String etudiant, String date1Str, String date2Str, String keyword) throws Exception {
+    public List<These> searchTheses(String encadrants, String etudiant, String date1Str, String date2Str, String keyword) throws Exception {
         EntityManager em = emf.createEntityManager();
 
         try {
             StringBuilder jpql = new StringBuilder("SELECT t FROM These t WHERE 1=1");
             Map<String, Object> params = new HashMap<>();
 
-            // 🔍 Encadrant unique (non-liste)
-            if (encadrant != null && !encadrant.trim().isEmpty()) {
-                jpql.append(" AND LOWER(t.directeur.nomComplet) = :encadrant");
-                params.put("encadrant", encadrant.trim().toLowerCase());
+            // 🔍 Encadrants (multiple professors)
+            if (encadrants != null && !encadrants.trim().isEmpty()) {
+                List<String> encadrantNames = parseNames(encadrants); // Parse the input into a list of names
+                jpql.append(" AND LOWER(t.directeur.nomComplet) IN :encadrants");
+                params.put("encadrants", encadrantNames);
             }
 
             // 🔍 Étudiant
@@ -58,6 +59,18 @@ public class SearchTheseController {
         } finally {
 //            em.close();
         }
+    }
+
+    // Method to parse the input into a list of names
+    private List<String> parseNames(String input) {
+        List<String> names = new ArrayList<>();
+        for (String name : input.split(",")) {
+            String trimmed = name.trim().toLowerCase();
+            if (!trimmed.isEmpty()) {
+                names.add(trimmed);
+            }
+        }
+        return names;
     }
 
     private Date parseDate(String dateStr) throws Exception {
