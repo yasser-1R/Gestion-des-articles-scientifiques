@@ -56,7 +56,10 @@ private Utilisateur utilisateur;
 
         comboRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        btnEnregistrer.setBackground(new java.awt.Color(18, 53, 36));
+        btnEnregistrer.setForeground(new java.awt.Color(255, 255, 255));
         btnEnregistrer.setText("Enregistrer");
+        btnEnregistrer.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnEnregistrer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEnregistrerActionPerformed(evt);
@@ -88,11 +91,11 @@ private Utilisateur utilisateur;
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnEnregistrer)
                     .addComponent(comboRole, 0, 182, Short.MAX_VALUE)
                     .addComponent(txtMotDePasse)
                     .addComponent(txtLogin)
-                    .addComponent(txtNom))
+                    .addComponent(txtNom)
+                    .addComponent(btnEnregistrer, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(587, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -114,8 +117,8 @@ private Utilisateur utilisateur;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(75, 75, 75)
-                .addComponent(btnEnregistrer)
+                .addGap(59, 59, 59)
+                .addComponent(btnEnregistrer, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(148, 148, 148))
         );
 

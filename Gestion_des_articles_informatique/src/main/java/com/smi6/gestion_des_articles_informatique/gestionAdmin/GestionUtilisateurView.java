@@ -83,21 +83,33 @@ public class GestionUtilisateurView extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        btnAjouter.setBackground(new java.awt.Color(18, 53, 36));
+        btnAjouter.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        btnAjouter.setForeground(new java.awt.Color(239, 227, 194));
         btnAjouter.setText("Ajouter");
+        btnAjouter.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAjouter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAjouterActionPerformed(evt);
             }
         });
 
+        btnSupprimer.setBackground(new java.awt.Color(18, 53, 36));
+        btnSupprimer.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        btnSupprimer.setForeground(new java.awt.Color(239, 227, 194));
         btnSupprimer.setText("Supprimer");
+        btnSupprimer.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnSupprimer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSupprimerActionPerformed(evt);
             }
         });
 
+        btnModifier.setBackground(new java.awt.Color(18, 53, 36));
+        btnModifier.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        btnModifier.setForeground(new java.awt.Color(239, 227, 194));
         btnModifier.setText("Modifier");
+        btnModifier.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnModifier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModifierActionPerformed(evt);
@@ -130,7 +142,7 @@ public class GestionUtilisateurView extends javax.swing.JFrame {
                         .addGap(40, 40, 40)
                         .addComponent(btnAjouter, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSupprimer)
+                        .addComponent(btnSupprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(200, 200, 200)
                         .addComponent(btnModifier, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(207, 207, 207))))
@@ -146,10 +158,10 @@ public class GestionUtilisateurView extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAjouter)
-                    .addComponent(btnSupprimer)
-                    .addComponent(btnModifier))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                    .addComponent(btnAjouter, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSupprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnModifier, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addComponent(B_retourner1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );

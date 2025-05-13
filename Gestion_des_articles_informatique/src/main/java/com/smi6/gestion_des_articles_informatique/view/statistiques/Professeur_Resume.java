@@ -196,9 +196,9 @@ dialog.setVisible(true); // modal dialog blocks here
         this.dispose();
     }
 
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(() -> new Professeur_Resume(null).setVisible(true));
-    }
+//    public static void main(String args[]) {
+//        java.awt.EventQueue.invokeLater(() -> new Professeur_Resume(null).setVisible(true));
+//    }
 
     // Variables declaration
     private javax.swing.JButton B_retour;

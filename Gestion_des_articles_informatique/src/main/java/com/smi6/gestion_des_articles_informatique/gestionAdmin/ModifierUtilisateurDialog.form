@@ -33,11 +33,11 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="btnEnregistrer" min="-2" max="-2" attributes="0"/>
                   <Component id="comboRole" pref="182" max="32767" attributes="0"/>
                   <Component id="txtMotDePasse" alignment="1" max="32767" attributes="0"/>
                   <Component id="txtLogin" alignment="1" max="32767" attributes="0"/>
                   <Component id="txtNom" alignment="1" max="32767" attributes="0"/>
+                  <Component id="btnEnregistrer" alignment="1" min="-2" pref="104" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="587" max="32767" attributes="0"/>
           </Group>
@@ -66,8 +66,8 @@
                   <Component id="comboRole" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-              <Component id="btnEnregistrer" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+              <Component id="btnEnregistrer" min="-2" pref="43" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -97,7 +97,18 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnEnregistrer">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="24" green="35" red="12" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Enregistrer"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+            <BevelBorder/>
+          </Border>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEnregistrerActionPerformed"/>
